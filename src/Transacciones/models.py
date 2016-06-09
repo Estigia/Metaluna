@@ -21,7 +21,7 @@ class Factura(models.Model):
     noDocumento = models.PositiveIntegerField(null = False,blank = False)
     precioTotal = models.PositiveIntegerField(null = False,blank=False)
     anulada = models.BooleanField( default = False)
-    Comodin_id = models.ForeignKey('Usuario.Comodin')
+    Comodin_id = models.ForeignKey('Comodin.Comodin')
 
     def __unicode__(self):
         return self.noDocumento + "  "+ self.serie
