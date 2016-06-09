@@ -4,7 +4,7 @@ from django.db import models
 
 class Lote(models.Model):
     id = models.AutoField(primary_key = True)
-    precio_compra = models.FloatField(blank = True, null=True)
+    precio_compra = models.FloatField(min_value = 0,blank = True, null=True)
     Producto_id = ForeignKey('Producto')
 
     def __unicode__(self):
@@ -39,14 +39,14 @@ class Material(models.Model):
 
 class Longitud(models.Model):
     id = models.AutoField(primary_key = True)
-    longitud = models.IntegerField(blank = True, null = True)
+    longitud = models.IntegerField(min_value = 0, blank = True, null = True)
 
     def __unicode__(self):
         return str(self.longitud)
 
 class Calibre(models.Model):
     id = models.AutoField(primary_key = True)
-    calibre = models.FloatField(blank = True, null = True)
+    calibre = models.FloatField(min_value = 0, blank = True, null = True)
 
     def __unicode__(self):
         return str(self.calibre)
