@@ -3,24 +3,36 @@
 {% block content %}
   <form method= "post", action="">
     {% csrf_token %}
-    <label>Descripcion</label>
-      {{form.descripcion}}
+    <div>
+      <label>Descripcion</label>
+        {{form.descripcion}}
+    </div>
 
-    <label>Tipo de Producto</label>
-      {{form.Tipo_Producto_id}}
+    <div>
+      <label>Tipo de Producto</label>
+        {{form.Tipo_Producto_id}}
+    </div>
 
-    <label>Material</label>
-      {{form.Material_id}}
+    <div>
+      <label>Material</label>
+        {{form.Material_id}}
+    </div>
 
-    <label>Longitud</label>
-      {{form.Longitud_id}}
+    <div>
+      <label>Longitud</label>
+        {{form.Longitud_id}}
+    </div>
 
-    <label>Calibre</label>
-      {{form.Calibre_id}}
+    <div>
+      <label>Calibre</label>
+        {{form.Calibre_id}}
+    </div>
 
-    <label>Forma</label>
-      {{Forma.Forma_id}}
-
+    <div>
+      <label>Forma</label>
+        {{Forma.Forma_id}}
+    </div>
+    
     <input type="submit" value="Registrar Producto">
   </form>
 {% endblock %}
