@@ -18,4 +18,11 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^calibre/', 'Producto.views.calibre', name='calibre'),
+    url(r'^forma/', 'Producto.views.forma', name='forma'),
+    url(r'^longitud/', 'Producto.views.longitud', name='longitud'),
+    url(r'^lote/', 'Producto.views.lote', name='lote')
+    url(r'^material/', 'Producto.views.material', name='material'),
+    url(r'^productos/', 'Producto.views.productos', name='productos'),
+    url(r'^tipo_producto/', 'Producto.views.tipo_producto', name='tipo_producto'),
 ]
