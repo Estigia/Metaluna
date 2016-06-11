@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .forms import LoteForm, ProductoForm, Tipo_ProductoForm,
-                    MaterialForm, LongitudForm, CalibreForm, FormaForm
+
+from .forms import (LoteForm, ProductoForm, Tipo_ProductoForm,
+                    MaterialForm, LongitudForm, CalibreForm, FormaForm)
 
 def producto(request):
     form = ProductoForm(request.POST or None)
