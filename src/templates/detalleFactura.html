@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post" action="">
+    {% csrf_token %}
+    <div>
+      <label>id Factura</label>
+      {{form.Factura_id}}
+    </div>
+
+    <div>
+      <label>id producto</label>
+      {{form.Producto_id}}
+    </div>
+
+    <div>
+      <label>subTotal</label>
+      {{form.subTotal}}
+    </div>
+
+    <div>
+      <label>cantidad</label>
+      {{form.cantidad}}
+    </div>
+
+    <input type="submit" value = "ingresar Detalle de Factura">
+</form>
+
+{% endblock %}

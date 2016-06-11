@@ -8,12 +8,16 @@ class FacturaForm(forms.ModelForm):
         "serie",
         "noDocumento",
         "precioTotal",
+        "anulada",
+        "Comodin_id",
         ]
 
 class DetalleFacturaForm(forms.ModelForm):
     class Meta:
         model = DetalleFactura
         fields = [
+        "Factura_id",
+        "Producto_id",
         "subTotal",
         "cantidad",
         ]
@@ -31,13 +35,19 @@ class AbonosForm(forms.ModelForm):
         fields = [
         "monto",
         "fecha",
+        "Credito_id",
         ]
 
 class CreditoForm(forms.ModelForm):
     class Meta:
         model = Credito
         fields = [
+        "aprobado",
         "monto",
         "saldo",
+        "finalizado",
         "fechaLimite",
+        "fechaAprobacion",
+        "Usuario_id",
+        "Factura_id",
         ]
