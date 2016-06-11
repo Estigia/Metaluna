@@ -10,7 +10,7 @@ class Recibo(models.Model):
 class Abonos(models.Model):
     monto   =  models.PositiveIntegerField(null=False,blank=False)
     fecha   =    models.DateTimeField()
-    credito_id  = models.ForeignKey('Credito')
+    Credito_id  = models.ForeignKey('Credito')
 
     def __unicode__(self):
         return self.monto
@@ -43,8 +43,8 @@ class Credito(models.Model):
     finalizado  =   models.BooleanField(default=True)
     fechaLimite =   models.DateTimeField()
     fechaAprobacion =    models.DateTimeField()
-    usuario_id  =   models.ForeignKey('Usuario.Usuario')
-    factura_id   = models.ForeignKey('Factura')
+    Usuario_id  =   models.ForeignKey('Usuario.Usuario')
+    Factura_id   = models.ForeignKey('Factura')
 
     def __unicode__ (self):
-        return self.monto + "  "+ self.saldo
+        return self.usuario_id + "  "+ self.factura_id

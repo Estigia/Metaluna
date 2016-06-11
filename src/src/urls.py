@@ -20,7 +20,12 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^trans/','Transacciones.views.trans',name="trans")
+    url(r'^trans/','Transacciones.views.trans',name="trans"),
+    url(r'^factura/','Transacciones.views.Factura', name="factura"),
+    url(r'^detalleFactura/','Transacciones.views.DetalleFactura', name="detalleFactura"),
+    url(r'^recibo/','Transacciones.views.Recibo', name="recibo"),
+    url(r'^abonos/','Transacciones.views.Abonos', name="abonos"),
+    url(r'^credito/','Transacciones.views.Credito', name="credito"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
