@@ -9,6 +9,7 @@ class LoteAdmin(admin.ModelAdmin):
     list_display = [
         "id",
         "precio_compra",
+        "cantidad",
         "Producto_id",
     ]
     form = LoteForm

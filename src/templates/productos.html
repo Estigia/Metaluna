@@ -7,44 +7,19 @@
       {{form.descripcion}}
 
     <label>Tipo de Producto</label>
-      <select id="Tipo_Producto" name="Tipo_Producto">
-        <option selected/>
-        {% for elemento in Tipo_Producto %}
-          <option value="{{elemento.id}}">{{elemento.tipo}}</option>
-        {% endfor %}
-      </select>
+      {{form.Tipo_Producto_id}}
 
     <label>Material</label>
-      <select id="Material" name="Material">
-        <option selected/>
-        {% for elemento in Material %}
-          <option value="{{elemento.id}}">{{elemento.material}}</option>
-        {% endfor %}
-      </select>
+      {{form.Material_id}}
 
     <label>Longitud</label>
-      <select id="Longitud" name="Longitud">
-        <option selected/>
-        {% for elemento in Longitud %}
-          <option value="{{elemento.id}}">{{elemento.longitud}}</option>
-        {% endfor %}
-      </select>
+      {{form.Longitud_id}}
 
     <label>Calibre</label>
-      <select id="Calibre" name="Calibre">
-        <option selected/>
-        {% for elemento in Calibre %}
-          <option value="{{elemento.id}}">{{elemento.calibre}}</option>
-        {% endfor %}
-      </select>
+      {{form.Calibre_id}}
 
     <label>Forma</label>
-      <select id="Forma" name="Forma">
-        <option selected/>
-        {% for elemento in Forma %}
-          <option value="{{elemento.id}}">{{elemento.forma}}</option>
-        {% endfor %}
-      </select>    
+      {{Forma.Forma_id}}
 
     <input type="submit" value="Registrar Producto">
   </form>

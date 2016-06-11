@@ -8,6 +8,7 @@ class LoteForm(forms.ModelForm):
         model = Lote
         fields = [
             "precio_compra",
+            "cantidad",
             "Producto_id",
         ]
 
