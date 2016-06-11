@@ -1,6 +1,5 @@
 from django import forms
-
-from .models import Agencia
+from .models import Agencia, Vehiculo, Entrega, Mercaderia
 
 class AgenciaForm(forms.ModelForm):
     class Meta:

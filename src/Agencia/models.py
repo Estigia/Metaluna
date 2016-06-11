@@ -30,7 +30,7 @@ class Entrega(models.Model):
     id = models.AutoField(primary_key = True)
     kEntrada = models.FloatField()
     kSalida = models.FloatField()
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
+    fecha = models.DateTimeField()
     vale = models.IntegerField(blank = True, null = True)
     Vehiculo_id = models.ForeignKey('Vehiculo')
 

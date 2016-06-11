@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from .models import Agencia, Vehiculo, Entrega, Mercaderia
 from django.http import HttpResponse
-from .forms import AgenciaForm
+from .forms import AgenciaForm, VehiculoForm, EntregaForm, MercaderiaForm
 
 def Agencia(request):
-    form = AgenciaForm()
+    form = AgenciaForm(request.POST or None)
 
     context = {"form":form}
 
@@ -12,7 +12,7 @@ def Agencia(request):
 
 
 def Vehiculo(request):
-    form = VehiculoForm
+    form = VehiculoForm()
 
     context = {"form": form}
 
@@ -20,7 +20,7 @@ def Vehiculo(request):
 
 
 def Entrega(request):
-    form = EntregaForm
+    form = EntregaForm()
 
     context = {"form": form}
 
@@ -29,7 +29,7 @@ def Entrega(request):
 
 
 def Mercaderia(request):
-    form = MercaderiaForm
+    form = MercaderiaForm()
 
     context = {"form": form}
 
