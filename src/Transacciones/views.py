@@ -43,6 +43,8 @@ def Credito(request):
     context = {
 
     }
-    if from.is_valid():
+    if form.is_valid():
         form.save()
         return render(request,'credito.html',context)
+def trans(request):
+    return render(request,'index.html',{})
