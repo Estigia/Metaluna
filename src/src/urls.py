@@ -33,6 +33,10 @@ urlpatterns = [
     url(r'^recibo/','Transacciones.views.Recibo', name="recibo"),
     url(r'^abonos/','Transacciones.views.Abonos', name="abonos"),
     url(r'^credito/','Transacciones.views.Credito', name="credito"),
+    url(r'^agencia/', 'Agencia.views.Agencia', name='Agencia'),
+    url(r'^vehiculo/', 'Agencia.views.Vehiculo', name='Vehiculo'),
+    url(r'^entrega/', 'Agencia.views.Entrega', name='Entrega'),
+    url(r'^mercaderia/', 'Agencia.views.Mercaderia', name='Mercaderia'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

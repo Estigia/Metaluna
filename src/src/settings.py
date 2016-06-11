@@ -37,13 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Transacciones',
     'Localizaciones',
     'Agencia',
-    'Producto',
-    'Usuario',
     'Comodin',
-
+    'Producto',
+    'Transacciones',
+    'Usuario',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -106,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-AUTH_USER_MODEL = "Usuario.Usuario"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
