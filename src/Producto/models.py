@@ -5,7 +5,7 @@ from django.db import models
 class Lote(models.Model):
     id = models.AutoField(primary_key = True)
     precio_compra = models.FloatField(blank = True, null=True)
-    longitud = models.IntegerField(blank = True, null = True)
+    cantidad = models.IntegerField(blank = True, null = True)
     Producto_id = models.ForeignKey('Producto')
 
     def __unicode__(self):

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method="post" action="">
+    {% csrf_token %}
+
+    <div>
+      <label>Precio de Compra</label>
+        {{form.precio_compra}}
+    </div>
+
+    <div>
+      <label>Cantidad</label>
+        {{form.cantidad}}
+    </div>
+
+    <div>
+      <label>Producto</label>
+        <select id="Producto" name="Producto">
+          <option selected/>
+          {% for elemento in Producto %}
+            <option value="{{elemento.id}}">{{elemento.descripcion}}-{{elemento.Tipo_Producto_id}}-
+            {{elemento.Material_id}}-{{elemento.Longitud_id}}-{{elemento.Calibre_id}}-
+            {{elemento.Forma_id}}-{{elemento.Marca_id}}</option>
+          {% endfor %}
+        </select>
+    </div>
+
+    <input type="submit" value="Registrar Lote">
+
+  </form>
+{% endblock %}

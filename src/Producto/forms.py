@@ -1,5 +1,7 @@
 from django import forms
-from .models import Lote, Producto, Tipo_Producto,Material, Longitud, Calibre, Forma
+
+from .models import (Lote, Producto, Tipo_Producto,
+                        Material, Longitud, Calibre, Forma)
 
 class LoteForm(forms.ModelForm):
     class Meta:

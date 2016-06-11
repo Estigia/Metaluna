@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .forms import LoteForm, ProductoForm, Tipo_ProductoForm,
-                    MaterialForm, LongitudForm, CalibreForm, FormaForm
+
+from .forms import (LoteForm, ProductoForm, Tipo_ProductoForm,
+                    MaterialForm, LongitudForm, CalibreForm, FormaForm)
 
 def producto(request):
     form = ProductoForm(request.POST or None)
@@ -26,9 +27,11 @@ def producto(request):
 
 def lote(request):
     form = LoteForm(request.POST or None)
+    Producto = Producto.objects.all()
 
     context = {
-        "form" : form
+        "form" : form,
+        "Producto" : Producto
     }
 
     if form.is_valid():
@@ -43,7 +46,7 @@ def tipo_producto(request):
         "form" : form
     }
 
-    if form.is_valid()
+    if form.is_valid():
         form.save()
 
     return render(request, 'tipo_producto.html', context)
