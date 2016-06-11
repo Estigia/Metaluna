@@ -4,8 +4,12 @@
   <form method="post" action="">
     {% csrf_token %}
 
-    <label>Material</label>
-      {{form.material}}
+    <div>
+      <label>Material</label>
+        {{form.material}}
+    </div>
+
+    <input type="submit" value="Registrar Material">
 
   </form>
 {% endblock %}

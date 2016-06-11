@@ -4,8 +4,12 @@
   <form method="post" action="">
     {% csrf_token %}
 
-    <label>Longitud</label>
-      {{form.longitud}}
+    <div>
+      <label>Longitud</label>
+        {{form.longitud}}
+    </div>
+
+    <input type="submit" value="Registrar Longitud">
 
   </form>
 {% endblock %}

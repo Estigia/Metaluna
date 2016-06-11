@@ -46,7 +46,7 @@ def tipo_producto(request):
         "form" : form
     }
 
-    if form.is_valid()
+    if form.is_valid():
         form.save()
 
     return render(request, 'tipo_producto.html', context)

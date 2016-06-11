@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
-
 {% block content %}
   <form method="post" action="">
     {% csrf_token %}
 
-    <label>Calibre</label>
-      {{form.calibre}}
+    <div>
+      <label>Calibre</label>
+        {{form.calibre}}
+    </div>
+
+    <input type="submit" value="Registrar Calibre">
 
   </form>
 {% endblock %}
