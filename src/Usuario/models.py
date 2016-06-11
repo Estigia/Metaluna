@@ -51,7 +51,8 @@ class UsuarioManager(BaseUserManager):
 
 
 
-	def create_superuser(self, username, password=None):
+
+    def create_superuser(self, username, password=None):
 	 	usuario = self.create_user(username, password)
 	 	usuario.is_admin = True
 	 	usuario.save()
@@ -72,11 +73,11 @@ class Usuario(AbstractBaseUser):
 
     USERNAME_FIELD = 'username'
 
-    def get_full_name(self):
-		return str(self.Empleado_id.nombre) + str(self.Empleado_id.apellidos)
-
+    # def get_full_name(self):
+	# 	return str(self.Empleado_id.nombre) + str(self.Empleado_id.apellidos)
+    #
     def get_short_name(self):
-        return str(self.Empleado_id.nombre)
+        return str(self.username)
 
     def __unicode__(self):
 		return self.username
