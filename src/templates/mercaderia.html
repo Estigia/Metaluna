@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
+<form method="post" action="">
   {%csrf_token%}
-  {{form.as_p}}
-</div>
+  <div>
+    <label>Producto</label>
+    {{form.Producto_id}}<br/>
+  </div>
+  <div>
+    <label>Agencia</label>
+    {{form.Agencia_id}}<br/>
+  </div>
+  <div>
+    <label>Cantidad</label>
+    {{form.cantidad}}<br/>
+  </div>
+  <div>
+    <input type='submit' value='Guardar'>
+  </div>
+</form>
 
 {% endblock %}
