@@ -13,7 +13,7 @@ class Comodin(models.Model):
     nit = models.CharField(max_length = 20, blank = False, null = True)
     tipo = models.BooleanField(default = False)
     bloqueado = models.BooleanField(default = False)
-    saldo = modesl.DecimalField(decimal_places = 2, blank = False, null = True)
+    saldo = models.FloatField(blank = False, null = True)
 
     def __unicode__(self):
         return str(self.nombre) + "--" + str(self.empresa)

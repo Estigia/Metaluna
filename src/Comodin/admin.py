@@ -18,5 +18,5 @@ class ComodinAdmin(admin.ModelAdmin):
 class MarcaAdmin(admin.ModelAdmin):
     list_display = ['id', 'marca', 'Comodin_id']
 
-admin.site.register(Comodin, Comodin_id)
+admin.site.register(Comodin, ComodinAdmin)
 admin.site.register(Marca, MarcaAdmin)
