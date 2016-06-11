@@ -27,9 +27,11 @@ def producto(request):
 
 def lote(request):
     form = LoteForm(request.POST or None)
+    Producto = Producto.objects.all()
 
     context = {
-        "form" : form
+        "form" : form,
+        "Producto" : Producto
     }
 
     if form.is_valid():
