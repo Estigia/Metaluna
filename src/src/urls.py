@@ -19,4 +19,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^agencia/', 'Agencia.views.Agencia', name='Agencia'),
+    url(r'^vehiculo/', 'Agencia.views.Vehiculo', name='Vehiculo'),
+    url(r'^entrega/', 'Agencia.views.Entrega', name='Entrega'),
+    url(r'^mercaderia/', 'Agencia.views.Mercaderia', name='Mercaderia'),
 ]
