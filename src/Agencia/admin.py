@@ -11,5 +11,10 @@ class VehiculoAdmin(admin.ModelAdmin):
 class EntregaAdmin(admin.ModelAdmin):
     list_display = ["id", "kEntrada", "kSalida", "fecha", "vale", "Vehiculo_id"]
 
-class Mercaderia(admin.ModelAdmin):
+class MercaderiaAdmin(admin.ModelAdmin):
     list_display = ["id", "Producto_id", "Agencia_id"]
+
+admin.site.register(AgenciaAdmin, Agencia)
+admin.site.register(VehiculoAdmin, Vehiculo)
+admin.site.register(EntregaAdmin, Entrega)
+admin.site.register(MercaderiaAdmin,Mercaderia)
