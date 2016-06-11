@@ -42,6 +42,7 @@ class Mercaderia(models.Model):
     id = models.AutoField(primary_key = True)
     Producto_id = models.ForeignKey('Producto.Producto')
     Agencia_id = models.ForeignKey('Agencia')
+    cantidad = models.IntegerField(blank = True, null = True)
 
     def __unicode__(self):
         return str(self.id)
