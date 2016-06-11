@@ -6,7 +6,7 @@ class Lote(models.Model):
     id = models.AutoField(primary_key = True)
     precio_compra = models.FloatField(blank = True, null=True)
     longitud = models.IntegerField(blank = True, null = True)
-    Producto_id = ForeignKey('Producto')
+    Producto_id = models.ForeignKey('Producto')
 
     def __unicode__(self):
         return str(self.id)
@@ -14,12 +14,12 @@ class Lote(models.Model):
 class Producto(models.Model):
     id = models.AutoField(primary_key = True)
     descripcion = models.CharField(max_length = 60)
-    Tipo_Producto_id = ForeignKey('Tipo_Producto')
-    Material_id = ForeignKey('Material')
-    Longitud_id = ForeignKey('Longitud')
-    Calibre_id = ForeignKey('Calibre')
-    Forma_id = ForeignKey('Forma')
-    Marca_id = ForeignKey('Comodin.Marca')
+    Tipo_Producto_id = models.ForeignKey('Tipo_Producto')
+    Material_id = models.ForeignKey('Material')
+    Longitud_id = models.ForeignKey('Longitud')
+    Calibre_id = models.ForeignKey('Calibre')
+    Forma_id = models.ForeignKey('Forma')
+    Marca_id = models.ForeignKey('Comodin.Marca')
 
     def __unicode__(self):
         return self.descripcion
