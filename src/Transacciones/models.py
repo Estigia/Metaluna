@@ -43,7 +43,7 @@ class Credito(models.Model):
     finalizado  =   models.BooleanField(default=True)
     fechaLimite =   models.DateTimeField()
     fechaAprobacion =    models.DateTimeField()
-    usuario_id  =   models.ForeignKey('Usuarios.Usuario')
+    usuario_id  =   models.ForeignKey('Usuario.Usuario')
     factura_id   = models.ForeignKey('Factura')
 
     def __unicode__ (self):
