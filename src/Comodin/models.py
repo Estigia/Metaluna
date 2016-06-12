@@ -11,8 +11,8 @@ class Comodin(models.Model):
     direccion = models.CharField(max_length = 45, blank = False, null = True)
     telefono = models.CharField(max_length = 8)
     nit = models.CharField(max_length = 20, blank = False, null = True)
-    tipo = models.BooleanField(default = False)
-    bloqueado = models.BooleanField(default = False)
+    tipo = models.BooleanField()
+    bloqueado = models.BooleanField()
     saldo = models.FloatField(blank = False, null = True)
 
     def __unicode__(self):

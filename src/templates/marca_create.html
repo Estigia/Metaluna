@@ -1,0 +1,46 @@
+<form method="POST" action="">
+  <div>
+    <label>Marca</label>
+      {{form.marca}}</br>
+  </div>
+  <div>
+    <label>Proveedor</label>
+      {{form.Comodin_id}}</br>
+  </div>
+</form>
+
+<script type="text/javascript">
+
+  $('#id_Comodin_id').on('open', filtro);
+
+  document.getElementById("id_Comodin_id").length = 0;
+
+  function filtro(){
+
+    $.ajax({
+
+      //data: {'tipo': tipo},
+      url:'/filtro/filtroP',
+      type: 'get',
+      success: function(data){
+
+        var inner = document.getElementById('id_Comodin_id');
+
+        inner.innerHTML = "";
+
+        for(var i = 0, i<data.length; i++){
+
+          var nuevo = document.createElement("option");
+          nuevo.value = data[i].pk;
+          nuevo.innerHTML = data[i].fields.marca;
+          inner.options.add(nuevo);
+
+        }
+
+      }
+
+    })
+
+  }
+
+</script>

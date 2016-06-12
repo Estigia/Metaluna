@@ -16,9 +16,20 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from Comodin.views import (
+            ComodinCreate,
+            MarcaCreate,
+            ClienteCreate,
+            filtroP
+            )
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^empleados/', include('Usuario.urls')),
     url(r'^inicio/','Usuario.views.inicio', name='login'),
     url(r'^registro/','Usuario.views.registro', name='registro'),
+    url(r'^proveedor/',ComodinCreate.as_view(),name='proveedor'),
+    url(r'^cliente/',ClienteCreate.as_view(), name = 'cliente'),
+    url(r'^marca/',MarcaCreate.as_view(), name = 'marca'),
+    url(r'^filtro/',filtroP,name = 'filtroP'),
     ]
