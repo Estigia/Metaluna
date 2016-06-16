@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Producto',
     'Transacciones',
     'Usuario',
+    'Planillas',
 ]
 
 MIDDLEWARE_CLASSES = [
