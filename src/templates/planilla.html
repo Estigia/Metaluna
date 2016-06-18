@@ -1,3 +1,81 @@
 {% extends 'base.html' %}
 {% block content %}
+<form method= "post", action="">
+  {% csrf_token %}
+<li>
+  <ls>
+    <div>
+    <label>Agencia</label>
+      {{form.Agencia_id}}
+  </div>
+</ls>
+
+  <ls>
+    <div>
+    <label>Empleado</label>
+      {{form.Empleado_id}}
+  </div>
+</ls>
+
+<ls>
+  <div>
+    <label>Sueldo</label>
+      {{form.sueldo}}
+  </div>
+</ls>
+
+<ls>
+  <div>
+    <label>Horas extra</label>
+      {{form.horasExtra}}
+  </div>
+</ls>
+<ls>
+  <div>
+
+    <label>Bono Incentivo</label>
+      {{form.bonoIncentivo}}
+  </div>
+</ls>
+
+<ls>
+  <div>
+    <label>IGSS</label>
+      {{form.igss}}
+  </div>
+  <ls>
+
+  <div>
+    <label>ISR</label>
+      {{form.isr}}
+  </div>
+
+  <div>
+    <label>Anticipos</label>
+      {{form.anticipos}}
+  </div>
+
+  <div>
+    <label>Judiciales</label>
+      {{form.judiciales}}
+  </div>
+
+  <div>
+    <label>Otros Descuentos</label>
+      {{form.otros}}
+  </div>
+
+  <div>
+    <label>Total de Descuentos</label>
+      {{form.totalDescuento}}
+  </div>
+
+  <div>
+    <label>Total Liquido</label>
+      {{form.totalLiquido}}
+  </div>
+</li>
+
+  <input type="submit" value="Registrar Producto">
+</form>
 {% endblock %}

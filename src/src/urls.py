@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^vehiculo/', 'Agencia.views.Vehiculo', name='Vehiculo'),
     url(r'^entrega/', 'Agencia.views.Entrega', name='Entrega'),
     url(r'^mercaderia/', 'Agencia.views.Mercaderia', name='Mercaderia'),
+    url(r'^planilla/', 'Planillas.views.Planilla', name='Planilla'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

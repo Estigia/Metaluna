@@ -3,12 +3,12 @@ from django.db import models
 
 # Create your models here.
 class Recibo(models.Model):
-    noDocumento = models.PositiveIntegerField(null=False,blank=False)
+    noDocumento = models.PositiveIntegerField(null=True,blank=True)
     def __unicode__(self):
         return self.noDocumento
 
 class Abonos(models.Model):
-    monto   =  models.PositiveIntegerField(null=False,blank=False)
+    monto   =  models.PositiveIntegerField(null=True,blank=True)
     fecha   =    models.DateTimeField()
     Credito_id  = models.ForeignKey('Credito')
 
@@ -17,9 +17,9 @@ class Abonos(models.Model):
 
 
 class Factura(models.Model):
-    serie   =   models.CharField(max_length = 3, blank=False,null=False)
-    noDocumento = models.PositiveIntegerField(null = False,blank = False)
-    precioTotal = models.PositiveIntegerField(null = False,blank=False)
+    serie   =   models.CharField(max_length = 3, blank=True,null=True)
+    noDocumento = models.PositiveIntegerField(null = True,blank = True)
+    precioTotal = models.PositiveIntegerField(null = True,blank=True)
     anulada = models.BooleanField( default = False)
     Comodin_id = models.ForeignKey('Comodin.Comodin')
 
@@ -29,8 +29,8 @@ class Factura(models.Model):
 class DetalleFactura(models.Model):
     Factura_id = models.ForeignKey('Factura')
     Producto_id = models.ForeignKey('Producto.Producto')
-    subTotal = models.PositiveIntegerField(null = False,blank=False)
-    cantidad = models.PositiveIntegerField(null = False,blank=False)
+    subTotal = models.PositiveIntegerField(null = True,blank=True)
+    cantidad = models.PositiveIntegerField(null = True,blank=True)
     def __unicode__(self):
         return self.subTotal
 
@@ -38,9 +38,9 @@ class DetalleFactura(models.Model):
 
 class Credito(models.Model):
     aprobado    =   models.BooleanField(default = True)
-    monto   =   models.PositiveIntegerField(null = False,blank=False)
-    saldo   =   models.PositiveIntegerField(null = False,blank=False)
-    finalizado  =   models.BooleanField(default=True)
+    monto   =   models.PositiveIntegerField(null = True,blank=True)
+    saldo   =   models.PositiveIntegerField(null = True,blank=True)
+    finalizado  =   models.BooleanField(default=False)
     fechaLimite =   models.DateTimeField()
     fechaAprobacion =    models.DateTimeField()
     Usuario_id  =   models.ForeignKey('Usuario.Usuario')
