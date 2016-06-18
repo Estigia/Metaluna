@@ -31,7 +31,7 @@ def Factura(request):
         form.save()
     return render(request,'factura.html',context)
 
-def DetalleFacturaForm(request):
+def DetalleFactura(request):
     form = DetalleFacturaForm(request.POST or None)
     context = {
         "form":form,
