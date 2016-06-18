@@ -8,15 +8,15 @@ class ReciboAdmin(admin.ModelAdmin):
     form = ReciboForm
 
 class AbonosAdmin(admin.ModelAdmin):
-    list_display = ["__unicode__"]
+    list_display = ["__unicode__","monto","fecha","Credito_id"]
     form = AbonosForm
 
 class FacturaAdmin(admin.ModelAdmin):
-    list_display = ["__unicode__"]
+    list_display = ["__unicode__","serie","noDocumento","precioTotal","anulada","Comodin_id"]
     form = FacturaForm
 
 class DetalleFacturaAdmin(admin.ModelAdmin):
-    list_display = ["__unicode__","cantidad","subTotal"]
+    list_display = ["__unicode__","cantidad","subTotal","Factura_id","Producto_id"]
     form = DetalleFacturaForm
 
 class CreditoAdmin(admin.ModelAdmin):

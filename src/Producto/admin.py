@@ -1,11 +1,15 @@
 from django.contrib import admin
-from .models import Lote, Producto, Tipo_Producto,Material, Longitud, Calibre, Forma
-from .forms import LoteForm, ProductoForm, Tipo_ProductoForm,MaterialForm, LongitudForm, CalibreForm, FormaForm
+
+from .models import (Lote, Producto, Tipo_Producto,
+                        Material, Longitud, Calibre, Forma)
+from .forms import (LoteForm, ProductoForm, Tipo_ProductoForm,
+                    MaterialForm, LongitudForm, CalibreForm, FormaForm)
 
 class LoteAdmin(admin.ModelAdmin):
     list_display = [
         "id",
         "precio_compra",
+        "cantidad",
         "Producto_id",
     ]
     form = LoteForm
