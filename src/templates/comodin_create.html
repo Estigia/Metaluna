@@ -1,4 +1,5 @@
 <form method="POST" action = "">
+  {% csrf_token %}
   <div>
     <label>Nombre</label>
       {{form.nombre}}</br>

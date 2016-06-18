@@ -12,7 +12,7 @@ class Comodin(models.Model):
     telefono = models.CharField(max_length = 8)
     nit = models.CharField(max_length = 20, blank = False, null = True)
     tipo = models.BooleanField()
-    bloqueado = models.BooleanField()
+    bloqueado = models.BooleanField(default = False)
     saldo = models.FloatField(blank = False, null = True)
 
     def __unicode__(self):
