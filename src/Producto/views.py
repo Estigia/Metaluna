@@ -1,7 +1,26 @@
 from django.shortcuts import render
+from django.views.generic.edit import UpdateView
+from django.views.generic.detail import DetailView
+from django.core.urlresolvers import reverse, reverse_lazy
 
+from .models import (Lote, Producto, Tipo_Producto,
+                        Material, Longitud, Calibre, Forma)
 from .forms import (LoteForm, ProductoForm, Tipo_ProductoForm,
                     MaterialForm, LongitudForm, CalibreForm, FormaForm)
+
+#Vistas de Producto y Detalle -----------------------------
+def index(request):
+    productos = Producto.objects.all()
+
+    context = {
+        "productos" : productos,
+    }
+
+    return render(request, 'producto_list.html', context)
+
+class ProductoDetail(DetailView):
+    model = Producto
+    template_name = 'producto_detail.html'
 
 def producto(request):
     form = ProductoForm(request.POST or None)
@@ -14,6 +33,8 @@ def producto(request):
         form.save()
 
     return render(request, 'productos.html', context)
+
+#--------------------------------------------------------
 
 def lote(request):
     form = LoteForm(request.POST or None)
