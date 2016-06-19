@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <table>
+    {% for producto in productos %}
+      <tr>
+        <td>{{producto.descripcion}}</td>
+        <td><a href={% url 'Producto:detail' producto.id %}><i>Ver</i></a></td>
+      </tr>
+    {% endfor%}
+  </table>
+
+{% endblock %}
