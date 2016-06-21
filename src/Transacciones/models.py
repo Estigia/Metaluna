@@ -5,7 +5,7 @@ from django.db import models
 class Recibo(models.Model):
     noDocumento = models.PositiveIntegerField(null=True,blank=True)
     def __unicode__(self):
-        return self.noDocumento
+        return str(self.noDocumento)
 
 class Abonos(models.Model):
     monto   =  models.PositiveIntegerField(null=True,blank=True)
@@ -13,7 +13,7 @@ class Abonos(models.Model):
     Credito_id  = models.ForeignKey('Credito')
 
     def __unicode__(self):
-        return self.monto
+        return str(self.monto)
 
 
 class Factura(models.Model):
@@ -24,7 +24,7 @@ class Factura(models.Model):
     Comodin_id = models.ForeignKey('Comodin.Comodin')
 
     def __unicode__(self):
-        return self.noDocumento + "  "+ self.serie
+        return str(self.noDocumento) + "  "+ self.serie
 
 class DetalleFactura(models.Model):
     Factura_id = models.ForeignKey('Factura')
@@ -32,7 +32,7 @@ class DetalleFactura(models.Model):
     subTotal = models.PositiveIntegerField(null = True,blank=True)
     cantidad = models.PositiveIntegerField(null = True,blank=True)
     def __unicode__(self):
-        return self.subTotal
+        return str(self.subTotal)
 
 
 
