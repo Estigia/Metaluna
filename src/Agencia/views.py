@@ -52,6 +52,26 @@ def vehiculo(request):
 
     return render(request, "vehiculo.html", context)
 
+class VehiculoDetail(DetailView):
+    model = Vehiculo
+    template_name = 'vehiculo_detail.html'
+
+class VehiculoUpdate(UpdateView):
+    model = Vehiculo
+    template_name = 'vehiculo_edit.html'
+    success_url = reverse_lazy('Agencia:list_v')
+
+    fields = [
+
+        'marca',
+        'modelo',
+        'placa',
+        'Agencia_id',
+
+    ]
+
+#-------------------------------------------------------------
+
 
 def entrega(request):
     form = EntregaForm()
