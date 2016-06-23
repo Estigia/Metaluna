@@ -1,0 +1,62 @@
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+</head>
+<body id="cuerpo" name="cuerpo">
+  <form method="POST" action="">
+    {% csrf_token %}
+    <div>
+      <label>Marca</label>
+        {{form.marca}}</br>
+    </div>
+    <div>
+      <label>Proveedor</label>
+        <select id = "proveedor_id" name = "proveedor">
+          <option selected>------</option>
+          {% for dato in proveedores %}
+            <option value="{{dato.id}}">{{dato.empresa}}---{{dato.nombre}}</option>
+          {% endfor %}
+        </select></br>
+    </div>
+    <div>
+      <input type='submit' value='Guardar'>
+  </form>
+</body>
+
+<!-- <script type="text/javascript">
+
+  $('#cuerpo').on('load', filtro);
+
+  document.getElementById("id_Comodin_id").length = 0;
+
+  function filtro(){
+
+    console.log('funciono');
+
+    $.ajax({
+
+      //data: {'tipo': tipo},
+      url:'/filtro/filtroP',
+      type: 'get',
+      success: function(data){
+
+        var inner = document.getElementById('id_Comodin_id');
+
+        inner.innerHTML = "";
+
+        for(var i = 0; i<data.length; i++){
+
+          var nuevo = document.createElement("option");
+          nuevo.value = data[i].pk;
+          nuevo.innerHTML = data[i].fields.marca;
+          inner.options.add(nuevo);
+
+        }
+
+      }
+
+    })
+
+  }
+
+</script> -->

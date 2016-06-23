@@ -13,20 +13,29 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
 from django.contrib import admin
 
+from Comodin.views import (
+            ComodinCreate,
+            MarcaCreate,
+            ClienteCreate,
+            filtroP
+            )
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^calibre/', 'Producto.views.calibre', name='calibre'),
-    url(r'^forma/', 'Producto.views.forma', name='forma'),
-    url(r'^longitud/', 'Producto.views.longitud', name='longitud'),
-    url(r'^lote/', 'Producto.views.lote', name='lote'),
-    url(r'^material/', 'Producto.views.material', name='material'),
-    url(r'^productos/', 'Producto.views.producto', name='productos'),
-    url(r'^tipo_producto/', 'Producto.views.tipo_producto', name='tipo_producto'),
+    url(r'^empleados/', include('Usuario.urls')),
+    url(r'^inicio/','Usuario.views.inicio', name='login'),
+    url(r'^registro/','Usuario.views.registro', name='registro'),
+    url(r'^proveedor/',ComodinCreate.as_view(),name='proveedor'),
+    url(r'^cliente/',ClienteCreate.as_view(), name = 'cliente'),
+    url(r'^marca/',MarcaCreate.as_view(), name = 'marca'),
+    url(r'^filtro/',filtroP,name = 'filtroP'),
+    url(r'^productos/', include('Producto.urls', namespace= 'Producto')),
     url(r'^trans/','Transacciones.views.trans',name="trans"),
     url(r'^factura/','Transacciones.views.Factura', name="factura"),
     url(r'^detalleFactura/','Transacciones.views.DetalleFactura', name="detalleFactura"),
