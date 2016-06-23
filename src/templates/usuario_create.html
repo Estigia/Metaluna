@@ -1,0 +1,22 @@
+<form method="POST" action="">
+  {% csrf_token %}
+  <div>
+    <label>Nombre de Usuario</label>
+      {{form.username}}</br>
+  </div>
+  <div>
+    <label>Contrasena</label>
+      {{form.password}}</br>
+  </div>
+  <div>
+    <label>Confirme contrasena</label>
+      {{form.password1}}</br>
+  </div>
+  <div>
+    <label>Tipo</label>
+      {{form.Tipo_Usuario_id}}</br>
+  </div>
+  <div>
+    <input type="submit" value="Registrarse">
+  </div>
+</form>
