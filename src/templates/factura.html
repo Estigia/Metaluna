@@ -3,26 +3,43 @@
 <form method="post" action="">
     {% csrf_token %}
     <div>
-      <label>id Factura</label>
-      {{form.Factura_id}}
+      <label>Serie</label>
+      {{form.serie}}
     </div>
 
     <div>
-      <label>id producto</label>
-      {{form.Producto_id}}
+      <label>No. Documento</label>
+      {{form.noDocumento}}
     </div>
 
     <div>
-      <label>subTotal</label>
-      {{form.subTotal}}
+      <label>Precio Total</label>
+      {{form.precioTotal}}
     </div>
 
     <div>
-      <label>cantidad</label>
-      {{form.cantidad}}
+      <label>Comodin</label>
+      {{form.Comodin_id}}
     </div>
 
+    <table name='Detalle'>
+      <tr>
+        <td>Cantidad</td>
+        <td>Producto</td>
+        <td>Sub-Total</td>
+      </tr>
+    </table>
+    <button type="button" formmethod='post' name='eliminar' onclick='hola()'>Eliminar</button>
     <input type="submit" value = "ingresar  Factura">
 </form>
+
+{% endblock %}
+
+
+Factura_id = models.ForeignKey('Factura')
+  Producto_id = models.ForeignKey('Producto.Producto')
+  subTotal = models.PositiveIntegerField(null = True,blank=True)
+  cantidad = models.PositiveIntegerField(null = True,blank=True)
+{% block js%}
 
 {% endblock %}

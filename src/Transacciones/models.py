@@ -48,3 +48,7 @@ class Credito(models.Model):
 
     def __unicode__ (self):
         return self.usuario_id + "  "+ self.factura_id
+
+
+def hola():
+    print 'asd'
