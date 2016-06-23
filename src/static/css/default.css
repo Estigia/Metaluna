@@ -444,7 +444,7 @@
 	.column2
 	{
 		float: left;
-		margin-right: 24px;
+		/*margin-right: 24px;*/
 	}
 
 	.column3
@@ -454,7 +454,7 @@
 
 	.column4
 	{
-		float: right;
+		float: left;
 	}
 
 /*********************************************************************************/

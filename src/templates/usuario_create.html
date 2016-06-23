@@ -1,22 +1,57 @@
-<form method="POST" action="">
-  {% csrf_token %}
-  <div>
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+    <h2>Nuevo Usuario</h2>
+
     <label>Nombre de Usuario</label>
       {{form.username}}</br>
-  </div>
-  <div>
-    <label>Contrasena</label>
+<label>Contrasena</label>
       {{form.password}}</br>
-  </div>
-  <div>
-    <label>Confirme contrasena</label>
+<label>Confirme contrasena</label>
       {{form.password1}}</br>
-  </div>
-  <div>
-    <label>Tipo</label>
+<label>Tipo</label>
       {{form.Tipo_Usuario_id}}</br>
+
+    <input type='submit' value='Registrarse'>
+
+  </form>
+
   </div>
-  <div>
-    <input type="submit" value="Registrarse">
-  </div>
-</form>
+</div>
+
+{% endblock %}
+
+{% block navegacion %}
+    <div class="column1">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column2">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column3">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column4">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+{% endblock %}

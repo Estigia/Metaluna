@@ -1,29 +1,59 @@
-<form method="POST" action = "">
-  {% csrf_token %}
-  <div>
-    <label>Nombre</label>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+      <h2>Ingresar Cliente</h2>
+      <label>Nombre</label>
       {{form.nombre}}</br>
-  </div>
-  <div>
-    <label>Empresa</label>
+      <label>Empresa</label>
       {{form.empresa}}</br>
-  </div>
-  <div>
-    <label>Direccion</label>
+      <label>Direccion</label>
       {{form.direccion}}</br>
-  </div>
-  <div>
-    <label>Telefono</label>
+      <label>Telefono</label>
       {{form.telefono}}</br>
-  </div>
-  <div>
-    <label>NIT</label>
+      <label>NIT</label>
       {{form.nit}}</br>
-  </div>
-  <div>
-    <label>Saldo</label>
+      <label>Saldo</label>
       {{form.saldo}}</br>
+
+    <input type='submit' value='Guardar'>
+
+  </form>
+
   </div>
-  <div>
-    <input type="submit" value="Guardar">
-</form>
+</div>
+
+{% endblock %}
+
+{% block navegacion %}
+    <div class="column1">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column2">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column3">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column4">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+{% endblock %}

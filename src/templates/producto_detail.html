@@ -1,35 +1,57 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 
-  <div>
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <h2>Detalle de Producto</h2>
+
     <label>Descripcion</label>
       <i>&nbsp;&nbsp;{{producto.descripcion}}</i>
-  </div>
-
-  <div>
-    <label>Tipo de Producto</label>
+<label>Tipo de Producto</label>
       <i>&nbsp;&nbsp;{{producto.Tipo_Producto_id}}</i>
-  </div>
-
-  <div>
-    <label>Material</label>
+<label>Material</label>
       <i>&nbsp;&nbsp;{{producto.Material_id}}</i>
-  </div>
-
-  <div>
-    <label>Longitud</label>
+<label>Longitud</label>
       <i>&nbsp;&nbsp;{{producto.Longitud_id}}</i>
-  </div>
-
-  <div>
-    <label>Calibre</label>
+<label>Calibre</label>
       <i>&nbsp;&nbsp;{{producto.Calibre_id}}</i>
-  </div>
-
-  <div>
-    <label>Forma</label>
+<label>Forma</label>
       <i>&nbsp;&nbsp;{{producto.Forma_id}}</i>
-  </div>
 
+  </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block navegacion %}
+    <div class="column1">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column2">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column3">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column4">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
 {% endblock %}

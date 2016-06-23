@@ -1,48 +1,72 @@
 {% extends 'base.html' %}
+
+
 {% block content %}
-<form method="post" action="">
-    {% csrf_token %}
-    <div>
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+      <h2>Nuevo Credito</h2>
       <label>Aprobado</label>
       {{form.aprobado}}
-    </div>
 
-    <div>
-      <label>Monto</label>
+<label>Monto</label>
       {{form.monto}}
-    </div>
 
-    <div>
-      <label>Saldo</label>
+<label>Saldo</label>
       {{form.saldo}}
-    </div>
 
-    <div>
-      <label>Finalizado</label>
+<label>Finalizado</label>
       {{form.finalizado}}
-    </div>
 
-    <div>
-      <label>Fecha Limite</label>
+<label>Fecha Limite</label>
       {{form.fechaLimite}}
-    </div>
 
-    <div>
-      <label>Fecha Aprobacion</label>
+<label>Fecha Aprobacion</label>
       {{form.fechaAprobacion}}
-    </div>
 
-    <div>
-      <label>id Usuario</label>
+<label>id Usuario</label>
       {{form.Usuario_id}}
-    </div>
 
-    <div>
-      <label>id Factura</label>
+<label>id Factura</label>
       {{form.Factura_id}}
+
+
+    <input type='submit' value='Agregar'>
+
+  </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block navegacion %}
+    <div class="column1">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
     </div>
-
-    <input type="submit" value = "ingresar credito">
-</form>
-
+    <div class="column2">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column3">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column4">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
 {% endblock %}
