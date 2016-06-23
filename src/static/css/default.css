@@ -1,6 +1,7 @@
 	html, body
 	{
 		height: 100%;
+		width: 100%;
 	}
 
 	body
@@ -12,6 +13,7 @@
 		font-size: 12pt;
 		font-weight: 400;
 		color: #4E4D4D;
+		width: 100%;
 	}
 
 
@@ -53,7 +55,7 @@
 
 	.container
 	{
-		width: 1200px;
+		width: 100%;
 		margin: 0px auto;
 	}
 
@@ -233,7 +235,6 @@
 	#header
 	{
 		background: #3f3f3f;
-		width: 100%;
 	}
 
 /*********************************************************************************/
@@ -409,6 +410,10 @@
 		overflow: hidden;
 		padding: 5em 0em;
 		background: #FFF;
+		width: 80%;
+		margin-left: 20%;
+		margin-right: 20%;
+
 	}
 
 	#featured h2
@@ -432,8 +437,7 @@
 	.column3,
 	.column4
 	{
-		/*width: 282px;*/
-		width: 100%;
+		width: 282px;
 	}
 
 	.column1,
@@ -482,3 +486,62 @@
 		border-right: 1px solid #DADADA;
 		border-left: 1px solid #DADADA;
 	}
+
+	#bloqueForms
+		{
+			text-align: left;
+			color: rgba(0,0,0,0.6);
+			align-content: right;
+			margin: 0 auto;;
+			min-height: 400px;
+		}
+		#bloqueForms .formularios p label{
+			background: #FFF;
+			display: block;
+			float: left;
+			width: 36%;
+		}
+
+		#bloqueForms li {
+			text-align: center;
+			padding-right: 2%;
+			list-style: none;
+		}
+		/*#bloqueForms h2{
+			text-align: center;
+		}*/
+
+
+		#bloqueForms .formularios{
+			margin: 0 auto;
+			width: 400px;
+
+		}
+
+
+		.bloqueMitadIzq {
+			width: 49%;
+		}
+		.camposForms{
+			  margin-bottom: 15px;
+			  width: 100%;
+		}
+		.camposForms form{
+			width: 30%;
+			margin: 0 auto;
+		}
+		.camposForms form label, .camposForms form input, .camposForms form textarea, .camposForms form select, .camposForms form a, .camposForms h2{
+			width: 70%;
+			float: left;
+			display: block;
+			padding: 3px;
+			margin: 3px;
+			margin-left: 12%;
+		}
+
+
+
+		#bigContainer {
+			width: 100%;
+			background-color: #FFF;
+		}

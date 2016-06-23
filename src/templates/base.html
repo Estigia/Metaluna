@@ -50,9 +50,9 @@ Released   : 20130811
 
 	<div id="portfolio-wrapper">
 		<div id="portfolio" class="container">
-			<div class="major">
-				<h2></h2>
-			</div>
+			<!-- <div class="major">
+			  <h2></h2>
+			</div> -->
 
 			{% block content %}
 
@@ -62,15 +62,19 @@ Released   : 20130811
 	</div>
 
 
-
+<div id = "bigContainer">
 	<div id="featured-wrapper">
 		<div id="featured" class="container">
 			<div class="major">
 				<h2></h2>
-
 			</div>
+
+		{% block navegacion %}
+
+		{% endblock %}
+			<!--
 			<div class="column1">
-				<span class="icon icon-bar-chart"></span>
+				<span class="icon icon-circle-arrow-left"></span>
 				<div class="title">
 					<h2>Estadisticas</h2>
 					<span class="byline">Comportamiento de su Empresa</span>
@@ -96,9 +100,10 @@ Released   : 20130811
 					<h2>Productos</h2>
 					<span class="byline"></span>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
+</div>
 
 </body>
 </html>
