@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+  {% for dato in vehiculos %}
+    <label>Marca</label>
+    {{dato.marca}}
+    <label>Modelo</label>
+    {{dato.modelo}}
+    <label>Placa</label>
+    {{dato.placa}}
+    <label>Agencia</label>
+    {{dato.Agencia_id}}
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -49,9 +49,6 @@ urlpatterns = [
     url(r'^recibo/','Transacciones.views.Recibo', name="recibo"),
     url(r'^abonos/','Transacciones.views.Abonos', name="abonos"),
     url(r'^credito/','Transacciones.views.Credito', name="credito"),
-    url(r'^vehiculo/', 'Agencia.views.Vehiculo', name='Vehiculo'),
-    url(r'^entrega/', 'Agencia.views.Entrega', name='Entrega'),
-    url(r'^mercaderia/', 'Agencia.views.Mercaderia', name='Mercaderia'),
     url(r'^planilla/', 'Planillas.views.Planilla', name='Planilla'),
 ]
 if settings.DEBUG:

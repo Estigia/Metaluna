@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div>
+      <label>Kilometraje de salida</label>
+      {{form.kSalida}}</br>
+    </div>
+    <div>
+      <label>Kilometraje de entrada</label>
+      {{form.kEntrada}}</br>
+    </div>
+    <div>
+      <label>Fecha</label>
+      {{form.fecha}}</br>
+    </div>
+    <div>
+      <label>Vale</label>
+      {{form.vale}}</br>
+    </div>
+    <div>
+      <label>Vehiculo</label>
+      {{form.Vehiculo_id}}</br>
+    </div>
+    <div>
+      <input type="submit" value="Guardar">
+    </div>
+  </form>
+</div>
+{% endblock %}
