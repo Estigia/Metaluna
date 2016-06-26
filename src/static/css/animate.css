@@ -3353,6 +3353,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		}
 
     .camposForms [type = "submit"] {
+      margin-top: 25px;
       margin-left: 40%;
       width: 25%;
     }
