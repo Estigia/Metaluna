@@ -7,6 +7,7 @@
       <tr>
         <td>{{producto.descripcion}}</td>
         <td><a href={% url 'Producto:detail' producto.id %}><i>Ver</i></a></td>
+        <td><a href={% url 'Producto:edit' producto.id %}><i>Editar</i></a></td>
       </tr>
     {% endfor%}
   </table>

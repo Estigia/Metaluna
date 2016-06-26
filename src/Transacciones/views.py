@@ -24,11 +24,15 @@ def Abonos(request):
 
 def Factura(request):
     form = FacturaForm(request.POST or None)
+    form2 = DetalleFacturaForm(request.POST or None)
     context = {
-        "form":form,
+        "form" : form,
+        "form2" : form2,
     }
     if form.is_valid():
         form.save()
+    if form2.is_valid():
+        form2.save()
     return render(request,'factura.html',context)
 
 def DetalleFactura(request):

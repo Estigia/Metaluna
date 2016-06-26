@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method= "post", action="">
+    {% csrf_token %}
+    <div>
+      <label>Descripcion</label>
+        {{form.descripcion}}
+    </div>
+
+    <div>
+      <label>Tipo de Producto</label>
+        {{form.Tipo_Producto_id}}
+    </div>
+
+    <div>
+      <label>Material</label>
+        {{form.Material_id}}
+    </div>
+
+    <div>
+      <label>Longitud</label>
+        {{form.Longitud_id}}
+    </div>
+
+    <div>
+      <label>Calibre</label>
+        {{form.Calibre_id}}
+    </div>
+
+    <div>
+      <label>Forma</label>
+        {{form.Forma_id}}
+    </div>
+
+    <div>
+      <label>Marca</label>
+        {{form.Marca_id}}
+    </div>
+
+    <input type="submit" value="Actualizar Producto">
+  </form>
+{% endblock %}

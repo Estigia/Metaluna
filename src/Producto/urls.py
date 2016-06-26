@@ -3,6 +3,7 @@ from django.conf.urls import url
 from .views import (
     index,
     ProductoDetail,
+    ProductoUpdate,
     producto,
     lote,
     tipo_producto,
@@ -15,7 +16,8 @@ from .views import (
 urlpatterns = [
     url(r'^$', index, name = 'index'),
     url(r'crear$', producto, name = 'crear'),
-    url(r'(?P<pk>\d+)',ProductoDetail.as_view(), name='detail'),
+    url(r'(?P<pk>\d+)$',ProductoDetail.as_view(), name='detail'),
+    url(r'(?P<pk>\d+)/editar',ProductoUpdate.as_view(), name='edit'),
     url(r'crear_lote', lote, name = 'lote'),
     url(r'tipoproducto', tipo_producto, name = 'tipo_producto'),
     url(r'crear_forma', forma, name = 'forma'),

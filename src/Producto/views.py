@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -22,6 +22,20 @@ class ProductoDetail(DetailView):
     model = Producto
     template_name = 'producto_detail.html'
 
+class ProductoUpdate(UpdateView):
+    model = Producto
+    template_name = 'producto_edit.html'
+    success_url = reverse_lazy('Producto:index')
+    fields = [
+        "descripcion" ,
+        "Tipo_Producto_id",
+        "Material_id",
+        "Longitud_id",
+        "Calibre_id",
+        "Forma_id",
+        "Marca_id"
+    ]
+
 def producto(request):
     form = ProductoForm(request.POST or None)
 
@@ -31,6 +45,7 @@ def producto(request):
 
     if form.is_valid():
         form.save()
+        return redirect('Producto:index')
 
     return render(request, 'productos.html', context)
 
