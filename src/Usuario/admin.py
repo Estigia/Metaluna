@@ -13,7 +13,7 @@ class EmpleadoAdmin(admin.ModelAdmin):
     list_display = ['id', '__unicode__', 'cui', 'nit', 'sueldo', 'Puesto_id', 'Agencia_id']
 
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ['id', '__unicode__', 'username', 'Tipo_Usuario_id', 'ultima_conexion']
+    list_display = ['id', '__unicode__', 'username', 'Empleado_id', 'Tipo_Usuario_id', 'ultima_conexion']
 
 admin.site.register(Puesto,PuestoAdmin)
 admin.site.register(Tipo_Usuario,Tipo_UsuarioAdmin)

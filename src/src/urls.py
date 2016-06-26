@@ -30,8 +30,11 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^empleados/', include('Usuario.urls', namespace='Usuario')),
     url(r'^agencia/', include('Agencia.urls', namespace='Agencia')),
+    url(r'^transacciones/', include('Transacciones.urls', namespace='Transacciones')),
     url(r'^inicio/','Usuario.views.inicio', name='login'),
+    url(r'^organizacion/', include('Comodin.urls', namespace='Comodin')),
     url(r'^registro/','Usuario.views.registro', name='registro'),
+    url(r'^facturar/', 'Transacciones.views.facturar', name='facturar'),
     url(r'^proveedor/',ComodinCreate.as_view(),name='proveedor'),
     url(r'^cliente/',ClienteCreate.as_view(), name = 'cliente'),
     url(r'^marca/',MarcaCreate.as_view(), name = 'marca'),
@@ -39,11 +42,11 @@ urlpatterns = [
     url(r'^productos/', include('Producto.urls', namespace= 'Producto')),
     url(r'^trans/','Transacciones.views.trans',name="trans"),
     url(r'^factura/','Transacciones.views.Factura', name="factura"),
-    url(r'^detalleFactura/','Transacciones.views.DetalleFactura', name="detalleFactura"),
-    url(r'^recibo/','Transacciones.views.Recibo', name="recibo"),
-    url(r'^abonos/','Transacciones.views.Abonos', name="abonos"),
-    url(r'^credito/','Transacciones.views.Credito', name="credito"),
-    url(r'^planilla/', 'Planillas.views.Planilla', name='Planilla'),
+    # url(r'^detalleFactura/','Transacciones.views.DetalleFactura', name="detalleFactura"),
+    # url(r'^recibo/','Transacciones.views.Recibo', name="recibo"),
+    # url(r'^abonos/','Transacciones.views.Abonos', name="abonos"),
+    # url(r'^credito/','Transacciones.views.Credito', name="credito"),
+    # url(r'^planilla/', 'Planillas.views.Planilla', name='Planilla'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

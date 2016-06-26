@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+  <form action="" method="post">
+    {% csrf_token %}
+    <label>Tipo de Producto</label>
+    <select id="tipo" name="tipo1">
+      <option selected>------</option>
+      {% for tipo in tipos %}
+        <option value="{{tipo.id}}">{{tipo}}</option>
+      {% endfor %}
+    </select></br>
+    <label>Marca</label>
+    <select id="marca" name="marca">
+      <option selected>------</option>
+      {% for marca in marcas %}
+        <option value="{{marca.id}}">{{marca}}</option>
+      {% endfor %}
+    </select></br>
+    <label>Producto</label>
+    <select id='productos' name='productos1'>
+      <option selected>------</option>
+      <!-- {% for producto in productos %}
+        <option value="{{producto.id}}">{{producto.nombre}}</option>
+      {% endfor %} -->
+    </select></br>
+    <label>Cantidad</label>
+    <input id="cantidad" type="text" name="cantidad" value=0></br>
+    <label>Precio</label>
+    <input id="precio" type="text" name="precio" value=0></br>
+    <input id="agregar" type="button" value="Agregar detalle"></br>
+  </form>
+</div>
+<div>
+  <table id="detalles" name="detalles">
+    <tr>
+      <td>Cantidad</td>
+      <td>Descripción</td>
+      <td>Precio unitario</td>
+      <td>Sub-Total</td>
+    </tr>
+  </table>
+  <input id="facturar" type="button" value="Facturar"></br>
+</div>
+{% endblock %}
+
+{% block js %}
+{% csrf_token %}
+<script type="text/javascript">
+  $('#agregar').on('click', agregarDetalle);
+  $('#marca').on('change', busquedaProducto);
+  $('#facturar').on('click',facturar);
+
+  function facturar(){
+
+    var filas = document.getElementById('detalles').rows;
+
+    var detalles = '{\n';
+
+    for(var i=1; i<filas.length;i++){
+      var detalle = '\n"detalle'+i+'":'+'{'+
+        '\n\t"cantidad":' + filas[i].cells[0].innerHTML +','+
+        '\n\t"descripcion":' + filas[i].cells[1].innerHTML+','+
+        '\n\t"subtotal":' + filas[i].cells[3].innerHTML;
+      if (i==filas.length-1){
+        detalle += '\n\t}\n';
+      }else{
+        detalle += '\n\t}, \n';
+      }
+
+      detalles = detalles + detalle;
+      //console.log(detalle);
+    }
+
+    detalles = detalles + '}';
+    console.log(detalles);
+
+    //var json = JSON.parse(detalles);
+
+    $.ajax({
+
+      data: {'detalles': detalles},
+      url: "{% url 'Transacciones:facturacion' %}",
+      type: 'get',
+      dataType: 'json',
+      success: function(data){
+        alert("Factura creada con exito.");
+      }
+    });
+
+  }
+
+  function agregarDetalle(){
+
+    var tabla = document.getElementById('detalles');
+    var cantidad = $('#cantidad').val();
+    var producto = $('#productos').val();
+    var precio = $('#precio').val();
+
+    var fila = document.createElement('tr');
+    var columna = document.createElement("td");
+
+    var texto = document.createTextNode(cantidad);
+    var columna = document.createElement("td");
+      columna.appendChild(texto);
+      fila.appendChild(columna);
+
+    texto = document.createTextNode(producto);
+    var columna = document.createElement("td");
+      columna.appendChild(texto);
+      fila.appendChild(columna);
+
+    texto = document.createTextNode(precio);
+    var columna = document.createElement("td");
+      columna.appendChild(texto);
+      fila.appendChild(columna);
+
+    var subtotal = cantidad * precio;
+
+    texto = document.createTextNode(subtotal);
+    var columna = document.createElement("td");
+      columna.appendChild(texto);
+      fila.appendChild(columna);
+
+    tabla.appendChild(fila);
+
+  }
+
+
+
+  function busquedaProducto(){
+    var id_marca = $(this).val();
+    var id_tipo = $('#tipo').val();
+
+    $.ajax({
+
+      data: {
+        'id_marca':id_marca,
+        'id_tipo' : id_tipo
+      },
+      url: "{% url 'Producto:filtroProducto' %}",
+      type: 'get',
+      success: function(data){
+        var inner = document.getElementById('productos');
+
+        inner.innerHTML = "";
+
+        for(var i=0; i<data.length;i++){
+          var nuevo = document.createElement("option");
+
+          nuevo.value = data[i].pk;
+          nuevo.innerHTML = data[i].fields.descripcion + "-"
+                            + data[i].fields.Material_id + "-"
+                            + data[i].fields.Calibre_id + "-"
+                            + data[i].fields.Forma_id + "-"
+                            + data[i].fields.Longitud_id;
+
+          inner.options.add(nuevo);
+        }
+
+      }
+
+    })
+
+  }
+
+
+</script>
+{% endblock %}
