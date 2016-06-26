@@ -7,7 +7,7 @@ from .models import Comodin, Marca
 
 class ComodinCreate(CreateView):
     model = Comodin
-    template_name = 'comodin_create.html'
+    template_name = 'comodin/comodin_create.html'
     success_url = '/proveedor'
 
     fields = [
@@ -43,7 +43,7 @@ class ClienteCreate(ComodinCreate):
 
 class MarcaCreate(CreateView):
     model = Marca
-    template_name = 'marca_create.html'
+    template_name = 'comodin/marca_create.html'
     success_url = '/marca'
 
     fields = ['marca']
@@ -65,7 +65,7 @@ class MarcaCreate(CreateView):
         vID = self.request.POST['proveedor_id']
 
         vID = Comodin.objects.get(id=vID)
-        
+
         print vID
 
         m.Comodin_id = vID

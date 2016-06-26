@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+  {% for dato in entregas %}
+    <label>Fecha</label>
+    {{dato.fecha}}
+    <label>Vehiculo</label>
+    {{dato.Vehiculo_id}}
+  {% endfor %}
+</div>
+
+{% endblock %}

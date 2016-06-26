@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+  {% for dato in mercaderia %}
+    <label>Producto</label>
+    {{dato.Producto_id}}
+    <label>Agencia</label>
+    {{dato.Agencia_id}}
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -28,7 +28,8 @@ from Comodin.views import (
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^empleados/', include('Usuario.urls')),
+    url(r'^empleados/', include('Usuario.urls', namespace='Usuario')),
+    url(r'^agencia/', include('Agencia.urls', namespace='Agencia')),
     url(r'^inicio/','Usuario.views.inicio', name='login'),
     url(r'^registro/','Usuario.views.registro', name='registro'),
     url(r'^proveedor/',ComodinCreate.as_view(),name='proveedor'),
@@ -42,10 +43,6 @@ urlpatterns = [
     url(r'^recibo/','Transacciones.views.Recibo', name="recibo"),
     url(r'^abonos/','Transacciones.views.Abonos', name="abonos"),
     url(r'^credito/','Transacciones.views.Credito', name="credito"),
-    url(r'^agencia/', 'Agencia.views.Agencia', name='Agencia'),
-    url(r'^vehiculo/', 'Agencia.views.Vehiculo', name='Vehiculo'),
-    url(r'^entrega/', 'Agencia.views.Entrega', name='Entrega'),
-    url(r'^mercaderia/', 'Agencia.views.Mercaderia', name='Mercaderia'),
     url(r'^planilla/', 'Planillas.views.Planilla', name='Planilla'),
 ]
 if settings.DEBUG:

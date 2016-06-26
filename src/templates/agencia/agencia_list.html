@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+  {% for dato in agencias %}
+    <label>Nombre</label>
+    {{dato.nombre}}
+    <label>Direccion</label>
+    {{dato.direccion}}
+    <label>Capital</label>
+    {{dato.capital}}
+    <label>Municipio</label>
+    {{dato.Municipio_id}}
+  {% endfor %}
+</div>
+
+{% endblock %}
