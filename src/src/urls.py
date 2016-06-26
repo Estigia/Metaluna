@@ -38,12 +38,13 @@ urlpatterns = [
     url(r'^filtro/',filtroP,name = 'filtroP'),
     url(r'^productos/', include('Producto.urls', namespace= 'Producto')),
     url(r'^trans/','Transacciones.views.trans',name="trans"),
-    url(r'^factura/','Transacciones.views.Factura', name="factura"),
-    url(r'^detalleFactura/','Transacciones.views.DetalleFactura', name="detalleFactura"),
-    url(r'^recibo/','Transacciones.views.Recibo', name="recibo"),
-    url(r'^abonos/','Transacciones.views.Abonos', name="abonos"),
-    url(r'^credito/','Transacciones.views.Credito', name="credito"),
+    url(r'^factura/','Transacciones.views.factura', name="factura"),
+    url(r'^detalleFactura/','Transacciones.views.detalleFactura', name="detalleFactura"),
+    url(r'^recibo/','Transacciones.views.recibo', name="recibo"),
+    url(r'^abonos/','Transacciones.views.abonos', name="abonos"),
+    url(r'^credito/','Transacciones.views.credito', name="credito"),
     url(r'^planilla/', 'Planillas.views.Planilla', name='Planilla'),
+    url(r'^$','Usuario.views.homepage',name="base"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

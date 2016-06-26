@@ -11,15 +11,19 @@
 
     <form method="post" action="">
     {%csrf_token%}
+
+      <!-- <h1>{{datos}}</h1> -->
     <h2>Agregar Factura</h2>
-    <label>id Factura</label>
-    {{form.Factura_id}}
-<label>id producto</label>
-    {{form.Producto_id}}
-<label>subTotal</label>
-    {{form.subTotal}}
-<label>cantidad</label>
-    {{form.cantidad}}
+    <label>serie</label>
+    {{form.serie}}
+<label>numero Documento</label>
+    {{form.noDocumento}}
+<label>Precio Total</label>
+    {{form.precioTotal}}
+<label>anulada</label>
+    {{form.anulada}}
+<label>anulada</labe>
+    {{form.Comodin_id}}
     <input type='submit' value='Agregar'>
 
   </form>

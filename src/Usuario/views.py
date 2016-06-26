@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
 
 from .models import Empleado
 from .forms import InicioForm, UserCreationForm
@@ -83,3 +84,6 @@ def registro(request):
         return render(request,'usuario_create.html',context)
 
     return HttpResponseRedirect('/')
+
+def homepage(request):
+    return render_to_response('base.html')

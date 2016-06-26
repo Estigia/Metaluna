@@ -24,7 +24,7 @@ class Factura(models.Model):
     Comodin_id = models.ForeignKey('Comodin.Comodin')
 
     def __unicode__(self):
-        return str(self.noDocumento) + "  "+ self.serie
+        return str(self.noDocumento) + "  "+ self.serie + str(self.Comodin_id)
 
 class DetalleFactura(models.Model):
     Factura_id = models.ForeignKey('Factura')
@@ -48,7 +48,3 @@ class Credito(models.Model):
 
     def __unicode__ (self):
         return self.usuario_id + "  "+ self.factura_id
-
-
-def hola():
-    print 'asd'
