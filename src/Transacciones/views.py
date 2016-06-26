@@ -1,8 +1,10 @@
 from django.shortcuts import render
 
+
 from .forms import ReciboForm,AbonosForm,FacturaForm,DetalleFacturaForm,CreditoForm
+from  Transacciones.models import Factura,Recibo
 # Create your views here.
-def Recibo(request):
+def recibo(request):
     form = ReciboForm(request.POST or None)
     context = {
         "form":form,
@@ -13,7 +15,7 @@ def Recibo(request):
 
     return render(request, 'recibo.html', context)
 
-def Abonos(request):
+def abonos(request):
     form = AbonosForm(request.POST or None)
     context={
         "form":form,
@@ -22,12 +24,14 @@ def Abonos(request):
         form.save()
     return render(request,'abonos.html',context)
 
-def Factura(request):
+def factura(request):
     form = FacturaForm(request.POST or None)
     form2 = DetalleFacturaForm(request.POST or None)
+    datos = Factura.objects.all()
     context = {
         "form" : form,
         "form2" : form2,
+        "datos" : datos,
     }
     if form.is_valid():
         form.save()
@@ -35,7 +39,7 @@ def Factura(request):
         form2.save()
     return render(request,'factura.html',context)
 
-def DetalleFactura(request):
+def detalleFactura(request):
     form = DetalleFacturaForm(request.POST or None)
     context = {
         "form":form,
@@ -44,7 +48,7 @@ def DetalleFactura(request):
         form.save()
     return render(request,'detalleFactura.html',context)
 
-def Credito(request):
+def credito(request):
     form = CreditoForm(request.POST or None)
     context = {
 
@@ -57,4 +61,5 @@ def Credito(request):
     return render(request,'credito.html',context)
 
 def trans(request):
-    return render(request,'base.html',{})
+    datos = Factura.objects.all()
+    return render(request,'base.html',{"datos":datos})
