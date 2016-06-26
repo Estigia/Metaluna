@@ -1,14 +1,26 @@
-<form method="POST" action="">
-  {% csrf_token %}
-  <div>
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+    <h2>Iniciar sesión</h2>
+
     <label>Nombre de Usuario</label>
       {{form.usuario}}</br>
-  </div>
-  <div>
-    <label>Contrasena</label>
+    <label>Contraseña</label>
       {{form.password}}</br>
-  </div>
-  <div>
+
     <input type='submit' value='Iniciar'>
+
+  </form>
+
   </div>
-</form>
+</div>
+
+{% endblock %}

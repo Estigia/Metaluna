@@ -1,27 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="post" action="">
-  {%csrf_token%}
-  <div>
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+    <h2>Crear Agencia</h2>
     <label>Nombre</label>
     {{form.nombre}}<br/>
-  </div>
-  <div>
+
     <label>Dirección</label>
     {{form.direccion}}<br/>
-  </div>
-  <div>
+
     <label>Capital</label>
     {{form.capital}}<br/>
-  </div>
-  <div>
-    <label>Municipio</label>
-    {{form.Municipio_id}}<br/>
-  </div>
-  <div>
-    <input type='submit' value='Guardar'>
-  </div>
-</form>
 
+    <label>Municipio</label>
+    {{form.Municipio_id}}
+
+    <input type='submit' value='Guardar'>
+
+  </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block navegacion %}
+    <div class="column1">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column2">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
 {% endblock %}
