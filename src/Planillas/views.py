@@ -12,4 +12,4 @@ def Planilla(request):
     if form.is_valid():
         form.save()
 
-    return render(request, 'planilla.html', context)
+    return render(request, 'planillas/planilla.html', context)

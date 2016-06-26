@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+      <h2>Nuevo Credito</h2>
+      <label>Aprobado</label>
+      {{form.aprobado}}
+
+<label>Monto</label>
+      {{form.monto}}
+
+<label>Saldo</label>
+      {{form.saldo}}
+
+<label>Finalizado</label>
+      {{form.finalizado}}
+
+<label>Fecha Limite</label>
+      {{form.fechaLimite}}
+
+<label>Fecha Aprobacion</label>
+      {{form.fechaAprobacion}}
+
+<label>id Usuario</label>
+      {{form.Usuario_id}}
+
+<label>id Factura</label>
+      {{form.Factura_id}}
+
+
+    <input type='submit' value='Agregar'>
+
+  </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block navegacion %}
+    <div class="column1">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column2">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column3">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column4">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+{% endblock %}

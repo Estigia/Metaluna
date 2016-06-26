@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+    <h2>Iniciar sesión</h2>
+
+    <label>Nombre de Usuario</label>
+      {{form.usuario}}</br>
+    <label>Contraseña</label>
+      {{form.password}}</br>
+
+    <input type='submit' value='Iniciar'>
+
+  </form>
+
+  </div>
+</div>
+
+{% endblock %}
