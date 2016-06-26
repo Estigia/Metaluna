@@ -1,23 +1,55 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
-<form method="post" action="">
-  {%csrf_token%}
-  <div>
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+    <h2>Mercaderia</h2>
+
     <label>Producto</label>
     {{form.Producto_id}}<br/>
-  </div>
-  <div>
-    <label>Agencia</label>
+<label>Agencia</label>
     {{form.Agencia_id}}<br/>
-  </div>
-  <div>
-    <label>Cantidad</label>
+<label>Cantidad</label>
     {{form.cantidad}}<br/>
-  </div>
-  <div>
-    <input type='submit' value='Guardar'>
-  </div>
-</form>
 
+    <input type='submit' value='Agregar'>
+
+  </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block navegacion %}
+    <div class="column1">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column2">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column3">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column4">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
 {% endblock %}

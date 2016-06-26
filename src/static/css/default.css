@@ -1,8 +1,9 @@
 	html, body
 	{
 		height: 100%;
+		width: 100%;
 	}
-	
+
 	body
 	{
 		margin: 0px;
@@ -12,48 +13,49 @@
 		font-size: 12pt;
 		font-weight: 400;
 		color: #4E4D4D;
+		width: 100%;
 	}
-	
-	
+
+
 	h1, h2, h3
 	{
 		margin: 0;
 		padding: 0;
 	}
-	
+
 	p, ol, ul
 	{
 		margin-top: 0;
 	}
-	
+
 	ol, ul
 	{
 		padding: 0;
 		list-style: none;
 	}
-	
+
 	p
 	{
 		line-height: 180%;
 	}
-	
+
 	strong
 	{
 	}
-	
+
 	a
 	{
 		color: #383838;
 	}
-	
+
 	a:hover
 	{
 		text-decoration: none;
 	}
-	
+
 	.container
 	{
-		width: 1200px;
+		width: 100%;
 		margin: 0px auto;
 	}
 
@@ -65,32 +67,32 @@
 	{
 		display: inline-block;
 	}
-	
+
 	.image img
 	{
 		display: block;
 		width: 100%;
 	}
-	
+
 	.image-full
 	{
 		display: block;
 		width: 100%;
 		margin: 0 0 0 0;
 	}
-	
+
 	.image-left
 	{
 		float: left;
 		margin: 0 2em 2em 0;
 	}
-	
+
 	.image-centered
 	{
 		display: block;
 		margin: 0 0 2em 0;
 	}
-	
+
 	.image-centered img
 	{
 		margin: 0 auto;
@@ -117,26 +119,26 @@
 		padding-top: 1em;
 		text-align: center;
 	}
-	
+
 	ul.contact li
 	{
 		display: inline-block;
 		padding: 0em 0.30em;
 		font-size: 1em;
 	}
-	
+
 	ul.contact li span
 	{
 		display: none;
 		margin: 0;
 		padding: 0;
 	}
-	
+
 	ul.contact li a
 	{
 		color: #FFF;
 	}
-	
+
 	ul.contact li a:before
 	{
 		display: inline-block;
@@ -159,7 +161,7 @@
 		margin-bottom: 4em;
 		text-align: center;
 	}
-	
+
 	.major h2
 	{
 		letter-spacing: 0.10em;
@@ -185,7 +187,7 @@
 	{
 		text-align: center;
 	}
-	
+
 	.title h2
 	{
 		letter-spacing: 0.10em;
@@ -221,11 +223,11 @@
 		font-size: 0.90em;
 		color: #FFF;
 	}
-	
+
 	.button:before
 	{
 	}
-		
+
 /*********************************************************************************/
 /* Header                                                                        */
 /*********************************************************************************/
@@ -251,7 +253,7 @@
 		font-weight: 900;
 		font-size: 2.5em;
 	}
-	
+
 	#logo h1 a
 	{
 	}
@@ -260,13 +262,13 @@
 	{
 		padding: 0em 0em 0em 0.5em;
 	}
-	
+
 	#logo h1:before
 	{
-		
+
 	}
-	
-	#logo a 
+
+	#logo a
 	{
 		color: #3f3f3f;
 	}
@@ -284,12 +286,12 @@
 		line-height: normal;
 		text-align: center;
 	}
-	
+
 	#menu li
 	{
 		display: inline-block;
 	}
-	
+
 	#menu a
 	{
 		display: block;
@@ -301,11 +303,11 @@
 		font-weight: 700;
 		color: #FFF;
 	}
-	
+
 	#menu .current_page_item a
 	{
 	}
-	
+
 	#menu a:hover
 	{
 	}
@@ -338,18 +340,18 @@
 		float: left;
 		width: 588px;
 	}
-	
+
 	#content .title
 	{
 		padding-bottom: 2em;
 		text-align: left;
 	}
-	
+
 	#content h2
 	{
 		font-size: 2em;
 	}
-	
+
 	#content .byline
 	{
 		padding-top: 0;
@@ -383,7 +385,7 @@
 		overflow: hidden;
 		padding: 5em 0em;
 	}
-	
+
 	#copyright p
 	{
 		letter-spacing: 0.20em;
@@ -392,7 +394,7 @@
 		font-size: 0.80em;
 		color: #6F6F6F;
 	}
-	
+
 	#copyright a
 	{
 		text-decoration: none;
@@ -408,8 +410,12 @@
 		overflow: hidden;
 		padding: 5em 0em;
 		background: #FFF;
+		width: 80%;
+		margin-left: 20%;
+		margin-right: 20%;
+
 	}
-	
+
 	#featured h2
 	{
 		text-align: center;
@@ -433,22 +439,22 @@
 	{
 		width: 282px;
 	}
-	
+
 	.column1,
 	.column2
 	{
 		float: left;
-		margin-right: 24px;
+		/*margin-right: 24px;*/
 	}
-	
+
 	.column3
 	{
 		float: left;
 	}
-	
+
 	.column4
 	{
-		float: right;
+		float: left;
 	}
 
 /*********************************************************************************/
@@ -459,19 +465,19 @@
 	{
 		padding: 6em 0em;
 	}
-	
+
 	#portfolio
 	{
 		overflow: hidden;
 		text-align: center;
 	}
-	
+
 	#portfolio img
 	{
 		margin: 0;
 		padding: 0;
 	}
-	
+
 	#portfolio .box
 	{
 		padding: 30px;
@@ -480,3 +486,62 @@
 		border-right: 1px solid #DADADA;
 		border-left: 1px solid #DADADA;
 	}
+
+	#bloqueForms
+		{
+			text-align: left;
+			color: rgba(0,0,0,0.6);
+			align-content: right;
+			margin: 0 auto;;
+			min-height: 400px;
+		}
+		#bloqueForms .formularios p label{
+			background: #FFF;
+			display: block;
+			float: left;
+			width: 36%;
+		}
+
+		#bloqueForms li {
+			text-align: center;
+			padding-right: 2%;
+			list-style: none;
+		}
+		/*#bloqueForms h2{
+			text-align: center;
+		}*/
+
+
+		#bloqueForms .formularios{
+			margin: 0 auto;
+			width: 400px;
+
+		}
+
+
+		.bloqueMitadIzq {
+			width: 49%;
+		}
+		.camposForms{
+			  margin-bottom: 15px;
+			  width: 100%;
+		}
+		.camposForms form{
+			width: 30%;
+			margin: 0 auto;
+		}
+		.camposForms form label, .camposForms form input, .camposForms form textarea, .camposForms form select, .camposForms form a, .camposForms h2{
+			width: 70%;
+			float: left;
+			display: block;
+			padding: 3px;
+			margin: 3px;
+			margin-left: 12%;
+		}
+
+
+
+		#bigContainer {
+			width: 100%;
+			background-color: #FFF;
+		}

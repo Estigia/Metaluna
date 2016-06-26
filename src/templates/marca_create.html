@@ -1,8 +1,9 @@
+{% extends 'base.html' %}
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 </head>
-<body id="cuerpo" name="cuerpo">
+<!--<body id="cuerpo" name="cuerpo">
   <form method="POST" action="">
     {% csrf_token %}
     <div>
@@ -23,7 +24,7 @@
   </form>
 </body>
 
-<!-- <script type="text/javascript">
+ <script type="text/javascript">
 
   $('#cuerpo').on('load', filtro);
 
@@ -60,3 +61,66 @@
   }
 
 </script> -->
+
+
+
+
+
+
+
+{% block content %}
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+    <h2>Agregar Marca</h2>
+
+    <label>Marca</label>
+      {{form.marca}}</br>
+
+      <label>Proveedor</label>
+        <select id = "proveedor_id" name = "proveedor">
+          <option selected>------</option>
+          {% for dato in proveedores %}
+            <option value="{{dato.id}}">{{dato.empresa}}---{{dato.nombre}}</option>
+          {% endfor %}
+        </select>
+
+    <input type='submit' value='Agregar'>
+
+  </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block navegacion %}
+    <div class="column1">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column2">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column3">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column4">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+{% endblock %}
