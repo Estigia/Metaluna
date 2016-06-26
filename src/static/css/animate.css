@@ -3301,3 +3301,58 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   -webkit-animation-name: zoomOutUp;
   animation-name: zoomOutUp;
 }
+
+
+
+#bloqueForms
+		{
+			text-align: left;
+			color: rgba(0,0,0,0.6);
+			align-content: right;
+			margin: 0 auto;;
+			min-height: 400px;
+		}
+		#bloqueForms .formularios p label{
+			background: #FFF;
+			display: block;
+			float: left;
+			width: 36%;
+		}
+
+		#bloqueForms li {
+			text-align: center;
+			padding-right: 2%;
+			list-style: none;
+		}
+		/*#bloqueForms h2{
+			text-align: center;
+		}*/
+
+
+		#bloqueForms .formularios{
+			margin: 0 auto;
+			width: 400px;
+
+		}
+
+		.camposForms{
+			  margin-bottom: 15px;
+			  width: 100%;
+		}
+		.camposForms form{
+			/*width: 65%;*/
+			margin: 0 auto;
+		}
+		.camposForms form label, .camposForms form input, .camposForms form textarea, .camposForms form select, .camposForms form a, .camposForms h2{
+			width: 100%;
+			float: left;
+			display: block;
+			padding: 3px;
+			margin: 3px;
+			/*margin-left: 12%;*/
+		}
+
+    .camposForms [type = "submit"] {
+      margin-left: 40%;
+      width: 25%;
+    }
