@@ -216,6 +216,7 @@ color: #fff;
 
 .main-section{
 	padding:90px 0 110px;
+  min-height: 550px;
 }
 
 
@@ -837,4 +838,10 @@ border: 2px solid #fff;
 .delay-12s {
 	animation-delay: 1.2s;
 	-webkit-animation-delay: 1.2s;
+}
+
+
+
+.bloqueDos{
+	background: black;
 }
