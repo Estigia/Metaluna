@@ -86,4 +86,4 @@ def registro(request):
     return HttpResponseRedirect('/')
 
 def homepage(request):
-    return render_to_response('base.html')
+    return render_to_response('sign-in.html')
