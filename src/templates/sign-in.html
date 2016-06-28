@@ -1,4 +1,6 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
+{% block arriba %}
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -48,9 +50,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div id="page-wrapper" class="sign-in-wrapper">
 				<div class="graphs">
 					<div class="sign-in-form">
-						<div class="sign-in-form-top">
-							<p><span>Sign In to</span> <a href="index.html">Admin</a></p>
-						</div>
+						<!-- <div class="sign-in-form-top"> -->
+							<!-- <p><span>Sign In to</span> <a href="base.html">Admin</a></p> -->
+						<!-- </div> -->
 						<div class="signin">
 							<div class="signin-rit">
 								<span class="checkbox1">
@@ -82,9 +84,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</form>
 						</div>
 						<div class="new_people">
-							<h4>For New People</h4>
-							<p>Having hands on experience in creating innovative designs,I do offer design
-								solutions which harness.</p>
+							<!-- <h4>For New People</h4> -->
+							<!-- <p>Having hands on experience in creating innovative designs,I do offer design -->
+								<!-- solutions which harness.</p> -->
 							<a href="sign-up.html">Register Now!</a>
 						</div>
 					</div>
@@ -97,9 +99,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!--footer section end-->
 	</section>
 
-<script src="js/jquery.nicescroll.js"></script>
-<script src="js/scripts.js"></script>
+<script src='{% static "cssLogin/js/jquery.nicescroll.js" %}'></script>
+<script src='{% static "cssLogin/js/scripts.js" %}'></script>
 <!-- Bootstrap Core JavaScript -->
-   <script src="js/bootstrap.min.js"></script>
+   <script src='{% static "cssLogin/js/bootstrap.min.js" %}'></script>
 </body>
 </html>
+{% endblock %}
