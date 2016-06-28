@@ -4,6 +4,17 @@
 <div>
   <form action="" method="post">
     {% csrf_token %}
+    <label>Cliente:</label>
+    <select id="cliente" name="cliente">
+      <option selected>------</option>
+      {% for cliente in clientes %}
+        <option value="{{cliente.id}}">{{cliente}}</option>
+      {% endfor %}
+    </select>
+    <label>Serie Factura</label>
+    <input type="text" id='serie' name="serie" value="A">
+    <label>No. Factura</label>
+    <input type="text" id="num" name="num" value="0000">
     <label>Tipo de Producto</label>
     <select id="tipo" name="tipo1">
       <option selected>------</option>
@@ -80,8 +91,13 @@
 
     $.ajax({
 
-      data: {'detalles': detalles},
-      url: "{% url 'Transacciones:facturacion' %}",
+      data: {
+          'detalles': detalles,
+          'cliente': $('#cliente').val(),
+          'serie': $('#serie').val(),
+          'num_doc': $('#num').val()
+        },
+      url: "{% url 'Transacciones:venta' %}",
       type: 'get',
       dataType: 'json',
       success: function(data){

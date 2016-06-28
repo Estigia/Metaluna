@@ -67,22 +67,40 @@ def Credito(request):
 def trans(request):
     return render(request,'base.html',{})
 
-def facturar(request):
+def ventas(request):
 
     context = {
         'tipos': Tipo_Producto.objects.all(),
         'marcas': Marca.objects.all(),
+        'clientes': Comodin.objects.filter(tipo=0)
     }
 
-    return render(request, 'transacciones/facturacion.html', context)
+    return render(request, 'transacciones/ventas.html', context)
 
-def facturacion(request):
+def compras(request):
+
+    context = {
+        'tipos': Tipo_Producto.objects.all(),
+        'marcas': Marca.objects.all(),
+        'proveedores': Comodin.objects.filter(tipo=1)
+    }
+
+    return render(request, 'transacciones/compras.html', context)
+
+def venta(request):
     detalles = request.GET['detalles']
+    cliente = request.GET['cliente']
+    serie = request.GET['serie']
+    numDoc = request.GET['num_doc']
 
-    print detalles
+    comodin = Comodin.objects.get(id=cliente)
+    factura = Factura.objects.create(
+                serie=serie,
+                noDocumento=numDoc,
+                anulada=False,
+                Comodin_id=comodin
+                )
 
-    comodin = Comodin.objects.get(id=1)
-    factura = Factura.objects.create(serie='A', noDocumento=100, anulada=False, Comodin_id=comodin)
     factura.save()
 
     data = json.loads(detalles)
@@ -103,12 +121,65 @@ def facturacion(request):
                 detalle.subTotal = value
 
         mercaderia = Mercaderia.objects.get(
-                                            Agencia_id=agencia,
-                                            Producto_id=detalle.Producto_id
-                                                )
+                                        Agencia_id=agencia,
+                                        Producto_id=detalle.Producto_id
+                                        )
 
-        print mercaderia.cantidad                                        
         mercaderia.cantidad -= detalle.cantidad
+
+        mercaderia.save()
+        detalle.Factura_id = factura
+        detalle.save()
+
+    factura.precioTotal = total
+    factura.save()
+
+    f = Marca.objects.all()
+
+    data = serializers.serialize('json', f)
+
+    return HttpResponse(data, content_type='application/json')
+
+def compra(request):
+    detalles = request.GET['detalles']
+    proveedor = request.GET['proveedor']
+    serie = request.GET['serie']
+    numDoc = request.GET['num_doc']
+
+    comodin = Comodin.objects.get(id=proveedor)
+    factura = Factura.objects.create(
+                serie=serie,
+                noDocumento=numDoc,
+                anulada=False,
+                Comodin_id=comodin
+                )
+
+    factura.save()
+
+    data = json.loads(detalles)
+
+    agencia = request.user.Empleado_id.Agencia_id
+
+    total = 0
+    for majorkey, subdict in data.iteritems():
+        detalle = DetalleFactura()
+        for subkey, value in subdict.iteritems():
+            if subkey == 'cantidad':
+                detalle.cantidad = value
+            elif subkey == 'descripcion':
+                producto = Producto.objects.get(id=value)
+                detalle.Producto_id = producto
+            elif subkey == 'subtotal':
+                total += value
+                detalle.subTotal = value
+
+        mercaderia = Mercaderia.objects.get(
+                                        Agencia_id=agencia,
+                                        Producto_id=detalle.Producto_id
+                                        )
+
+        print mercaderia.cantidad
+        mercaderia.cantidad += detalle.cantidad
         print mercaderia.cantidad
         mercaderia.save()
         detalle.Factura_id = factura
