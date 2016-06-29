@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
+
+<div class = "camposForms">
+<div class = "tbox1">
   <form action="" method="post">
     {% csrf_token %}
     <label>Proveedor:</label>
@@ -43,8 +45,11 @@
     <input id="agregar" type="button" value="Agregar detalle"></br>
   </form>
 </div>
-<div>
-  <table id="detalles" name="detalles">
+
+</div>
+
+<div class = "tbox2">
+  <table class="table" name="detalles">
     <tr>
       <td>Cantidad</td>
       <td>Descripción</td>
@@ -54,6 +59,7 @@
   </table>
   <input id="facturar" type="button" value="Facturar"></br>
 </div>
+
 {% endblock %}
 
 {% block js %}

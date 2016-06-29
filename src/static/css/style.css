@@ -854,3 +854,25 @@ border: 2px solid #fff;
   align-items: center;
 	padding-right: 3%;
 }
+
+
+.tbox1
+	{
+		width: 48%;
+		/*clear: both;*/
+	}
+	.tbox2
+	{
+		width: 48%;
+		/*clear: both;*/
+	}
+
+	.tbox1
+	{
+		float: left;
+	}
+
+	.tbox2
+	{
+		float: right;
+	}
