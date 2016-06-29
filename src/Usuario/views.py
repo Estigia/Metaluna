@@ -52,7 +52,7 @@ def inicio(request):
                         if request.GET['next'] != '/logout':
                             return HttpResponseRedirect(request.GET['next'])
 
-                    return redirect('/admin')
+                    return redirect('/')
 
                 else:
                     return HttpResponseRedirect('/')
