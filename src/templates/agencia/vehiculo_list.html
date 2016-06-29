@@ -2,17 +2,40 @@
 
 {% block content %}
 
-<div>
-  {% for dato in vehiculos %}
-    <label>Marca</label>
-    {{dato.marca}}
-    <label>Modelo</label>
-    {{dato.modelo}}
-    <label>Placa</label>
-    {{dato.placa}}
-    <label>Agencia</label>
-    {{dato.Agencia_id}}
-  {% endfor %}
-</div>
+
+  <h2>Vehiculos</h2>
+  <br/>
+
+  <div class = "listados">
+
+
+    <table class = "table">
+      <tr>
+        <td><strong>Marca</td>
+        <td><strong>Modelo</td>
+        <td><strong>Placa</td>
+        <td><strong>Agencia</td>
+      </tr>
+      {% for dato in vehiculos %}
+      <tr>
+        <td>
+          {{dato.marca}}
+        </td>
+        <td>
+          {{dato.modelo}}
+        </td>
+        <td>
+          {{dato.placa}}
+        </td>
+        <td>
+          {{dato.Agencia_id}}
+        </td>
+      </tr>
+
+      {% endfor %}
+
+    </table>
+
+  </div>
 
 {% endblock %}
