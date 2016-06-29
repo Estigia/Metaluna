@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.http import HttpResponse
+from django.core import serializers
 
 from .models import (Lote, Producto, Tipo_Producto,
                         Material, Longitud, Calibre, Forma)
@@ -122,3 +124,17 @@ def forma(request):
         form.save()
 
     return render(request, 'producto/forma.html', context)
+
+def filtroProducto(request):
+    id_marca = request.GET['id_marca']
+    id_tipo = request.GET['id_tipo']
+
+
+    productos = Producto.objects.filter(
+                    Marca_id= id_marca,
+                    Tipo_Producto_id= id_tipo
+                    )
+
+    data = serializers.serialize('json', productos)
+
+    return HttpResponse(data, content_type='application/json')

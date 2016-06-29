@@ -3,6 +3,7 @@
 <!doctype html>
 <html>
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, maximum-scale=1">
 
@@ -12,6 +13,7 @@
 
 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
+
 
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href='{% static "css/bootstrap.css" %}' rel="stylesheet" type="text/css"/>
@@ -52,6 +54,8 @@
 <script type="text/javascript" src="js/classie.js"></script>
 <script type="text/javascript" src= '{% static "js/classie.js" %}'></script>
 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
 
 <!--[if lt IE 9]>
     <script src="js/respond-1.1.0.min.js"></script>
@@ -82,7 +86,7 @@
             <li><a href="/agencia">Agencias</a></li>
             <li><a href="/productos">Productos</a></li>
             <li><a href="/proveedor">Transacciones</a></li>
-            <li><a href="/planilla">Planillas</a></li>
+            <!-- <li><a href="/planilla">Planillas</a></li> -->
             <!-- <li><a href="#contact">Usuarios</a></li> -->
         </ul>
         <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
@@ -125,7 +129,6 @@
         $('.res-nav_click').click(function(){
             $('.main-nav').slideToggle();
             return false
-
         });
 
     });
@@ -209,5 +212,10 @@ $(window).load(function(){
 });
 
 </script>
+
+<!-- <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>-->
+{% block js %}
+{% endblock %}
+
 </body>
 </html>

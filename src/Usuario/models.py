@@ -10,6 +10,9 @@ class Puesto(models.Model):
     id = models.AutoField(primary_key = True)
     puesto = models.CharField(max_length = 45)
 
+    def __unicode__(self):
+        return self.puesto
+
 class Tipo_Usuario(models.Model):
     id = models.AutoField(primary_key = True)
     tipo = models.CharField(max_length = 45)
@@ -31,14 +34,14 @@ class Empleado(models.Model):
     REQUIRED_FIELDS = ['nombre', 'apellidos', 'cui', 'nit', 'sueldo']
 
     def __unicode__(self):
-        return str(nombre) + str(apellidos)
+        return str(self.nombre) + str(self.apellidos)
 
 class UsuarioManager(BaseUserManager):
-    def create_user(self, username,password=None):
+    def create_user(self, username, password=None):
         if not username:
             raise ValueError('Ingrese un nombre de usuario valido.')
-        #if not Empleado_id:
-            #raise ValueError('Ingrese un Empleado_id')
+        # if not Empleado_id:
+        #     raise ValueError('Ingrese un Empleado_id')
 
         usuario = self.model(
             username = username,
@@ -67,15 +70,15 @@ class Usuario(AbstractBaseUser):
     ultima_conexion = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     Tipo_Usuario_id = models.ForeignKey('Tipo_Usuario', default = 1)
-    #Empleado_id = models.ForeignKey('Empleado')
+    Empleado_id = models.ForeignKey('Empleado', default=1)
 
     objects = UsuarioManager()
 
     USERNAME_FIELD = 'username'
 
-    # def get_full_name(self):
-	# 	return str(self.Empleado_id.nombre) + str(self.Empleado_id.apellidos)
-    #
+    def get_full_name(self):
+		return str(self.Empleado_id.nombre) + str(self.Empleado_id.apellidos)
+
     def get_short_name(self):
         return str(self.username)
 
