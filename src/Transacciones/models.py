@@ -31,8 +31,12 @@ class DetalleFactura(models.Model):
     Producto_id = models.ForeignKey('Producto.Producto')
     subTotal = models.PositiveIntegerField(null = True,blank=True)
     cantidad = models.PositiveIntegerField(null = True,blank=True)
+
     def __unicode__(self):
-        return str(self.subTotal)
+        return str(self.Factura_id)+'--'+str(self.Producto_id)
+
+    def precioUnitario(self):
+        return self.subTotal/self.cantidad
 
 
 

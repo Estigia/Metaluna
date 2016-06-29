@@ -12,7 +12,7 @@ from django.shortcuts import render
 #         "Municipios": Municipios,
 #         "titulo": "Localizacion"
 #     }
-# 
+#
 #     return render(request, 'localizacion.html', context)
 #
 # def BusquedaMunicipio(request):

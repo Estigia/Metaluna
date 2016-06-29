@@ -45,4 +45,4 @@ class Mercaderia(models.Model):
     cantidad = models.IntegerField(blank = True, null = True)
 
     def __unicode__(self):
-        return str(self.id)
+        return str(self.id)+"--"+str(self.Producto_id)
