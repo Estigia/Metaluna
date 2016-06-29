@@ -1,28 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
-  <form action="" method="post">
-    {% csrf_token %}
-    <div>
-      <label>Marca</label>
-      {{form.marca}}</br>
-    </div>
-    <div>
-      <label>Modelo</label>
-      {{form.modelo}}</br>
-    </div>
-    <div>
-      <label>Placa</label>
-      {{form.placa}}</br>
-    </div>
-    <div>
-      <label>Agencia</label>
-      {{form.Agencia_id}}</br>
-    </div>
-    <div>
-      <input type="submit" value="Guardar">
-    </div>
+
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+    <h2>Editar Vehiculo</h2>
+
+    <label>Marca</label>
+    {{form.marca}}</br>
+<label>Modelo</label>
+    {{form.modelo}}</br>
+<label>Placa</label>
+    {{form.placa}}</br>
+<label>Agencia</label>
+    {{form.Agencia_id}}</br>
+
+    <input type='submit' value='Editar'>
+
   </form>
+
+  </div>
 </div>
 {% endblock %}

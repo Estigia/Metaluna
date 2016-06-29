@@ -29,6 +29,9 @@
     <td>
       {{dato.Municipio_id}}
     </td>
+
+      <td><a href={% url 'Agencia:detalles' dato.id %}><i>Ver</i></a></td>
+      <td><a href={% url 'Agencia:editar' dato.id %}><i>Editar</i></a></td>
   </tr>
 
   {% endfor %}

@@ -22,7 +22,9 @@
     <td>
       {{dato.Vehiculo_id}}
     </td>
-  </tr>
+    <td><a href={% url 'Agencia:detail_e' dato.id %}><i>Ver</i></a></td>
+    <td><a href={% url 'Agencia:edit_e' dato.id %}><i>Editar</i></a></td>
+    </tr>
 
   {% endfor %}
   </table>

@@ -30,6 +30,8 @@
         <td>
           {{dato.Agencia_id}}
         </td>
+        <td><a href={% url 'Agencia:detail_v' dato.id %}><i>Ver</i></a></td>
+        <td><a href={% url 'Agencia:edit_v' dato.id %}><i>Editar</i></a></td>
       </tr>
 
       {% endfor %}
