@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+
 {% load staticfiles %}
-{% block arriba %}
+
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -9,8 +9,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <html>
+
 <head>
-<title>Easy Admin Panel an Admin Panel Category Flat Bootstrap Responsive Website Template | Sign In :: w3layouts</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -61,10 +62,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 								<div class="clearfix"> </div>
 							</div>
-							<form>
+							<form method='post' action='' >
+								{%csrf_token%}
+								{{form.username}}
 							<div class="log-input">
 								<div class="log-input-left">
-								   <input type="text" class="user" value="Yourname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email address:';}"/>
+
+									<!-- <input type="text" class="user" value="Yourname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email address:';}"/> -->
 								</div>
 								<span class="checkbox2">
 									 <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i></label>
@@ -73,7 +77,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="log-input">
 								<div class="log-input-left">
-								   <input type="password" class="lock" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email address:';}"/>
+									{{form.password}}
+									 <!-- <input type="password" class="lock" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email address:';}"/> -->
 								</div>
 								<span class="checkbox2">
 									 <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i></label>
@@ -105,4 +110,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    <script src='{% static "cssLogin/js/bootstrap.min.js" %}'></script>
 </body>
 </html>
-{% endblock %}

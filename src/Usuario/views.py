@@ -26,7 +26,7 @@ class EmpleadoCreate(CreateView):
 def inicio(request):
     if request.user.is_authenticated():
 
-        return render(request,'login.html',{})
+        return render(request,'sign-in.html',{})
 
     if request.POST:
 
@@ -65,7 +65,7 @@ def inicio(request):
             'form': form
         }
 
-        return render(request, 'inicio.html', context)
+        return render(request, 'sign-in.html', context)
 
 def registro(request):
 
