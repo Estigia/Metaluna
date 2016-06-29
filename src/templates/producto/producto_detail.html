@@ -3,55 +3,40 @@
 
 {% block content %}
 
-<div id="bloqueForms">
 
-  <div class = "camposForms">
+<h2>Detalle de Producto</h2>
+<br/>
 
-    <h2>Detalle de Producto</h2>
+  <div class = "listados">
 
-    <label>Descripcion</label>
-      <i>&nbsp;&nbsp;{{producto.descripcion}}</i>
-<label>Tipo de Producto</label>
-      <i>&nbsp;&nbsp;{{producto.Tipo_Producto_id}}</i>
-<label>Material</label>
-      <i>&nbsp;&nbsp;{{producto.Material_id}}</i>
-<label>Longitud</label>
-      <i>&nbsp;&nbsp;{{producto.Longitud_id}}</i>
-<label>Calibre</label>
-      <i>&nbsp;&nbsp;{{producto.Calibre_id}}</i>
-<label>Forma</label>
-      <i>&nbsp;&nbsp;{{producto.Forma_id}}</i>
 
-  </form>
+    <table class = "table">
+      <tr>
+        <td><strong>Descripcion</td>
+          <td>{{producto.descripcion}}<td>
+      </tr>
+      <tr>
+        <td><strong>Tipo de Producto</td>
+        <td>{{producto.Tipo_Producto_id}}<td>
+      </tr>
+      <tr>
+        <td><strong>Material</td>
+        <td>{{producto.Material_id}}</td>
+      </tr>
+      <tr>
+        <td><strong>Longitud</td>
+        <td>{{producto.Longitud_id}}</td>
+      </tr>
+      <tr>
+        <td><strong>Calibre</td>
+        <td>{{producto.Calibre_id}}</td>
+      </tr>
+      <tr>
+        <td><strong>Forma</td>
+        <td>{{producto.Forma_id}}</td>
+      </tr>
+    </table>
 
   </div>
-</div>
 
-{% endblock %}
-
-{% block navegacion %}
-    <div class="column1">
-      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
-      <div class="title">
-        <h2>Atrás</h2>
-      </div>
-    </div>
-    <div class="column2">
-      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
-      <div class="title">
-        <h2>Atrás</h2>
-      </div>
-    </div>
-    <div class="column3">
-      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
-      <div class="title">
-        <h2>Atrás</h2>
-      </div>
-    </div>
-    <div class="column4">
-      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
-      <div class="title">
-        <h2>Atrás</h2>
-      </div>
-    </div>
 {% endblock %}
