@@ -2,15 +2,28 @@
 
 {% block content %}
 
-  <div>
 
-    <label>Producto</label>
-    {{mercaderia.Producto_id}}
-    <label>Agencia</label>
-    {{mercaderia.Agencia_id}}
-    <label>Cantidad</label>
-    {{mercaderia.cantidad}}
+  <h2>Detalle de Producto {{mercaderia.Producto_id}} </h2>
+  <br/>
 
-  </div>
+    <div class = "listados">
+
+
+      <table class = "table">
+        <tr>
+          <td><strong>Producto</td>
+            <td>{{mercaderia.Producto_id}}<td>
+        </tr>
+        <tr>
+          <td><strong>Agencia</td>
+          <td>{{mercaderia.Agencia_id}}<td>
+        </tr>
+        <tr>
+          <td><strong>Cantidad</td>
+          <td>{{mercaderia.cantidad}}</td>
+        </tr>
+      </table>
+
+    </div>
 
 {% endblock %}

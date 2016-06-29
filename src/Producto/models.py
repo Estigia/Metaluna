@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from Agencia.models import Mercaderia
+
 class Lote(models.Model):
     id = models.AutoField(primary_key = True)
     precio_compra = models.FloatField(blank = True, null=True)
@@ -23,6 +25,15 @@ class Producto(models.Model):
 
     def __unicode__(self):
         return self.descripcion
+
+    def getTotal(self):
+        mercaderia = Mercaderia.objects.filter(Producto_id=self)
+
+        total = 0
+        for merca in mercaderia:
+            total += merca.cantidad
+
+        return total
 
 class Tipo_Producto(models.Model):
     id = models.AutoField(primary_key = True)

@@ -30,7 +30,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^empleados/', include('Usuario.urls', namespace='Usuario')),
     url(r'^agencia/', include('Agencia.urls', namespace='Agencia')),
-    # url(r'^inicio/','Usuario.views.inicio', name='login'),
+    url(r'^transacciones/', include('Transacciones.urls', namespace='Transacciones')),
+    url(r'^organizacion/', include('Comodin.urls', namespace='Comodin')),
     url(r'^registro/','Usuario.views.registro', name='registro'),
     url(r'^proveedor/',ComodinCreate.as_view(),name='proveedor'),
     url(r'^cliente/',ClienteCreate.as_view(), name = 'cliente'),
@@ -38,13 +39,9 @@ urlpatterns = [
     url(r'^filtro/',filtroP,name = 'filtroP'),
     url(r'^productos/', include('Producto.urls', namespace= 'Producto')),
     url(r'^trans/','Transacciones.views.trans',name="trans"),
-    url(r'^factura/','Transacciones.views.factura', name="factura"),
-    url(r'^detalleFactura/','Transacciones.views.detalleFactura', name="detalleFactura"),
-    url(r'^recibo/','Transacciones.views.recibo', name="recibo"),
-    url(r'^abonos/','Transacciones.views.abonos', name="abonos"),
-    url(r'^credito/','Transacciones.views.credito', name="credito"),
-    url(r'^planilla/', 'Planillas.views.Planilla', name='Planilla'),
     url(r'^$','Usuario.views.inicio',name="base"),
+
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

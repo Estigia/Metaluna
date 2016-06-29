@@ -2,16 +2,26 @@
 
 {% block content %}
 
-  <div>
+<h2>Agencia {{agencia.nombre}}</h2>
+<br/>
 
-    <label>Nombre</label>
-    {{agencia.nombre}}
-    <label>Direccion</label>
-    {{agencia.direccion}}
-    <label>Capital</label>
-    {{agencia.capital}}
-    <label>Municipio</label>
-    {{agencia.Municipio_id}}
+  <div class = "listados">
+
+
+    <table class = "table">
+      <tr>
+        <td><strong>Dirección</td>
+          <td>{{agencia.direccion}}<td>
+      </tr>
+      <tr>
+        <td><strong>Capital</td>
+        <td>{{agencia.capital}}<td>
+      </tr>
+      <tr>
+        <td><strong>Municipio</td>
+        <td>{{agencia.Municipio_id}}</td>
+      </tr>
+    </table>
 
   </div>
 
