@@ -4,21 +4,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.core import serializers
 
-<<<<<<< HEAD
-
-from .forms import ReciboForm,AbonosForm,FacturaForm,DetalleFacturaForm,CreditoForm
 from  Transacciones.models import Factura,Recibo
-# Create your views here.
-def recibo(request):
-=======
 from Comodin.models import Marca, Comodin
 from Producto.models import Tipo_Producto, Producto
 from Agencia.models import Mercaderia
 from .models import Factura, DetalleFactura
 from .forms import ReciboForm,AbonosForm,FacturaForm,DetalleFacturaForm,CreditoForm
 
-def Recibo(request):
->>>>>>> feature/Facturacion
+def recibo(request):
     form = ReciboForm(request.POST or None)
     context = {
         "form":form,
@@ -75,11 +68,8 @@ def credito(request):
     return render(request,'credito.html',context)
 
 def trans(request):
-<<<<<<< HEAD
     datos = Factura.objects.all()
     return render(request,'base.html',{"datos":datos})
-=======
-    return render(request,'base.html',{})
 
 def ventas(request):
 
@@ -207,4 +197,3 @@ def compra(request):
     data = serializers.serialize('json', f)
 
     return HttpResponse(data, content_type='application/json')
->>>>>>> feature/Facturacion
