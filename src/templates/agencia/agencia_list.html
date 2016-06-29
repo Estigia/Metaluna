@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h2>Agencias</h2>
+<br/>
 
 <div class = "listados">
+
+
   <table class = "table">
   <tr>
     <td><strong>Nombre</td>
@@ -12,23 +16,25 @@
   </tr>
 
   {% for dato in agencias %}
-  <tr>
-    <td>
-    {{dato.nombre}}
+    <tr>
+      <td>
+        {{dato.nombre}}
     </td>
     <td>
-    {{dato.direccion}}
+      {{dato.direccion}}
     </td>
     <td>
-    {{dato.capital}}
+      {{dato.capital}}
     </td>
     <td>
-    {{dato.Municipio_id}}
+      {{dato.Municipio_id}}
     </td>
   </tr>
 
   {% endfor %}
-</table>
+  </table>
+
+
 
 </div>
 

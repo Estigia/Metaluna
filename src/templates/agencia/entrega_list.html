@@ -2,13 +2,33 @@
 
 {% block content %}
 
-<div>
+<h2>Entregas</h2>
+<br/>
+
+<div class = "listados">
+
+
+  <table class = "table">
+  <tr>
+    <td><strong>Fecha</td>
+    <td><strong>Vehiculo</td>
+  </tr>
+
   {% for dato in entregas %}
-    <label>Fecha</label>
-    {{dato.fecha}}
-    <label>Vehiculo</label>
-    {{dato.Vehiculo_id}}
+    <tr>
+      <td>
+        {{dato.fecha}}
+    </td>
+    <td>
+      {{dato.Vehiculo_id}}
+    </td>
+  </tr>
+
   {% endfor %}
+  </table>
+
+
+
 </div>
 
 {% endblock %}
