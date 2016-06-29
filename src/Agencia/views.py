@@ -100,7 +100,7 @@ def entregaList(request):
 
 class EntregaDetail(DetailView):
     model = Entrega
-    template_name = 'agencia/entrega_detail.html'
+    template_name = 'agencia/entrega_detail.hmtl'
 
 class EntregaUpdate(UpdateView):
     model = Entrega

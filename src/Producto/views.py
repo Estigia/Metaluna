@@ -4,6 +4,8 @@ from django.views.generic.detail import DetailView
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponse
 from django.core import serializers
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from .models import (Lote, Producto, Tipo_Producto,
                         Material, Longitud, Calibre, Forma)
@@ -11,6 +13,7 @@ from .forms import (LoteForm, ProductoForm, Tipo_ProductoForm,
                     MaterialForm, LongitudForm, CalibreForm, FormaForm)
 
 #Vistas de Producto y Detalle -----------------------------
+@login_required(login_url='base')
 def index(request):
     productos = Producto.objects.all()
 
@@ -23,6 +26,10 @@ def index(request):
 class ProductoDetail(DetailView):
     model = Producto
     template_name = 'producto/producto_detail.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ProductoDetail, self).dispatch(request, *args, **kwargs)
 
 class ProductoUpdate(UpdateView):
     model = Producto
@@ -38,6 +45,11 @@ class ProductoUpdate(UpdateView):
         "Marca_id"
     ]
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ProductoUpdate, self).dispatch(request, *args, **kwargs)
+
+@login_required(login_url='base')
 def producto(request):
     form = ProductoForm(request.POST or None)
 
@@ -52,7 +64,7 @@ def producto(request):
     return render(request, 'producto/productos.html', context)
 
 #--------------------------------------------------------
-
+@login_required(login_url='base')
 def lote(request):
     form = LoteForm(request.POST or None)
 
@@ -65,6 +77,7 @@ def lote(request):
 
     return render(request, 'producto/lote.html', context)
 
+@login_required(login_url='base')
 def tipo_producto(request):
     form = Tipo_ProductoForm(request.POST or None)
 
@@ -77,6 +90,7 @@ def tipo_producto(request):
 
     return render(request, 'producto/tipo_producto.html', context)
 
+@login_required(login_url='base')
 def material(request):
     form = MaterialForm(request.POST or None)
 
@@ -89,6 +103,7 @@ def material(request):
 
     return render(request, 'producto/material.html', context)
 
+@login_required(login_url='base')
 def longitud(request):
     form = LongitudForm(request.POST or None)
 
@@ -101,6 +116,7 @@ def longitud(request):
 
     return render(request, 'producto/longitud.html', context)
 
+@login_required(login_url='base')
 def calibre(request):
     form = CalibreForm(request.POST or None)
 
@@ -113,6 +129,7 @@ def calibre(request):
 
     return render(request, 'producto/calibre.html', context)
 
+@login_required(login_url='base')
 def forma(request):
     form = FormaForm(request.POST or None)
 
@@ -125,6 +142,7 @@ def forma(request):
 
     return render(request, 'producto/forma.html', context)
 
+@login_required(login_url='base')
 def filtroProducto(request):
     id_marca = request.GET['id_marca']
     id_tipo = request.GET['id_tipo']
