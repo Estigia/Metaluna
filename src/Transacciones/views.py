@@ -3,6 +3,7 @@ import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core import serializers
+from django.contrib.auth.decorators import login_required
 
 from  Transacciones.models import Factura,Recibo
 from Comodin.models import Marca, Comodin
@@ -11,6 +12,7 @@ from Agencia.models import Mercaderia
 from .models import Factura, DetalleFactura
 from .forms import ReciboForm,AbonosForm,FacturaForm,DetalleFacturaForm,CreditoForm
 
+@login_required(login_url='base')
 def recibo(request):
     form = ReciboForm(request.POST or None)
     context = {
@@ -22,6 +24,7 @@ def recibo(request):
 
     return render(request, 'recibo.html', context)
 
+@login_required(login_url='base')
 def abonos(request):
     form = AbonosForm(request.POST or None)
     context={
@@ -31,6 +34,7 @@ def abonos(request):
         form.save()
     return render(request,'abonos.html',context)
 
+@login_required(login_url='base')
 def factura(request):
     form = FacturaForm(request.POST or None)
     form2 = DetalleFacturaForm(request.POST or None)
@@ -46,6 +50,7 @@ def factura(request):
         form2.save()
     return render(request,'factura.html',context)
 
+@login_required(login_url='base')
 def detalleFactura(request):
     form = DetalleFacturaForm(request.POST or None)
     context = {
@@ -55,6 +60,7 @@ def detalleFactura(request):
         form.save()
     return render(request,'detalleFactura.html',context)
 
+@login_required(login_url='base')
 def credito(request):
     form = CreditoForm(request.POST or None)
     context = {
@@ -67,10 +73,12 @@ def credito(request):
         form.save()
     return render(request,'credito.html',context)
 
+@login_required(login_url='base')
 def trans(request):
     datos = Factura.objects.all()
     return render(request,'base.html',{"datos":datos})
 
+@login_required(login_url='base')
 def ventas(request):
 
     context = {
@@ -81,6 +89,7 @@ def ventas(request):
 
     return render(request, 'transacciones/ventas.html', context)
 
+@login_required(login_url='base')
 def compras(request):
 
     context = {
@@ -91,6 +100,7 @@ def compras(request):
 
     return render(request, 'transacciones/compras.html', context)
 
+@login_required(login_url='base')
 def venta(request):
     detalles = request.GET['detalles']
     cliente = request.GET['cliente']
@@ -144,6 +154,7 @@ def venta(request):
 
     return HttpResponse(data, content_type='application/json')
 
+@login_required(login_url='base')
 def compra(request):
     detalles = request.GET['detalles']
     proveedor = request.GET['proveedor']

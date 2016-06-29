@@ -122,7 +122,7 @@ def entregaList(request):
 
 class EntregaDetail(DetailView):
     model = Entrega
-    template_name = 'agencia/entrega_detail.html'
+    template_name = 'agencia/entrega_detail.hmtl'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
