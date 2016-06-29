@@ -845,3 +845,12 @@ border: 2px solid #fff;
 .bloqueDos{
 	background: black;
 }
+
+
+.listados {
+  width: 67%;
+  margin-left: 20%;
+  align-self: center;
+  align-items: center;
+	padding-right: 3%;
+}
