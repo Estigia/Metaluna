@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^empleados/', include('Usuario.urls', namespace='Usuario')),
     url(r'^agencia/', include('Agencia.urls', namespace='Agencia')),
-    url(r'^inicio/','Usuario.views.inicio', name='login'),
+    # url(r'^inicio/','Usuario.views.inicio', name='login'),
     url(r'^registro/','Usuario.views.registro', name='registro'),
     url(r'^proveedor/',ComodinCreate.as_view(),name='proveedor'),
     url(r'^cliente/',ClienteCreate.as_view(), name = 'cliente'),
@@ -44,7 +44,7 @@ urlpatterns = [
     url(r'^abonos/','Transacciones.views.abonos', name="abonos"),
     url(r'^credito/','Transacciones.views.credito', name="credito"),
     url(r'^planilla/', 'Planillas.views.Planilla', name='Planilla'),
-    url(r'^$','Usuario.views.homepage',name="base"),
+    url(r'^$','Usuario.views.inicio',name="base"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
