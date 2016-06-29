@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView
 from django.core import serializers
 from django.http import HttpResponse
@@ -19,6 +21,10 @@ class ComodinCreate(CreateView):
         'nit',
         'saldo',
         ]
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ComodinCreate, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         p = form.save(commit = False)
@@ -48,6 +54,10 @@ class MarcaCreate(CreateView):
 
     fields = ['marca']
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MarcaCreate, self).dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
 
        context = super(MarcaCreate, self).get_context_data(**kwargs)
@@ -74,6 +84,7 @@ class MarcaCreate(CreateView):
 
         return super(MarcaCreate, self).form_valid(form)
 
+@login_required(login_url='base')
 def filtroP(request):
     proveedores = Comodin.objects.filter(tipo=False)
     print proveedores

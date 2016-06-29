@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 
@@ -8,6 +10,7 @@ from .models import Agencia, Vehiculo, Entrega, Mercaderia
 from .forms import AgenciaForm, VehiculoForm, EntregaForm, MercaderiaForm
 
 #Vistas de Agencia y detalles---------------------------------
+@login_required(login_url='base')
 def agencia(request):
     form = AgenciaForm(request.POST or None)
 
@@ -19,6 +22,11 @@ class AgenciaDetail(DetailView):
     model = Agencia
     template_name = 'agencia/agencia_detail.html'
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(AgenciaDetail, self).dispatch(request, *args, **kwargs)
+
+@login_required(login_url='base')
 def index(request):
     agencias = Agencia.objects.all()
 
@@ -42,9 +50,13 @@ class AgenciaUpdate(UpdateView):
 
     ]
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(AgenciaUpdate, self).dispatch(request, *args, **kwargs)
+
 #-------------------------------------------------------------
 #Vistas de Vehiculos------------------------------------------
-
+@login_required(login_url='base')
 def vehiculo(request):
     form = VehiculoForm()
 
@@ -55,6 +67,10 @@ def vehiculo(request):
 class VehiculoDetail(DetailView):
     model = Vehiculo
     template_name = 'agencia/vehiculo_detail.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(VehiculoDetail, self).dispatch(request, *args, **kwargs)
 
 class VehiculoUpdate(UpdateView):
     model = Vehiculo
@@ -70,6 +86,11 @@ class VehiculoUpdate(UpdateView):
 
     ]
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(VehiculoUpdate, self).dispatch(request, *args, **kwargs)
+
+@login_required(login_url='base')
 def vehiculoList(request):
     vehiculos = Vehiculo.objects.all()
 
@@ -81,7 +102,7 @@ def vehiculoList(request):
 
 #-------------------------------------------------------------
 #Vistas de Entrega--------------------------------------------
-
+@login_required(login_url='base')
 def entrega(request):
     form = EntregaForm()
 
@@ -89,6 +110,7 @@ def entrega(request):
 
     return render(request, "agencia/entrega.html", context)
 
+@login_required(login_url='base')
 def entregaList(request):
     entregas = Entrega.objects.all()
 
@@ -102,6 +124,10 @@ class EntregaDetail(DetailView):
     model = Entrega
     template_name = 'agencia/entrega_detail.html'
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(EntregaDetail, self).dispatch(request, *args, **kwargs)
+
 class EntregaUpdate(UpdateView):
     model = Entrega
     template_name = 'agencia/entrega_edit.html'
@@ -114,9 +140,13 @@ class EntregaUpdate(UpdateView):
         'vale',
         'Vehiculo_id',
     ]
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(EntregaUpdate, self).dispatch(request, *args, **kwargs)
 #-------------------------------------------------------------
 #Vistas de Mercaderia-----------------------------------------
-
+@login_required(login_url='base')
 def mercaderia(request):
     form = MercaderiaForm()
 
@@ -124,6 +154,7 @@ def mercaderia(request):
 
     return render(request, "agencia/mercaderia.html", context)
 
+@login_required(login_url='base')
 def mercaderiaList(request):
     mercaderia = Mercaderia.objects.all()
 
@@ -137,6 +168,10 @@ class MercaderiaDetail(DetailView):
     model = Mercaderia
     template_name = 'agencia/mercaderia_detail.html'
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MercaderiaDetail, self).dispatch(request, *args, **kwargs)
+
 class MercaderiaUpdate(UpdateView):
     model = Mercaderia
     template_name = 'agencia/mercaderia_edit.html'
@@ -147,4 +182,8 @@ class MercaderiaUpdate(UpdateView):
         'Agencia_id',
         'cantidad',
     ]
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MercaderiaUpdate, self).dispatch(request, *args, **kwargs)
 #-----------------------------------------------------------

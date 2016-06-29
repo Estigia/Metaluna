@@ -23,6 +23,10 @@ class EmpleadoCreate(CreateView):
         'Agencia_id',
     ]
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(EmpleadoCreate, self).dispatch(request, *args, **kwargs)
+
 def inicio(request):
     if request.user.is_authenticated():
 
