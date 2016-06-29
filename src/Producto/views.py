@@ -125,7 +125,6 @@ def forma(request):
 
     return render(request, 'producto/forma.html', context)
 
-
 def filtroProducto(request):
     id_marca = request.GET['id_marca']
     id_tipo = request.GET['id_tipo']

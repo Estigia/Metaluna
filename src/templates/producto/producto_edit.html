@@ -1,43 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <form method= "post", action="">
-    {% csrf_token %}
-    <div>
-      <label>Descripcion</label>
-        {{form.descripcion}}
-    </div>
+<div id="bloqueForms">
 
-    <div>
-      <label>Tipo de Producto</label>
-        {{form.Tipo_Producto_id}}
-    </div>
+  <div class = "camposForms">
 
-    <div>
-      <label>Material</label>
-        {{form.Material_id}}
-    </div>
+    <form method="post" action="">
+    {%csrf_token%}
+    <h2>Editar Producto</h2>
 
-    <div>
-      <label>Longitud</label>
-        {{form.Longitud_id}}
-    </div>
+    <label>Descripcion</label>
+      {{form.descripcion}}
+<label>Tipo de Producto</label>
+      {{form.Tipo_Producto_id}}
+<label>Material</label>
+      {{form.Material_id}}
+<label>Longitud</label>
+      {{form.Longitud_id}}
+<label>Calibre</label>
+      {{form.Calibre_id}}
+<label>Forma</label>
+      {{form.Forma_id}}
+<label>Marca</label>
+      {{form.Marca_id}}
 
-    <div>
-      <label>Calibre</label>
-        {{form.Calibre_id}}
-    </div>
+    <input type='submit' value='Editar'>
 
-    <div>
-      <label>Forma</label>
-        {{form.Forma_id}}
-    </div>
-
-    <div>
-      <label>Marca</label>
-        {{form.Marca_id}}
-    </div>
-
-    <input type="submit" value="Actualizar Producto">
   </form>
+
+  </div>
+</div>
 {% endblock %}

@@ -1,32 +1,33 @@
 {% extends 'base.html' %}
 
+
+
 {% block content %}
-<div>
-  <form action="" method="post">
-    {% csrf_token %}
-    <div>
-      <label>Kilometraje de salida</label>
-      {{form.kSalida}}</br>
-    </div>
-    <div>
-      <label>Kilometraje de entrada</label>
-      {{form.kEntrada}}</br>
-    </div>
-    <div>
-      <label>Fecha</label>
-      {{form.fecha}}</br>
-    </div>
-    <div>
-      <label>Vale</label>
-      {{form.vale}}</br>
-    </div>
-    <div>
-      <label>Vehiculo</label>
-      {{form.Vehiculo_id}}</br>
-    </div>
-    <div>
-      <input type="submit" value="Guardar">
-    </div>
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+    <h2>Editar Entrega</h2>
+
+    <label>Kilometraje de salida</label>
+    {{form.kSalida}}</br>
+<label>Kilometraje de entrada</label>
+    {{form.kEntrada}}</br>
+<label>Fecha</label>
+    {{form.fecha}}</br>
+<label>Vale</label>
+    {{form.vale}}</br>
+<label>Vehiculo</label>
+    {{form.Vehiculo_id}}</br>
+
+    <input type='submit' value='Editar'>
+
   </form>
+
+  </div>
 </div>
+
 {% endblock %}
