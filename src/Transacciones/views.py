@@ -148,6 +148,9 @@ def venta(request):
     factura.precioTotal = total
     factura.save()
 
+    agencia.capital += factura.precioTotal
+    agencia.save()
+    
     f = Marca.objects.all()
 
     data = serializers.serialize('json', f)
@@ -202,6 +205,9 @@ def compra(request):
 
     factura.precioTotal = total
     factura.save()
+
+    agencia.capital = agencia.capital - factura.precioTotal
+    agencia.save()
 
     f = Marca.objects.all()
 
