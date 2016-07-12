@@ -2,13 +2,8 @@
 
 {% block content %}
 
-
   <h2>Vehiculos</h2>
-  <br/>
-
   <div class = "listados">
-
-
     <table class = "table">
       <tr>
         <td><strong>Marca</td>
@@ -16,28 +11,18 @@
         <td><strong>Placa</td>
         <td><strong>Agencia</td>
       </tr>
+
       {% for dato in vehiculos %}
-      <tr>
-        <td>
-          {{dato.marca}}
-        </td>
-        <td>
-          {{dato.modelo}}
-        </td>
-        <td>
-          {{dato.placa}}
-        </td>
-        <td>
-          {{dato.Agencia_id}}
-        </td>
-        <td><a href={% url 'Agencia:detail_v' dato.id %}><i>Ver</i></a></td>
-        <td><a href={% url 'Agencia:edit_v' dato.id %}><i>Editar</i></a></td>
-      </tr>
-
+        <tr>
+          <td>{{dato.marca}}</td>
+          <td>{{dato.modelo}}</td>
+          <td>{{dato.placa}}</td>
+          <td>{{dato.Agencia_id}}</td>
+          <td><a href={% url 'Agencia:detail_v' dato.id %}><i>Ver</i></a></td>
+          <td><a href={% url 'Agencia:edit_v' dato.id %}><i>Editar</i></a></td>
+        </tr>
       {% endfor %}
-
     </table>
-
   </div>
 
 {% endblock %}

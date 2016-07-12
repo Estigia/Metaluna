@@ -2,30 +2,23 @@
 
 {% block content %}
 
-
-
 <div id="bloqueForms">
-
   <div class = "camposForms">
-
     <form method="post" action="">
-    {%csrf_token%}
-    <h2>Editar Entrega</h2>
+      {%csrf_token%}
+      <h2>Editar Entrega</h2>
 
-    <label>Producto</label>
-    {{form.Producto_id}}</br>
-<label>Agencia</label>
-    {{form.Agencia_id}}</br>
-<label>Cantidad</label>
-    {{form.cantidad}}</br>
+      <label>Producto</label>
+        {{form.Producto_id}}</br>
+      <label>Agencia</label>
+        {{form.Agencia_id}}</br>
+      <label>Cantidad</label>
+        {{form.cantidad}}</br>
 
-    <input type='submit' value='Editar'>
+      <input type='submit' value='Editar'>
 
-  </form>
-
+    </form>
   </div>
 </div>
-
-
 
 {% endblock %}
