@@ -1,23 +1,16 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
 <div id="bloqueForms">
-
   <div class = "camposForms">
-
     <form method="post" action="">
-    {%csrf_token%}
-    <h2>Agregar Longitud</h2>
+      {%csrf_token%}
+      <h2>Agregar Longitud</h2>
+        {{form.longitud}}
 
-    <label></label>
-      {{form.longitud}}
-
-    <input type='submit' value='Agregar'>
-
-  </form>
-
+      <input type='submit' value='Agregar'>
+    </form>
   </div>
 </div>
 

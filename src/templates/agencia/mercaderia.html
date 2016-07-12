@@ -1,27 +1,22 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
 <div id="bloqueForms">
-
   <div class = "camposForms">
-
     <form method="post" action="">
-    {%csrf_token%}
-    <h2>Mercaderia</h2>
+      {%csrf_token%}
+      <h2>Mercaderia</h2>
 
-    <label>Producto</label>
-    {{form.Producto_id}}<br/>
-<label>Agencia</label>
-    {{form.Agencia_id}}<br/>
-<label>Cantidad</label>
-    {{form.cantidad}}<br/>
+      <label>Producto</label>
+        {{form.Producto_id}}
+      <label>Agencia</label>
+        {{form.Agencia_id}}
+      <label>Cantidad</label>
+        {{form.cantidad}}
 
-    <input type='submit' value='Agregar'>
-
-  </form>
-
+      <input type='submit' value='Agregar'>
+    </form> 
   </div>
 </div>
 
