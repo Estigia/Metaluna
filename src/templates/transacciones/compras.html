@@ -42,6 +42,8 @@
     <input id="cantidad" type="text" name="cantidad" value=0></br>
     <label>Precio</label>
     <input id="precio" type="text" name="precio" value=0></br>
+    <label>Crédito</label>
+    <input type="checkbox" id="credito" name="credito" checked></br>
     <input id="agregar" type="button" value="Agregar detalle"></br>
   </form>
 </div>
@@ -68,6 +70,10 @@
   $('#agregar').on('click', agregarDetalle);
   $('#marca').on('change', busquedaProducto);
   $('#facturar').on('click',facturar);
+
+  //$('#credito').on('change',function(){
+    //alert(document.getElementById('credito').checked)
+  //})
 
   function facturar(){
 
@@ -101,13 +107,16 @@
         'detalles': detalles,
         'proveedor': $('#proveedor').val(),
         'serie': $('#serie').val(),
-        'num_doc': $('#num').val()
+        'num_doc': $('#num').val(),
+        'credito': document.getElementById('credito').checked
       },
       url: "{% url 'Transacciones:compra' %}",
       type: 'get',
       dataType: 'json',
       success: function(data){
         alert("Factura creada con exito.");
+        console.log(data[0].pk)
+        location.href = location.href + 'crear_credito?factura='+data[0].pk;
       }
     });
 

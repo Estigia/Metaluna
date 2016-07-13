@@ -1,15 +1,16 @@
 import json
 
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
+#from django.core.exceptions import DoesNotExist
 
 from  Transacciones.models import Factura,Recibo
 from Comodin.models import Marca, Comodin
 from Producto.models import Tipo_Producto, Producto
 from Agencia.models import Mercaderia
-from .models import Factura, DetalleFactura
+from .models import Factura, DetalleFactura, Credito
 from .forms import ReciboForm,AbonosForm,FacturaForm,DetalleFacturaForm,CreditoForm
 
 @login_required(login_url='base')
@@ -62,16 +63,34 @@ def detalleFactura(request):
 
 @login_required(login_url='base')
 def credito(request):
-    form = CreditoForm(request.POST or None)
-    context = {
 
-    "form":form,
+    if request.GET:
+        factura = request.GET['factura']
 
-    }
+        try:
+            factura = Factura.objects.get(id=factura)
 
-    if form.is_valid():
-        form.save()
-    return render(request,'credito.html',context)
+            try:
+                credito = Credito.objects.get(Factura_id=factura)
+                print 'try'
+            except Credito.DoesNotExist:
+                print 'except'
+
+                form = CreditoForm(request.POST or None)
+                context = {
+                    "form":form,
+                    }
+
+                if form.is_valid():
+                    form.save(commit=False)
+                    
+
+                return render(request,'transacciones/credito.html',context)
+
+            return HttpResponse('Esa factura ya tiene un credito.')
+
+        except Factura.DoesNotExist:
+            return HttpResponse('No existe esa factura.')
 
 @login_required(login_url='base')
 def trans(request):
@@ -161,6 +180,8 @@ def compra(request):
     serie = request.GET['serie']
     numDoc = request.GET['num_doc']
 
+    credito = str(request.GET['credito'])
+
     comodin = Comodin.objects.get(id=proveedor)
     factura = Factura.objects.create(
                 serie=serie,
@@ -203,8 +224,8 @@ def compra(request):
     factura.precioTotal = total
     factura.save()
 
-    f = Marca.objects.all()
+    factura = Factura.objects.filter(id = factura.id)
 
-    data = serializers.serialize('json', f)
+    data = serializers.serialize('json', factura)
 
     return HttpResponse(data, content_type='application/json')
