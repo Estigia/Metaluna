@@ -1,4 +1,6 @@
 from django import forms
+from django.utils import timezone
+
 from .models import Factura,DetalleFactura,Recibo,Abonos,Credito
 
 class FacturaForm(forms.ModelForm):
@@ -42,12 +44,23 @@ class CreditoForm(forms.ModelForm):
     class Meta:
         model = Credito
         fields = [
-        "aprobado",
         "monto",
         "saldo",
-        "finalizado",
         "fechaLimite",
         "fechaAprobacion",
-        "Usuario_id",
-        "Factura_id",
         ]
+
+        # def __init__(self, *args, **kwargs):
+        #     super(CreditoForm, self).__init__(*args, **kwargs)
+        #
+        #     self.fields['fechaLimite'].widget = forms.Textarea(
+        #         attrs = {
+        #             'placeholder': str(timezone.now())
+        #         }
+        #     )
+        #
+        #     self.fields['fechaAprobacion'].widget = forms.Textarea(
+        #         attrs = {
+        #             'placeholder': str(timezone.now())
+        #         }
+        #     )

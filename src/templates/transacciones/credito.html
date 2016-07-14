@@ -8,31 +8,31 @@
   <div class = "camposForms">
 
     <form method="post" action="">
-    {%csrf_token%}
+      {%csrf_token%}
       <h2>Nuevo Credito</h2>
-      <label>Aprobado</label>
-      {{form.aprobado}}
+      <!-- <label>Aprobado</label>
+      {{form.aprobado}} -->
 
-<label>Monto</label>
+      <label>Monto</label>
       {{form.monto}}
 
-<label>Saldo</label>
+      <label>Saldo</label>
       {{form.saldo}}
 
-<label>Finalizado</label>
-      {{form.finalizado}}
+      <!-- <label>Finalizado</label>
+      {{form.finalizado}} -->
 
-<label>Fecha Limite</label>
+      <label>Fecha Limite</label>
       {{form.fechaLimite}}
 
-<label>Fecha Aprobacion</label>
+      <label>Fecha Aprobacion</label>
       {{form.fechaAprobacion}}
 
-<label>id Usuario</label>
+      <!-- <label>id Usuario</label>
       {{form.Usuario_id}}
 
-<label>id Factura</label>
-      {{form.Factura_id}}
+      <label>id Factura</label>
+      {{form.Factura_id}} -->
 
 
     <input type='submit' value='Agregar'>

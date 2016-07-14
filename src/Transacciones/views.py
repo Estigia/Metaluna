@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 #from django.core.exceptions import DoesNotExist
 
 from  Transacciones.models import Factura,Recibo
@@ -74,16 +75,35 @@ def credito(request):
                 credito = Credito.objects.get(Factura_id=factura)
                 print 'try'
             except Credito.DoesNotExist:
-                print 'except'
+                print str(timezone.now())
 
                 form = CreditoForm(request.POST or None)
+
                 context = {
                     "form":form,
                     }
 
                 if form.is_valid():
+                    print 'form'
+
                     form.save(commit=False)
-                    
+
+                    credito = Credito.objects.create(
+                        aprobado = True,
+                        monto = form.cleaned_data["monto"],
+                        saldo = form.cleaned_data["saldo"],
+                        finalizado = False,
+                        fechaLimite = form.cleaned_data["fechaLimite"],
+                        fechaAprobacion = form.cleaned_data["fechaAprobacion"],
+                        Usuario_id = request.user,
+                        Factura_id = factura
+                    )
+
+
+
+                    credito.save()
+
+                    return HttpResponse('Credito creado: ' + str(credito.id))
 
                 return render(request,'transacciones/credito.html',context)
 

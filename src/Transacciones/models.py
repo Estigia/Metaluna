@@ -51,4 +51,4 @@ class Credito(models.Model):
     Factura_id   = models.ForeignKey('Factura')
 
     def __unicode__ (self):
-        return self.usuario_id + "  "+ self.factura_id
+        return str(self.Usuario_id) + "  " + str(self.Factura_id)
