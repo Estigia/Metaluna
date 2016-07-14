@@ -112,6 +112,8 @@ def credito(request):
         except Factura.DoesNotExist:
             return HttpResponse('No existe esa factura.')
 
+    return HttpResponse('No sirve')
+
 @login_required(login_url='base')
 def trans(request):
     datos = Factura.objects.all()
