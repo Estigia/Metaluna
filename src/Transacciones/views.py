@@ -148,6 +148,8 @@ def venta(request):
     serie = request.GET['serie']
     numDoc = request.GET['num_doc']
 
+    credito = str(request.GET['credito'])
+
     comodin = Comodin.objects.get(id=cliente)
     factura = Factura.objects.create(
                 serie=serie,
