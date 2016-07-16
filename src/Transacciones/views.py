@@ -191,9 +191,9 @@ def venta(request):
     factura.precioTotal = total
     factura.save()
 
-    f = Marca.objects.all()
+    factura = Factura.objects.filter(id = factura.id)
 
-    data = serializers.serialize('json', f)
+    data = serializers.serialize('json', factura)
 
     return HttpResponse(data, content_type='application/json')
 

@@ -72,6 +72,7 @@
   function facturar(){
 
     var filas = document.getElementById('detalles').rows;
+    var total = 0;
 
     var detalles = '{\n';
 
@@ -80,6 +81,7 @@
         '\n\t"cantidad":' + filas[i].cells[0].innerHTML +','+
         '\n\t"descripcion":' + filas[i].cells[1].innerHTML+','+
         '\n\t"subtotal":' + filas[i].cells[3].innerHTML;
+        total = total + parseInt(filas[i].cells[3].innerHTML);
       if (i==filas.length-1){
         detalle += '\n\t}\n';
       }else{
