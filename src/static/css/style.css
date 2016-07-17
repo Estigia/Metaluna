@@ -895,16 +895,8 @@ border: 2px solid #fff;
     font-style: normal;
   }
 
-  /* Primary Styles
-  ---------------------------------*/
-  body {
-  	background:#fff;
-  	font-family: 'Open Sans', sans-serif;
-  	font-size:14px;
-  	font-weight:normal;
-  	color:#888888;
-  	margin:0;
-  }
+  
+
   h2{
   	font-size:34px;
   	color:#222222;
