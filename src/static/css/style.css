@@ -855,6 +855,14 @@ border: 2px solid #fff;
 	padding-right: 3%;
 }
 
+.submenu {
+  width: 35%;
+  margin-left: 32%;
+  align-items: center;
+  padding-right: 3%;
+  padding-left: 5%;
+}
+
 
 .tbox1
 	{
