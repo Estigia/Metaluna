@@ -3,7 +3,6 @@
 {% block content %}
 
 <h2>Agencia {{agencia.nombre}}</h2>
-<br/>
 
   <div class = "listados">
 
@@ -20,6 +19,12 @@
       <tr>
         <td><strong>Municipio</td>
         <td>{{agencia.Municipio_id}}</td>
+      </tr>
+      <tr>
+        <td><strong>Empleados</td>
+        {% for el in empleados%}
+          <td>{{el}}</td>
+        {% endfor%}
       </tr>
     </table>
 
