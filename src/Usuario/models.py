@@ -34,7 +34,7 @@ class Empleado(models.Model):
     REQUIRED_FIELDS = ['nombre', 'apellidos', 'cui', 'nit', 'sueldo']
 
     def __unicode__(self):
-        return str(self.nombre) + str(self.apellidos)
+        return str(self.nombre) + " " + str(self.apellidos)
 
 class UsuarioManager(BaseUserManager):
     def create_user(self, username, password=None):

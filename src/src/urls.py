@@ -27,6 +27,7 @@ from Comodin.views import (
             )
 
 urlpatterns = [
+    url(r'^u/', include('unfriendly.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^empleados/', include('Usuario.urls', namespace='Usuario')),
     url(r'^agencia/', include('Agencia.urls', namespace='Agencia')),
