@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Empleados de {{empleados_list.first.Agencia_id}}</h2>
+    <ul>
+        {% for empleado in empleados_list %}
+            <li>{{ empleado }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
