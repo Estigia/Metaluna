@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Facturas de {{mensaje}}</h2>
+<br/>
+
+<div class = "listados">
+
+
+  <table class = "table">
+    <tr>
+      <td><strong>Nombre</td>
+      <td><strong>Serie</td>
+      <td><strong>No. Factura</td>
+      <td><strong>Anulada</td>
+      <td><strong>Total</td>
+    </tr>
+    {% for factura in facturas %}
+    <tr>
+      <td>
+        {{factura.Comodin_id}}
+      </td>
+      <td>
+        {{factura.serie}}
+      </td>
+      <td>
+        {{factura.noDocumento}}
+      </td>
+      <td>
+        {{factura.anulada}}
+      </td>
+      <td>
+        {{factura.precioTotal}}
+      </td>
+    </tr>
+    {% endfor %}
+
+  </table>
+
+</div>
+{% endblock %}

@@ -253,3 +253,21 @@ def compra(request):
     data = serializers.serialize('json', factura)
 
     return HttpResponse(data, content_type='application/json')
+
+def facturaList(request, tipo):
+
+    if tipo == 'compras':
+        facturas = Factura.objects.filter(Comodin_id__tipo=1)
+        mensaje = 'compras'
+    if tipo == 'ventas':
+        facturas = Factura.objects.filter(Comodin_id__tipo=0)
+        mensaje = 'ventas'
+
+    return render(
+            request,
+            'transacciones/facturas_list.html',
+            {
+                'facturas':facturas
+                'mensaje': mensaje
+                }
+            )
