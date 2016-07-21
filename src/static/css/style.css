@@ -866,12 +866,12 @@ border: 2px solid #fff;
 
 .tbox1
 	{
-		width: 48%;
-		/*clear: both;*/
+		width: 46%;
+		clear: both;
 	}
 	.tbox2
 	{
-		width: 48%;
+		width: 51%;
 		/*clear: both;*/
 	}
 
@@ -887,5 +887,16 @@ border: 2px solid #fff;
 
   .tboxs
   {
-    width: 100%;
+    width: 80%;
+    margin-left: 19%;
+    margin-bottom: 3%;
+  }
+
+  .tboxs label{
+    width: 23%;
+    margin-left: 12%;
+  }
+
+  .tboxs  select, .tboxs input{
+    width: 23%;
   }
