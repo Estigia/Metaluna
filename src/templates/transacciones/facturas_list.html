@@ -27,7 +27,11 @@
         {{factura.noDocumento}}
       </td>
       <td>
-        {{factura.anulada}}
+        {% if factura.anulada %}
+        No
+        {% else %}
+        Si
+        {% endif %}
       </td>
       <td>
         {{factura.precioTotal}}

@@ -267,7 +267,7 @@ def facturaList(request, tipo):
             request,
             'transacciones/facturas_list.html',
             {
-                'facturas':facturas
+                'facturas':facturas,
                 'mensaje': mensaje
                 }
             )
