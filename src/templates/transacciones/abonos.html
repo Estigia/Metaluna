@@ -1,19 +1,28 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
 <div id="bloqueForms">
 
   <div class = "camposForms">
+    {% if messages %}
+      {% for message in messages %}
+      <label>{{message}}</label>
+      {% endfor %}
+    {% endif %}
 
     <form method="post" action="">
     {%csrf_token%}
       <h2>Ingresar Abono</h2>
       <label>Monto</label>
       {{form.monto}}
-      <label>Fecha</label>
-      {{form.fecha}}
-      <label>id Credito</label>
-      {{form.Credito_id}}
+      <label>Credito</label>
+      <select name="creditos">
+        <option value="0" selected>------</option>
+        {% for credito in creditos %}
+        <option value="{{credito.id}}">{{credito.credito_name}}</option>
+        {% endfor %}
+      </select>
 
       <input type='submit' value='Ingresar'>
 

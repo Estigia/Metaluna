@@ -20,7 +20,18 @@ class DetalleFacturaAdmin(admin.ModelAdmin):
     form = DetalleFacturaForm
 
 class CreditoAdmin(admin.ModelAdmin):
-    list_display = ["__unicode__","aprobado"]
+    list_display = [
+        "__unicode__",
+        "aprobado",
+        "monto",
+        "saldo",
+        "finalizado",
+        "fechaLimite",
+        "fechaAprobacion",
+        ]
+        #"Usuario_id",]
+        #"Factura_id",]
+        #]
     form = CreditoForm
 
 admin.site.register(Recibo,ReciboAdmin)

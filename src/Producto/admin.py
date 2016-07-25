@@ -11,6 +11,7 @@ class LoteAdmin(admin.ModelAdmin):
         "precio_compra",
         "cantidad",
         "Producto_id",
+        "Agencia_id",
     ]
     form = LoteForm
 

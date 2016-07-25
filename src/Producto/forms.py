@@ -10,6 +10,7 @@ class LoteForm(forms.ModelForm):
             "precio_compra",
             "cantidad",
             "Producto_id",
+            "Agencia_id",
         ]
 
 class ProductoForm(forms.ModelForm):

@@ -49,8 +49,10 @@
     <label>Cantidad</label>
     <input id="cantidad" type="text" name="cantidad" value=0>
     <label>Precio</label>
-    <input id="precio" type="text" name="precio" value=0>
-    <input id="agregar" type="button" value="Agregar detalle">
+    <input id="precio" type="text" name="precio" value=0></br>
+    <label>Crédito</label>
+    <input type="checkbox" id="credito" name="credito" checked></br>
+    <input id="agregar" type="button" value="Agregar detalle"></br>
   </form>
 </div>
 </div>
@@ -79,6 +81,7 @@
   function facturar(){
 
     var filas = document.getElementById('detalles').rows;
+    var total = 0;
 
     var detalles = '{\n';
 
@@ -87,6 +90,7 @@
         '\n\t"cantidad":' + filas[i].cells[0].innerHTML +','+
         '\n\t"descripcion":' + filas[i].cells[1].innerHTML+','+
         '\n\t"subtotal":' + filas[i].cells[3].innerHTML;
+        total = total + parseInt(filas[i].cells[3].innerHTML);
       if (i==filas.length-1){
         detalle += '\n\t}\n';
       }else{
@@ -108,13 +112,15 @@
           'detalles': detalles,
           'cliente': $('#cliente').val(),
           'serie': $('#serie').val(),
-          'num_doc': $('#num').val()
+          'num_doc': $('#num').val(),
+          'credito': document.getElementById('credito').checked
         },
       url: "{% url 'Transacciones:venta' %}",
       type: 'get',
       dataType: 'json',
       success: function(data){
         alert("Factura creada con exito.");
+        location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
       }
     });
 
