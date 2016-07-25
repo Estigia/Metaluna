@@ -1,31 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-
   <h2>Productos</h2>
-  <br/>
-
   <div class = "listados">
-
-
     <table class = "table">
       <tr>
         <td><strong>Descripción</td>
       </tr>
+
       {% for dato in productos %}
-      <tr>
-        <td>
-          {{dato.descripcion}}
-        </td>
-        <td><a href={% url 'Producto:detail' dato.id %}><i>Ver</i></a></td>
-        <td><a href={% url 'Producto:edit' dato.id %}><i>Editar</i></a></td>
-      </tr>
-
+        <tr>
+          <td>{{dato.descripcion}}</td>
+          <td><a href={% url 'Producto:detail' dato.id %}><i>Ver</i></a></td>
+          <td><a href={% url 'Producto:edit' dato.id %}><i>Editar</i></a></td>
+        </tr>
       {% endfor %}
-
     </table>
-
   </div>
 
 {% endblock %}

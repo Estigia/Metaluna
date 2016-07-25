@@ -22,26 +22,26 @@
       {% for tipo in tipos %}
         <option value="{{tipo.id}}">{{tipo}}</option>
       {% endfor %}
-    </select></br>
+    </select>
     <label>Marca</label>
     <select id="marca" name="marca">
       <option selected>------</option>
       {% for marca in marcas %}
         <option value="{{marca.id}}">{{marca}}</option>
       {% endfor %}
-    </select></br>
+    </select>
     <label>Producto</label>
     <select id='productos' name='productos1'>
       <option selected>------</option>
       <!-- {% for producto in productos %}
         <option value="{{producto.id}}">{{producto.nombre}}</option>
       {% endfor %} -->
-    </select></br>
+    </select>
     <label>Cantidad</label>
-    <input id="cantidad" type="text" name="cantidad" value=0></br>
+    <input id="cantidad" type="text" name="cantidad" value=0>
     <label>Precio</label>
-    <input id="precio" type="text" name="precio" value=0></br>
-    <input id="agregar" type="button" value="Agregar detalle"></br>
+    <input id="precio" type="text" name="precio" value=0>
+    <input id="agregar" type="button" value="Agregar detalle">
   </form>
 </div>
 </div>
@@ -55,7 +55,7 @@
       <td>Sub-Total</td>
     </tr>
   </table>
-  <input id="facturar" type="button" value="Facturar"></br>
+  <input id="facturar" type="button" value="Facturar">
 </div>
 
 {% endblock %}

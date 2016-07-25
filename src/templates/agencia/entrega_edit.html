@@ -1,32 +1,27 @@
 {% extends 'base.html' %}
 
-
-
 {% block content %}
 
 <div id="bloqueForms">
-
   <div class = "camposForms">
-
     <form method="post" action="">
-    {%csrf_token%}
-    <h2>Editar Entrega</h2>
+      {%csrf_token%}
+      <h2>Editar Entrega</h2>
 
-    <label>Kilometraje de salida</label>
-    {{form.kSalida}}</br>
-<label>Kilometraje de entrada</label>
-    {{form.kEntrada}}</br>
-<label>Fecha</label>
-    {{form.fecha}}</br>
-<label>Vale</label>
-    {{form.vale}}</br>
-<label>Vehiculo</label>
-    {{form.Vehiculo_id}}</br>
+      <label>Kilometraje de salida</label>
+        {{form.kSalida}}
+      <label>Kilometraje de entrada</label>
+        {{form.kEntrada}}
+      <label>Fecha</label>
+        {{form.fecha}}
+      <label>Vale</label>
+        {{form.vale}}
+      <label>Vehiculo</label>
+        {{form.Vehiculo_id}}
 
-    <input type='submit' value='Editar'>
+      <input type='submit' value='Editar'>
 
-  </form>
-
+    </form>
   </div>
 </div>
 

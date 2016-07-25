@@ -3,29 +3,25 @@
 {% block content %}
 
 <div id="bloqueForms">
-
   <div class = "camposForms">
-
     <form method="post" action="">
-    {%csrf_token%}
+      {%csrf_token%}
       <h2>Ingresar</h2>
       <label>Nombre</label>
-      {{form.nombre}}</br>
+        {{form.nombre}}
       <label>Empresa</label>
-      {{form.empresa}}</br>
+        {{form.empresa}}
       <label>Direccion</label>
-      {{form.direccion}}</br>
+        {{form.direccion}}
       <label>Telefono</label>
-      {{form.telefono}}</br>
+        {{form.telefono}}
       <label>NIT</label>
-      {{form.nit}}</br>
+        {{form.nit}}
       <label>Saldo</label>
-      {{form.saldo}}</br>
+        {{form.saldo}}
 
-    <input type='submit' value='Guardar'>
-
-  </form>
-
+      <input type='submit' value='Guardar'>
+    </form>
   </div>
 </div>
 
