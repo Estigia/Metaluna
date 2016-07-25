@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Productos de {{productos_list.first.Agencia_id}}</h2>
+    <ul>
+        {% for producto in productos_list %}
+            <li>{{ producto }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,13 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import UpdateView
-from django.views.generic.detail import DetailView
+from django.views.generic import DetailView, ListView
 
 from .models import Agencia, Vehiculo, Entrega, Mercaderia
 from .forms import AgenciaForm, VehiculoForm, EntregaForm, MercaderiaForm
+from Usuario.models import Empleado
 
 #Vistas de Agencia y detalles---------------------------------
 @login_required(login_url='base')
@@ -22,6 +23,15 @@ class AgenciaDetail(DetailView):
     model = Agencia
     template_name = 'agencia/agencia_detail.html'
 
+    # def get_queryset(self):
+    #     self.agencia = get_object_or_404(Agencia, id=self.args[0])
+    #     return Empleado.objects.filter(agencia=self.agencia)
+
+    def get_context_data(self, **kwargs):
+        context = super(AgenciaDetail, self).get_context_data(**kwargs)
+        context.update({'empleados' : Empleado.objects.all()}) #['empleados'] = Empleado.objects.all()
+        return context
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(AgenciaDetail, self).dispatch(request, *args, **kwargs)
@@ -35,6 +45,42 @@ def index(request):
     }
 
     return render(request, 'agencia/agencia_list.html', context)
+
+class AgenciaEmpleadoList(ListView):
+    model = Agencia
+    context_object_name = "empleados_list"
+    template_name = "agencia/empleados_por_agencia.html"
+
+    def get_queryset(self):
+        valor = 0
+        for key, value in self.kwargs.iteritems():
+            valor = value
+
+        self.agencia = get_object_or_404(Agencia, nombre__iexact = Agencia.objects.get(id=valor))
+        return Empleado.objects.filter(Agencia_id=self.agencia)
+    #
+    # def get_context_data(self, **kwargs):
+    #     print kwargs
+    #     print kwargs
+    #     print kwargs
+    #     print kwargs
+    #     context = super(AgenciaEmpleadoList, self).get_context_data(**kwargs)
+    #     #context.update({'agencia' : Agencia.objects.get(id=valor)})
+    #     return context
+    #
+
+class AgenciaProductoList(ListView):
+    model = Agencia
+    context_object_name = "productos_list"
+    template_name = "agencia/productos_por_agencia.html"
+
+    def get_queryset(self):
+        valor = 0
+        for key, value in self.kwargs.iteritems():
+            valor = value
+
+        self.agencia = get_object_or_404(Agencia, nombre__iexact = Agencia.objects.get(id=valor))
+        return Mercaderia.objects.filter(Agencia_id=self.agencia)
 
 class AgenciaUpdate(UpdateView):
     model = Agencia

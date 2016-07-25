@@ -3,6 +3,8 @@ from django.conf.urls import url
 from .views import (
                     agencia,
                     AgenciaDetail,
+                    AgenciaEmpleadoList,
+                    AgenciaProductoList,
                     index,
                     AgenciaUpdate,
                     VehiculoUpdate,
@@ -24,7 +26,9 @@ urlpatterns = [
     #------Agencias-------------------------------
     url(r'^$', index, name='index'),
     url(r'^crear/', agencia, name='crear'),
-    url(r'^(?P<pk>\d+)/detalles/', AgenciaDetail.as_view(),name='detalles'),
+    url(r'^(?P<pk>\d+)/detalles/$', AgenciaDetail.as_view(),name='detalles'),
+    url(r'^(?P<pk>\d+)/detalles/empleados', AgenciaEmpleadoList.as_view(),name='detalles_empleado'),
+    url(r'^(?P<pk>\d+)/detalles/productos', AgenciaProductoList.as_view(),name='detalles_producto'),
     url(r'^(?P<pk>\d+)/editar/', AgenciaUpdate.as_view(), name='editar'),
     #------Vehiculos------------------------------
     url(r'^vehiculo/(?P<pk>\d+)/detalle/',VehiculoDetail.as_view(), name='detail_v'),
