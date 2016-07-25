@@ -35,9 +35,7 @@ class AbonosForm(forms.ModelForm):
     class Meta:
         model = Abonos
         fields = [
-        "monto",
-        "fecha",
-        "Credito_id",
+        "monto"
         ]
 
 class CreditoForm(forms.ModelForm):

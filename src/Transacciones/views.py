@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 from django.views.generic.detail import DetailView
-
+from django.contrib import messages
 
 from  Transacciones.models import Factura,Recibo
 from Comodin.models import Marca, Comodin
@@ -33,10 +33,23 @@ def abonos(request):
     form = AbonosForm(request.POST or None)
     context={
         "form":form,
+        "creditos": Credito.objects.filter(Factura_id__Comodin_id__tipo=0)
     }
     if form.is_valid():
-        form.save()
-    return render(request,'abonos.html',context)
+        form.save(commit=False)
+        credito = Credito.objects.get(id=request.POST['creditos'])
+
+        monto = form.cleaned_data.get('monto')
+
+        if monto > credito.saldo:
+            messages.error(request,
+                'El monto es mayor que el saldo del credito, Saldo:'+credito.saldo)
+        else:
+            credito.saldo -= monto
+            credito.save()
+            form.save()
+
+    return render(request,'transacciones/abonos.html',context)
 
 @login_required(login_url='base')
 def factura(request):

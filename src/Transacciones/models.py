@@ -9,7 +9,7 @@ class Recibo(models.Model):
 
 class Abonos(models.Model):
     monto   =  models.PositiveIntegerField(null=True,blank=True)
-    fecha   =    models.DateTimeField()
+    fecha   =    models.DateTimeField(auto_now_add=False, auto_now=True)
     Credito_id  = models.ForeignKey('Credito')
 
     def __unicode__(self):
@@ -45,8 +45,8 @@ class DetalleFactura(models.Model):
 
 class Credito(models.Model):
     aprobado    =   models.BooleanField(default = True)
-    monto   =   models.PositiveIntegerField(null = True,blank=True)
-    saldo   =   models.PositiveIntegerField(null = True,blank=True)
+    monto   =   models.PositiveIntegerField(null = True, blank=True)
+    saldo   =   models.PositiveIntegerField(null = True, blank=True)
     finalizado  =   models.BooleanField(default=False)
     fechaLimite =   models.DateTimeField()
     fechaAprobacion =    models.DateTimeField()
@@ -55,3 +55,6 @@ class Credito(models.Model):
 
     def __unicode__ (self):
         return str(self.Usuario_id) + "  " + str(self.Factura_id)
+
+    def credito_name(self):
+        return str(self.Factura_id)+"--"+str(self.Factura_id.Comodin_id)
