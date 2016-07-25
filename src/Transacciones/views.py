@@ -1,17 +1,21 @@
 import json
 
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.decorators import method_decorator
+from django.utils import timezone
+from django.views.generic.detail import DetailView
+from django.contrib import messages
 
 from  Transacciones.models import Factura,Recibo
 from Comodin.models import Marca, Comodin
 from Producto.models import Tipo_Producto, Producto , Lote
 from Agencia.models import Mercaderia
-from .models import Factura, DetalleFactura
+from .models import Factura, DetalleFactura, Credito
 from .forms import ReciboForm,AbonosForm,FacturaForm,DetalleFacturaForm,CreditoForm
 
 @login_required(login_url='base')
@@ -31,10 +35,23 @@ def abonos(request):
     form = AbonosForm(request.POST or None)
     context={
         "form":form,
+        "creditos": Credito.objects.filter(Factura_id__Comodin_id__tipo=0)
     }
     if form.is_valid():
-        form.save()
-    return render(request,'abonos.html',context)
+        form.save(commit=False)
+        credito = Credito.objects.get(id=request.POST['creditos'])
+
+        monto = form.cleaned_data.get('monto')
+
+        if monto > credito.saldo:
+            messages.error(request,
+                'El monto es mayor que el saldo del credito, Saldo:'+credito.saldo)
+        else:
+            credito.saldo -= monto
+            credito.save()
+            form.save()
+
+    return render(request,'transacciones/abonos.html',context)
 
 @login_required(login_url='base')
 def factura(request):
@@ -67,16 +84,55 @@ def detalleFactura(request):
 
 @login_required(login_url='base')
 def credito(request):
-    form = CreditoForm(request.POST or None)
-    context = {
 
-    "form":form,
+    if request.GET:
+        factura = request.GET['factura']
 
-    }
+        try:
+            factura = Factura.objects.get(id=factura)
 
-    if form.is_valid():
-        form.save()
-    return render(request,'credito.html',context)
+            try:
+                credito = Credito.objects.get(Factura_id=factura)
+                print 'try'
+            except Credito.DoesNotExist:
+                print str(timezone.now())
+
+                form = CreditoForm(request.POST or None)
+
+                context = {
+                    "form":form,
+                    }
+
+                if form.is_valid():
+                    print 'form'
+
+                    form.save(commit=False)
+
+                    credito = Credito.objects.create(
+                        aprobado = True,
+                        monto = form.cleaned_data["monto"],
+                        saldo = form.cleaned_data["saldo"],
+                        finalizado = False,
+                        fechaLimite = form.cleaned_data["fechaLimite"],
+                        fechaAprobacion = form.cleaned_data["fechaAprobacion"],
+                        Usuario_id = request.user,
+                        Factura_id = factura
+                    )
+
+
+
+                    credito.save()
+
+                    return HttpResponse('Credito creado: ' + str(credito.id))
+
+                return render(request,'transacciones/credito.html',context)
+
+            return HttpResponse('Esa factura ya tiene un credito.')
+
+        except Factura.DoesNotExist:
+            return HttpResponse('No existe esa factura.')
+
+    return HttpResponse('No sirve')
 
 @login_required(login_url='base')
 def trans(request):
@@ -111,6 +167,8 @@ def venta(request):
     cliente = request.GET['cliente']
     serie = request.GET['serie']
     numDoc = request.GET['num_doc']
+
+    credito = str(request.GET['credito'])
 
     comodin = Comodin.objects.get(id=cliente)
     factura = Factura.objects.create(
@@ -153,12 +211,14 @@ def venta(request):
     factura.precioTotal = total
     factura.save()
 
+
     agencia.capital += factura.precioTotal
     agencia.save()
 
-    f = Marca.objects.all()
+    factura = Factura.objects.filter(id = factura.id)
 
-    data = serializers.serialize('json', f)
+
+    data = serializers.serialize('json', factura)
 
     return HttpResponse(data, content_type='application/json')
 
@@ -168,6 +228,8 @@ def compra(request):
     proveedor = request.GET['proveedor']
     serie = request.GET['serie']
     numDoc = request.GET['num_doc']
+
+    credito = str(request.GET['credito'])
 
     comodin = Comodin.objects.get(id=proveedor)
     factura = Factura.objects.create(
@@ -213,12 +275,13 @@ def compra(request):
     factura.precioTotal = total
     factura.save()
 
+
     agencia.capital = agencia.capital - factura.precioTotal
     agencia.save()
 
-    f = Marca.objects.all()
+    factura = Factura.objects.filter(id = factura.id)
 
-    data = serializers.serialize('json', f)
+    data = serializers.serialize('json', factura)
 
 
     NuevoLote = Lote()
@@ -230,3 +293,29 @@ def compra(request):
 
 
     return HttpResponse(data, content_type='application/json')
+
+def facturaList(request, tipo):
+
+    if tipo == 'compras':
+        facturas = Factura.objects.filter(Comodin_id__tipo=1)
+        mensaje = 'compras'
+    if tipo == 'ventas':
+        facturas = Factura.objects.filter(Comodin_id__tipo=0)
+        mensaje = 'ventas'
+
+    return render(
+            request,
+            'transacciones/facturas_list.html',
+            {
+                'facturas':facturas,
+                'mensaje': mensaje
+                }
+            )
+
+class FacturaDetail(DetailView):
+    model = Factura
+    template_name = 'transacciones/factura_detail.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(FacturaDetail, self).dispatch(request, *args, **kwargs)
