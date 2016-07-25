@@ -900,3 +900,14 @@ border: 2px solid #fff;
   .tboxs  select, .tboxs input{
     width: 23%;
   }
+
+  .lnk {
+    font-family: impact, sans-serif;
+    color: #069ECC;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1.6pt;
+    word-spacing: 5pt;
+    line-height: 1.1;
+
+  }
