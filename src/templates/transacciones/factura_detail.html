@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Facturas de {{mensaje}}</h2>
+
+<h2>Factura: {{factura.nombre_factura}}</h2>
 <br/>
 
 <div class = "listados">
@@ -9,13 +10,12 @@
 
   <table class = "table">
     <tr>
-      <td><strong>Nombre</td>
-      <td><strong>Serie</td>
-      <td><strong>No. Factura</td>
-      <td><strong>Anulada</td>
-      <td><strong>Total</td>
+      <th>Nombre</th>
+      <th>Serie</th>
+      <th>No. Factura</th>
+      <th>Anulada</th>
+      <th>Total</th>
     </tr>
-    {% for factura in facturas %}
     <tr>
       <td>
         {{factura.Comodin_id}}
@@ -36,11 +36,7 @@
       <td>
         {{factura.precioTotal}}
       </td>
-      <td>
-        <a href={% url 'Transacciones:facturas' factura.id %}>Ver</a>
-      </td>
     </tr>
-    {% endfor %}
 
   </table>
 

@@ -4,8 +4,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.utils import timezone
-#from django.core.exceptions import DoesNotExist
+from django.views.generic.detail import DetailView
+
 
 from  Transacciones.models import Factura,Recibo
 from Comodin.models import Marca, Comodin
@@ -271,3 +273,11 @@ def facturaList(request, tipo):
                 'mensaje': mensaje
                 }
             )
+
+class FacturaDetail(DetailView):
+    model = Factura
+    template_name = 'transacciones/factura_detail.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(FacturaDetail, self).dispatch(request, *args, **kwargs)

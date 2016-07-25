@@ -6,7 +6,8 @@ from .views import (
     venta,
     compra,
     credito,
-    facturaList
+    facturaList,
+    FacturaDetail
     )
 
 urlpatterns = [
@@ -18,5 +19,5 @@ urlpatterns = [
     url(r'^ventas/crear_credito', credito, name='venta_credito'),
     url(r'^(compras)/facturas', facturaList, name='facturas_compras'),
     url(r'^(ventas)/facturas', facturaList, name='facturas_ventas'),
-
+    url(r'^facturas/(?P<pk>\d+)/detalles', FacturaDetail.as_view(), name='facturas')
 ]
