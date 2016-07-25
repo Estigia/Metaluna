@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
 <div id="bloqueForms">
 
   <div class = "camposForms">
+    {% if messages %}
+      {% for message in messages %}
+      <label>{{message}}</label>
+      {% endfor %}
+    {% endif %}
 
     <form method="post" action="">
     {%csrf_token%}
