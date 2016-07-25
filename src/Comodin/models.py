@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from django.db import models
 
@@ -14,7 +15,7 @@ class Comodin(models.Model):
     #False: Cliente, True: Proveedor.
     tipo = models.BooleanField()
     bloqueado = models.BooleanField(default = False)
-    saldo = models.FloatField(blank = False, null = True)
+    saldo = models.FloatField(null=True,blank=True,validators=[MinValueValidator(0)])
 
     def __unicode__(self):
         return str(self.nombre) + "--" + str(self.empresa)

@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from django.db import models
 
@@ -8,7 +9,7 @@ class Agencia(models.Model):
     id = models.AutoField(primary_key = True)
     nombre = models.CharField(max_length = 30, blank = True, null = True)
     direccion = models.CharField(max_length = 45)
-    capital = models.FloatField()
+    capital = models.FloatField(null=True,blank=True,validators=[MinValueValidator(0)])
     Municipio_id = models.ForeignKey('Localizaciones.Municipio')
 
     def __unicode__(self):

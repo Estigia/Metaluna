@@ -1,14 +1,17 @@
 from __future__ import unicode_literals
-
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from Agencia.models import Mercaderia
 
+
+
 class Lote(models.Model):
     id = models.AutoField(primary_key = True)
-    precio_compra = models.FloatField(blank = True, null=True)
+    precio_compra = models.FloatField(null=True,blank=True,validators=[MinValueValidator(0)])
     cantidad = models.IntegerField(blank = True, null = True)
     Producto_id = models.ForeignKey('Producto')
+    Agencia_id = models.ForeignKey('Agencia.Agencia')
 
     def __unicode__(self):
         return str(self.id)
@@ -51,14 +54,14 @@ class Material(models.Model):
 
 class Longitud(models.Model):
     id = models.AutoField(primary_key = True)
-    longitud = models.IntegerField(blank = True, null = True)
+    longitud = models.FloatField(null=True,blank=True,validators=[MinValueValidator(0)])
 
     def __unicode__(self):
         return str(self.longitud)
 
 class Calibre(models.Model):
     id = models.AutoField(primary_key = True)
-    calibre = models.FloatField(blank = True, null = True)
+    calibre = models.FloatField(null=True,blank=True,validators=[MinValueValidator(0)])
 
     def __unicode__(self):
         return str(self.calibre)

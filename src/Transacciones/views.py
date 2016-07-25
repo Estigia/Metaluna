@@ -4,10 +4,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from  Transacciones.models import Factura,Recibo
 from Comodin.models import Marca, Comodin
-from Producto.models import Tipo_Producto, Producto
+from Producto.models import Tipo_Producto, Producto , Lote
 from Agencia.models import Mercaderia
 from .models import Factura, DetalleFactura
 from .forms import ReciboForm,AbonosForm,FacturaForm,DetalleFacturaForm,CreditoForm
@@ -36,6 +38,9 @@ def abonos(request):
 
 @login_required(login_url='base')
 def factura(request):
+
+    #usuario = request.user
+
     form = FacturaForm(request.POST or None)
     form2 = DetalleFacturaForm(request.POST or None)
     datos = Factura.objects.all()
@@ -150,7 +155,7 @@ def venta(request):
 
     agencia.capital += factura.precioTotal
     agencia.save()
-    
+
     f = Marca.objects.all()
 
     data = serializers.serialize('json', f)
@@ -203,6 +208,8 @@ def compra(request):
         detalle.Factura_id = factura
         detalle.save()
 
+
+
     factura.precioTotal = total
     factura.save()
 
@@ -212,5 +219,14 @@ def compra(request):
     f = Marca.objects.all()
 
     data = serializers.serialize('json', f)
+
+
+    NuevoLote = Lote()
+    NuevoLote.cantidad = detalle.cantidad
+    NuevoLote.Producto_id = detalle.Producto_id
+    NuevoLote.precio_compra = detalle.subTotal
+    NuevoLote.Agencia_id = request.user.Empleado_id.Agencia_id
+    NuevoLote.save()
+
 
     return HttpResponse(data, content_type='application/json')
