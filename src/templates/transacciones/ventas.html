@@ -2,9 +2,8 @@
 
 {% block content %}
 <div class = "camposForms">
-<div class = "tbox1">
-  <form action="" method="post">
-    {% csrf_token %}
+
+  <div class = "tboxs">
     <label>Cliente:</label>
     <select id="cliente" name="cliente">
       <option selected>------</option>
@@ -12,10 +11,20 @@
         <option value="{{cliente.id}}">{{cliente}}</option>
       {% endfor %}
     </select>
+
+    <a href="/productos/crear" class = "lnk" target="_blank">+</a>
+
+    <br></br>
     <label>Serie Factura</label>
     <input type="text" id='serie' name="serie" value="A">
     <label>No. Factura</label>
     <input type="text" id="num" name="num" value="0000">
+  </div>
+
+
+<div class = "tbox1">
+  <form action="" method="post">
+    {% csrf_token %}
     <label>Tipo de Producto</label>
     <select id="tipo" name="tipo1">
       <option selected>------</option>

@@ -3,20 +3,31 @@
 {% block content %}
 
 <div class = "camposForms">
+
+  <div class="tboxs">
+      <label>Proveedor:</label>
+      {% csrf_token %}
+        <select id="proveedor" name="proveedor">
+        <option selected>------</option>
+        {% for proveedor in proveedores %}
+          <option value="{{proveedor.id}}">{{proveedor}}</option>
+          {% endfor %}
+        </select>
+
+          <a href="/productos/crear" class = "lnk" target="_blank">+</a>
+
+        <br></br>
+        <label>Serie Factura:</label>
+        <input type="text" id="serie" name="serie" value="A">
+        <br></br>
+        <label>No. Factura:</label>
+        <input type="text" id="num" name="num" value="0000">
+  </div>
+
+<hr>
 <div class = "tbox1">
   <form action="" method="post">
     {% csrf_token %}
-    <label>Proveedor:</label>
-    <select id="proveedor" name="proveedor">
-      <option selected>------</option>
-      {% for proveedor in proveedores %}
-        <option value="{{proveedor.id}}">{{proveedor}}</option>
-      {% endfor %}
-    </select>
-    <label>Serie Factura</label>
-    <input type="text" id="serie" name="serie" value="A">
-    <label>No. Factura</label>
-    <input type="text" id="num" name="num" value="0000">
     <label>Tipo de Producto</label>
     <select id="tipo" name="tipo1">
       <option selected>------</option>
@@ -52,7 +63,7 @@
   <table class="table" id='detalles' name="detalles">
     <tr>
       <td>Cantidad</td>
-      <td>Descripción</td>
+      <td width=50%>Descripción</td>
       <td>Precio unitario</td>
       <td>Sub-Total</td>
     </tr>

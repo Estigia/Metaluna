@@ -150,7 +150,7 @@ def venta(request):
 
     agencia.capital += factura.precioTotal
     agencia.save()
-    
+
     f = Marca.objects.all()
 
     data = serializers.serialize('json', f)
@@ -214,3 +214,12 @@ def compra(request):
     data = serializers.serialize('json', f)
 
     return HttpResponse(data, content_type='application/json')
+
+
+@login_required(login_url='base')
+def index(request):
+
+    context = {
+    }
+
+    return render(request, 'transacciones/transacciones.html', context)

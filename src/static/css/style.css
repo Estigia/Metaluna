@@ -855,15 +855,23 @@ border: 2px solid #fff;
 	padding-right: 3%;
 }
 
+.submenu {
+  width: 35%;
+  margin-left: 32%;
+  align-items: center;
+  padding-right: 3%;
+  padding-left: 5%;
+}
+
 
 .tbox1
 	{
-		width: 48%;
-		/*clear: both;*/
+		width: 46%;
+		clear: both;
 	}
 	.tbox2
 	{
-		width: 48%;
+		width: 51%;
 		/*clear: both;*/
 	}
 
@@ -876,3 +884,30 @@ border: 2px solid #fff;
 	{
 		float: right;
 	}
+
+  .tboxs
+  {
+    width: 80%;
+    margin-left: 19%;
+    margin-bottom: 3%;
+  }
+
+  .tboxs label{
+    width: 23%;
+    margin-left: 12%;
+  }
+
+  .tboxs  select, .tboxs input{
+    width: 23%;
+  }
+
+  .lnk {
+    font-family: impact, sans-serif;
+    color: #069ECC;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1.6pt;
+    word-spacing: 5pt;
+    line-height: 1.1;
+
+  }
