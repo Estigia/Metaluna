@@ -7,7 +7,7 @@
 <div class = "listados">
 
 
-  <table class = "table">
+  <table id='tblDatos' class = "table">
     <tr>
       <td><strong>Nombre</td>
       <td><strong>Serie</td>
@@ -43,7 +43,21 @@
     {% endfor %}
 
   </table>
+  <div id="paginador"></div>
 
 </div>
 
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript">
+  var p = new Paginador(
+    document.getElementById('paginador'),
+    document.getElementById('tblDatos'),
+    10
+  );
+
+  p.Mostrar();
+</script>
 {% endblock %}

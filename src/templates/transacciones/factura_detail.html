@@ -11,21 +11,24 @@
   <table class = "table">
     <tr>
       <th>Nombre</th>
-      <th>Serie</th>
-      <th>No. Factura</th>
-      <th>Anulada</th>
-      <th>Total</th>
-    </tr>
-    <tr>
       <td>
         {{factura.Comodin_id}}
       </td>
+    </tr>
+    <tr>
+      <th>Serie</th>
       <td>
         {{factura.serie}}
       </td>
+    </tr>
+    <tr>
+      <th>No. Factura</th>
       <td>
         {{factura.noDocumento}}
       </td>
+    </tr>
+    <tr>
+      <th>Anulada</th>
       <td>
         {% if factura.anulada %}
         No
@@ -33,6 +36,9 @@
         Si
         {% endif %}
       </td>
+    </tr>
+    <tr>
+            <th>Total</th>
       <td>
         {{factura.precioTotal}}
       </td>
