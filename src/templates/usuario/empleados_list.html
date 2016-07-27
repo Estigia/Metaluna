@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Empleados</h2>
+<br/>
+
+<div class = "listados">
+
+  <table id='tblDatos' class = "table">
+    <tr>
+      <th><strong>ID</th>
+    </tr>
+    {% for empleado in empleados %}
+    <tr>
+      <td>
+        {{factura.Comodin_id}}
+      </td>
+      <td>
+        {{factura.serie}}
+      </td>
+      <td>
+        {{factura.noDocumento}}
+      </td>
+      <td>
+        {% if factura.anulada %}
+        No
+        {% else %}
+        Si
+        {% endif %}
+      </td>
+      <td>
+        {{factura.precioTotal}}
+      </td>
+      <td>
+        <a href={% url 'Transacciones:facturas' factura.id %}>Ver</a>
+      </td>
+    </tr>
+    {% endfor %}
+
+  </table>
+  <div id="paginador"></div>
+
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript">
+  var p = new Paginador(
+    document.getElementById('paginador'),
+    document.getElementById('tblDatos'),
+    10
+  );
+
+  p.Mostrar();
+</script>
+{% endblock %}
