@@ -6,20 +6,24 @@
 
 <div class = "listados">
 
+
   <table id='tblDatos' class = "table">
     <tr>
-      <th><strong>ID</th>
+      <td><strong>ID</td>
+      <td><strong>Nombre</td>
+      <td><strong>Apellidos</td>
+      <td><strong>CUI</td>
     </tr>
     {% for empleado in empleados %}
     <tr>
       <td>
-        {{factura.Comodin_id}}
+        {{empleado.id}}
       </td>
       <td>
-        {{factura.serie}}
+        {{empleado.nombre}}
       </td>
       <td>
-        {{factura.noDocumento}}
+        {empleado.apellidos}}
       </td>
       <td>
         {% if factura.anulada %}
