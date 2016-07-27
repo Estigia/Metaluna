@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -16,6 +16,10 @@ def agencia(request):
     form = AgenciaForm(request.POST or None)
 
     context = {"form":form}
+
+    if form.is_valid():
+        form.save()
+        return redirect("Agencia:index")
 
     return render(request, "agencia/agencia.html", context)
 
@@ -104,9 +108,14 @@ class AgenciaUpdate(UpdateView):
 #Vistas de Vehiculos------------------------------------------
 @login_required(login_url='base')
 def vehiculo(request):
-    form = VehiculoForm()
+    form = VehiculoForm(request.POST or None)
 
     context = {"form": form}
+
+    if form.is_valid():
+        form.save()
+
+        return redirect("Agencia:list_v")
 
     return render(request, "agencia/vehiculo.html", context)
 

@@ -287,17 +287,11 @@ def compra(request):
     data = serializers.serialize('json', factura)
 
 
-    NuevoLote = Lote()
-    NuevoLote.cantidad = detalle.cantidad
-    NuevoLote.Producto_id = detalle.Producto_id
-    NuevoLote.precio_compra = detalle.subTotal
-    NuevoLote.Agencia_id = request.user.Empleado_id.Agencia_id
-    NuevoLote.save()
 
 
     return HttpResponse(data, content_type='application/json')
 
-<<<<<<< HEAD
+
 
 @login_required(login_url='base')
 def index(request):
@@ -306,7 +300,8 @@ def index(request):
     }
 
     return render(request, 'transacciones/transacciones.html', context)
-=======
+
+
 def facturaList(request, tipo):
 
     if tipo == 'compras':
@@ -332,4 +327,3 @@ class FacturaDetail(DetailView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(FacturaDetail, self).dispatch(request, *args, **kwargs)
->>>>>>> c664c6ac5294c55008426a5d7634f83a86babd09

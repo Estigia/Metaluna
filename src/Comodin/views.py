@@ -29,7 +29,7 @@ class ComodinCreate(CreateView):
     def form_valid(self, form):
         p = form.save(commit = False)
 
-        p.tipo = False
+        p.tipo = True
 
         self.object = p.save()
 
@@ -41,7 +41,7 @@ class ClienteCreate(ComodinCreate):
     def form_valid(self, form):
         p = form.save(commit = False)
 
-        p.tipo = True
+        p.tipo = False
 
         self.object = p.save()
 
