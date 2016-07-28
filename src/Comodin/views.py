@@ -36,7 +36,24 @@ class ComodinCreate(CreateView):
         return super(ComodinCreate, self).form_valid(form)
 
 
-class ClienteCreate(ComodinCreate):
+class ClienteCreate(CreateView):
+    model = Comodin
+    template_name = 'comodin/comodin_create.html'
+    success_url = '/cliente'
+
+    fields = [
+        'nombre',
+        'empresa',
+        'empresa',
+        'direccion',
+        'telefono',
+        'nit',
+        'saldo',
+        ]
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ClienteCreate, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         p = form.save(commit = False)
