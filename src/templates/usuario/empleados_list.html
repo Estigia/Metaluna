@@ -26,17 +26,10 @@
         {empleado.apellidos}}
       </td>
       <td>
-        {% if factura.anulada %}
-        No
-        {% else %}
-        Si
-        {% endif %}
+        {{empleado.cui}}
       </td>
       <td>
-        {{factura.precioTotal}}
-      </td>
-      <td>
-        <a href={% url 'Transacciones:facturas' factura.id %}>Ver</a>
+        <a href='#'>Ver</a>
       </td>
     </tr>
     {% endfor %}

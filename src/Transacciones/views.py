@@ -84,7 +84,7 @@ def detalleFactura(request):
 
 @login_required(login_url='base')
 def credito(request):
-
+    print timezone.now()
     if request.GET:
         factura = request.GET['factura']
 
