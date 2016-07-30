@@ -126,5 +126,11 @@ def registro(request):
 
     return HttpResponseRedirect('/')
 
+@login_required(login_url='base')
+def cerrar(request):
+    logout(request)
+    return redirect('base')
+
+
 def homepage(request):
     return render_to_response('usuario/inicio.html')
