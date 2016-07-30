@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Proveedores</h2>
+<div class = "listados">
+  <table class = "table">
+    <tr>
+      <td><strong>Nombre</td>
+      <td><strong>Empresa</td>
+      <td><strong>Telefono</td>
+    </tr>
+
+    {% for dato in comodin %}
+      <tr>
+        <td>{{dato.nombre}}</td>
+        <td>{{dato.empresa}}</td>
+        <td>{{dato.telefono}}</td>
+        <!-- <td><a href={% url 'Agencia:detalles' dato.id %}><i>Ver</i></a></td>
+        <td><a href={% url 'Agencia:editar' dato.id %}><i>Editar</i></a></td>
+        <td><a href={% url 'Agencia:detalles_empleado' dato.id %}><i>Empleados</i></a></td>
+        <td><a href={% url 'Agencia:detalles_producto' dato.id %}><i>Productos</i></a></td> -->
+      </tr>
+    {% endfor %}
+
+  </table>
+</div>
+
+{% endblock %}

@@ -120,8 +120,12 @@ def credito(request):
                     )
 
 
+                    factura.Comodin_id.saldo = factura.Comodin_id.saldo + credito.saldo
+                    factura.Comodin_id.save()
 
                     credito.save()
+
+
 
                     return HttpResponse('Credito creado: ' + str(credito.id))
 
