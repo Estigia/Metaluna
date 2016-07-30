@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Empleados</h2>
+<h2>Usuarios</h2>
 <br/>
 
 <div class = "listados">
@@ -10,26 +10,26 @@
   <table id='tblDatos' class = "table">
     <tr>
       <td><strong>ID</td>
-      <td><strong>Nombre</td>
-      <td><strong>Apellidos</td>
-      <td><strong>CUI</td>
+      <td><strong>Usuario</td>
+      <td><strong>Nombre Completo</td>
+      <td><strong>Ultima Conexión</td>
     </tr>
-    {% for empleado in empleados %}
+    {% for usuario in usuarios %}
     <tr>
       <td>
-        {{empleado.id}}
+        {{usuario.id}}
       </td>
       <td>
-        {{empleado.nombre}}
+        {{usuario}}
       </td>
       <td>
-        {{empleado.apellidos}}
+        {{usuario.get_full_name}}
       </td>
       <td>
-        {{empleado.cui}}
+        {{usuario.ultima_conexion}}
       </td>
       <td>
-        <a href={% url 'Usuario:empleadoDetail' empleado.id %}>Ver</a>
+        <a href='#'>Ver</a>
       </td>
     </tr>
     {% endfor %}

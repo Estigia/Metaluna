@@ -8,12 +8,13 @@ from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 
-from .models import Empleado
+from .models import Empleado, Usuario
 from .forms import InicioForm, UserCreationForm
 
 class EmpleadoCreate(CreateView):
     model = Empleado
-    template_name = 'empleado_create.html'
+    template_name = 'usuario/empleado_create.html'
+    success_url = reverse_lazy('Usuario:empleadoList')
 
     fields = [
         'nombre',
@@ -51,7 +52,7 @@ class EmpleadoUpdate(UpdateView):
 @login_required(login_url='base')
 def empleadoList(request):
 
-    context = {'Empleados':Empleado.objects.all()}
+    context = {'empleados':Empleado.objects.all()}
 
     return render(request, 'usuario/empleados_list.html', context)
 
@@ -125,6 +126,16 @@ def registro(request):
         return render(request,'usuario_create.html',context)
 
     return HttpResponseRedirect('/')
+
+@login_required(login_url='base')
+def usuarioList(request):
+    usuarios = Usuario.objects.exclude(id=request.user.id)
+
+    context = {
+        'usuarios': usuarios
+    }
+
+    return render(request, 'usuario/usuario_list.html', context)
 
 @login_required(login_url='base')
 def cerrar(request):
