@@ -9,7 +9,8 @@ from .views import (
     facturaList,
     FacturaDetail,
     abonos,
-    index
+    index,
+    abonosList
     )
 
 
@@ -24,6 +25,6 @@ urlpatterns = [
     url(r'^(compras)/facturas', facturaList, name='facturas_compras'),
     url(r'^(ventas)/facturas', facturaList, name='facturas_ventas'),
     url(r'^facturas/(?P<pk>\d+)/detalles', FacturaDetail.as_view(), name='facturas'),
-    url(r'^compras/abonos', abonos, name='abonos')
-
+    url(r'^compras/abonos/crear', abonos, name='abonos'),
+    url(r'^compras/abonos/$', abonosList, name='abonos_list')
 ]

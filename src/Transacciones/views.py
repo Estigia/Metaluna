@@ -55,7 +55,17 @@ def abonos(request):
             )
             return redirect('Transacciones:index')
 
-    return render(request,'transacciones/abonos.html',context)
+    return render(request, 'transacciones/abonos.html', context)
+
+@login_required(login_url='base')
+def abonosList(request):
+    abonos = Abonos.objects.all()
+
+    context = {
+        'abonos': abonos,
+    }
+
+    return render(request, 'transacciones/abonos_list.html', context)
 
 @login_required(login_url='base')
 def factura(request):

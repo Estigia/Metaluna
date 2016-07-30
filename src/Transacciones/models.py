@@ -30,7 +30,7 @@ class Factura(models.Model):
     Comodin_id = models.ForeignKey('Comodin.Comodin')
 
     def __unicode__(self):
-        return str(self.noDocumento) + "  "+ self.serie + str(self.Comodin_id)
+        return str(self.noDocumento) + "  "+ self.serie
 
     def nombre_factura(self):
         return str(self.serie) + str(self.noDocumento)
