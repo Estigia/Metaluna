@@ -53,7 +53,7 @@ def abonos(request):
                 monto=monto,
                 Credito_id=credito
             )
-            return redirect('Transacciones:index')
+            return redirect('Transacciones:abonos_list')
 
     return render(request, 'transacciones/abonos.html', context)
 
@@ -66,6 +66,14 @@ def abonosList(request):
     }
 
     return render(request, 'transacciones/abonos_list.html', context)
+
+class AbonoDetail(DetailView):
+    model = Abonos
+    template_name = 'transacciones/abono_detail.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(AbonoDetail, self).dispatch(request, *args, **kwargs)
 
 @login_required(login_url='base')
 def factura(request):
