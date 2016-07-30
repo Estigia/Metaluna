@@ -15,7 +15,7 @@ from  Transacciones.models import Factura,Recibo
 from Comodin.models import Marca, Comodin
 from Producto.models import Tipo_Producto, Producto , Lote
 from Agencia.models import Mercaderia
-from .models import Factura, DetalleFactura, Credito
+from .models import Factura, DetalleFactura, Credito, Abonos
 from .forms import ReciboForm,AbonosForm,FacturaForm,DetalleFacturaForm,CreditoForm
 
 @login_required(login_url='base')
@@ -35,7 +35,7 @@ def abonos(request):
     form = AbonosForm(request.POST or None)
     context={
         "form":form,
-        "creditos": Credito.objects.filter(Factura_id__Comodin_id__tipo=0)
+        "creditos": Credito.objects.filter(Factura_id__Comodin_id__tipo=1)
     }
     if form.is_valid():
         form.save(commit=False)
@@ -45,11 +45,15 @@ def abonos(request):
 
         if monto > credito.saldo:
             messages.error(request,
-                'El monto es mayor que el saldo del credito, Saldo:'+credito.saldo)
+                'El monto es mayor que el saldo del credito, Saldo:'+str(credito.saldo))
         else:
             credito.saldo -= monto
             credito.save()
-            form.save()
+            abono = Abonos.objects.create(
+                monto=monto,
+                Credito_id=credito
+            )
+            return redirect('Transacciones:index')
 
     return render(request,'transacciones/abonos.html',context)
 
