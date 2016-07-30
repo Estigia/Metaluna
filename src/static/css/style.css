@@ -757,7 +757,7 @@ border: 2px solid #fff;
 	text-align:center;
 }
 .copyright a{
-	color:#7cc576;
+	color:#ff6600;
 	font-weight:600;
 	text-decoration: none;
 	transition:all 0.3s ease-in-out;
@@ -909,5 +909,4 @@ border: 2px solid #fff;
     letter-spacing: 1.6pt;
     word-spacing: 5pt;
     line-height: 1.1;
-
   }
