@@ -11,8 +11,8 @@
     <tr>
       <td><strong>ID</td>
       <td><strong>Nombre</td>
-      <td><strong>Apellidos</td>
       <td><strong>CUI</td>
+      <td><strong>Agencia</td>
     </tr>
     {% for empleado in empleados %}
     <tr>
@@ -20,13 +20,13 @@
         {{empleado.id}}
       </td>
       <td>
-        {{empleado.nombre}}
-      </td>
-      <td>
-        {{empleado.apellidos}}
+        {{empleado}}
       </td>
       <td>
         {{empleado.cui}}
+      </td>
+      <td>
+        {{empleado.Agencia_id}}
       </td>
       <td>
         <a href={% url 'Usuario:empleadoDetail' empleado.id %}>Ver</a>

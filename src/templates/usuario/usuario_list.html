@@ -29,7 +29,7 @@
         {{usuario.ultima_conexion}}
       </td>
       <td>
-        <a href='#'>Ver</a>
+        <a href={% url 'Usuario:usuarioDetail' usuario.id %}>Ver</a>
       </td>
     </tr>
     {% endfor %}

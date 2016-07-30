@@ -137,6 +137,14 @@ def usuarioList(request):
 
     return render(request, 'usuario/usuario_list.html', context)
 
+class UsuarioDetail(DetailView):
+    model = Usuario
+    template_name = "usuario/usuario_detail.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(UsuarioDetail, self).dispatch(request, *args, **kwargs)
+
 @login_required(login_url='base')
 def cerrar(request):
     logout(request)
