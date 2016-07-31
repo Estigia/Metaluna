@@ -113,14 +113,17 @@
           'cliente': $('#cliente').val(),
           'serie': $('#serie').val(),
           'num_doc': $('#num').val(),
-          'credito': document.getElementById('credito').checked
         },
       url: "{% url 'Transacciones:venta' %}",
       type: 'get',
       dataType: 'json',
       success: function(data){
         alert("Factura creada con exito.");
-        location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
+
+        if(!document.getElementById('credito').checked)
+          location.href += 'facturas/';
+        else
+          location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
       }
     });
 

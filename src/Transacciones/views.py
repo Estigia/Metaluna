@@ -236,8 +236,6 @@ def venta(request):
     agencia.save()
 
 
-    f = Marca.objects.all()
-
     factura = Factura.objects.filter(id = factura.id)
 
 

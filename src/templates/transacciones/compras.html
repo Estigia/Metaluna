@@ -130,8 +130,8 @@
 
         if(!document.getElementById('credito').checked)
           location.href += 'facturas/';
-
-        location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
+        else
+          location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
       }
     });
 
