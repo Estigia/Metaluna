@@ -36,6 +36,9 @@ class Factura(models.Model):
     def nombre_factura(self):
         return str(self.serie) + str(self.noDocumento)
 
+    class Meta:
+        ordering =['-fecha']
+
 class DetalleFactura(models.Model):
     Factura_id = models.ForeignKey('Factura')
     Producto_id = models.ForeignKey('Producto.Producto')
