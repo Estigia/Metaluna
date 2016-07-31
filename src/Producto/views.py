@@ -153,6 +153,6 @@ def filtroProducto(request):
                     Tipo_Producto_id= id_tipo
                     )
 
-    data = serializers.serialize('json', productos)
+    data = serializers.serialize('json', productos, indent=2, use_natural_foreign_keys=True, use_natural_primary_keys=True)
 
     return HttpResponse(data, content_type='application/json')
