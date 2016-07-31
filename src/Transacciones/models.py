@@ -26,6 +26,7 @@ class Factura(models.Model):
     noDocumento = models.PositiveIntegerField(null = True,blank = True)
     precioTotal = models.FloatField(null = True,blank=True,validators=[MinValueValidator(0)])
     anulada = models.BooleanField(default = False)
+    fecha = models.DateField(auto_now_add=False, auto_now = True)
 
     Comodin_id = models.ForeignKey('Comodin.Comodin')
 
