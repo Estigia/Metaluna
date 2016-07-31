@@ -192,6 +192,9 @@ def venta(request):
 
     credito = str(request.GET['credito'])
 
+    if credito == 'true':
+        return redirect('Transacciones:facturas_ventas')
+
     comodin = Comodin.objects.get(id=cliente)
     factura = Factura.objects.create(
                 serie=serie,
@@ -255,6 +258,9 @@ def compra(request):
     numDoc = request.GET['num_doc']
 
     credito = str(request.GET['credito'])
+
+    if credito == 'true':
+        return redirect('Transacciones:facturas_compras')
 
     comodin = Comodin.objects.get(id=proveedor)
     factura = Factura.objects.create(
