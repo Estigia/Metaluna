@@ -757,7 +757,7 @@ border: 2px solid #fff;
 	text-align:center;
 }
 .copyright a{
-	color:#7cc576;
+	color:#ff6600;
 	font-weight:600;
 	text-decoration: none;
 	transition:all 0.3s ease-in-out;
@@ -904,10 +904,25 @@ border: 2px solid #fff;
   .lnk {
     font-family: impact, sans-serif;
     color: #069ECC;
-    font-size: 16px;
+    font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 1.6pt;
     word-spacing: 5pt;
     line-height: 1.1;
+  }
 
+
+  .descripcion {
+    font-family: impact, sans-serif;
+    color: #069ECC;
+    font-size: 15px;
+    align-self: baseline;
+  }
+
+  .divBotonesListado
+  {
+    width: 67%;
+    margin-left: 20%;
+    margin-bottom: 1%;
+    padding-bottom: 0.3%;
   }
