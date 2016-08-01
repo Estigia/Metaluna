@@ -43,12 +43,18 @@ class Tipo_Producto(models.Model):
     id = models.AutoField(primary_key = True)
     tipo = models.CharField(max_length = 45, blank = True, null = True)
 
+    def natural_key(self):
+        return (self.tipo)
+
     def __unicode__(self):
         return self.tipo
 
 class Material(models.Model):
     id = models.AutoField(primary_key = True)
     material = models.CharField(max_length = 45, blank = True, null = True)
+
+    def natural_key(self):
+        return (self.material)
 
     def __unicode__(self):
         return self.material
@@ -57,6 +63,9 @@ class Longitud(models.Model):
     id = models.AutoField(primary_key = True)
     longitud = models.FloatField(null=True,blank=True,validators=[MinValueValidator(0)])
 
+    def natural_key(self):
+        return (self.longitud)
+
     def __unicode__(self):
         return str(self.longitud)
 
@@ -64,12 +73,18 @@ class Calibre(models.Model):
     id = models.AutoField(primary_key = True)
     calibre = models.FloatField(null=True,blank=True,validators=[MinValueValidator(0)])
 
+    def natural_key(self):
+        return (self.calibre)
+
     def __unicode__(self):
         return str(self.calibre)
 
 class Forma(models.Model):
     id = models.AutoField(primary_key = True)
     forma = models.CharField(max_length = 55, blank = True, null = True)
+
+    def natural_key(self):
+        return (self.forma)
 
     def __unicode__(self):
         return self.forma
