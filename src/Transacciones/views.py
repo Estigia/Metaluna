@@ -45,7 +45,7 @@ def abonos(request):
 
         if monto > credito.saldo:
             messages.error(request,
-                'El monto es mayor que el saldo del credito, Saldo:'+credito.saldo)
+                'El monto es mayor que el saldo del credito, Saldo:')
         else:
             credito.saldo -= monto
             credito.save()
