@@ -45,10 +45,12 @@ def abonos(request):
 
         if monto > credito.saldo:
             messages.error(request,
-                'El monto es mayor que el saldo del credito, Saldo:'+credito.saldo)
+                'El monto es mayor que el saldo del credito, Saldo:')
         else:
             credito.saldo -= monto
             credito.save()
+            credito.Factura_id.Comodin_id.saldo = credito.Factura_id.Comodin_id.saldo - monto
+            credito.Factura_id.Comodin_id.save()
             form.save()
 
     return render(request,'transacciones/abonos.html',context)
@@ -120,8 +122,12 @@ def credito(request):
                     )
 
 
+                    factura.Comodin_id.saldo = factura.Comodin_id.saldo + credito.saldo
+                    factura.Comodin_id.save()
 
                     credito.save()
+
+
 
                     return HttpResponse('Credito creado: ' + str(credito.id))
 

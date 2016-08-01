@@ -4,8 +4,34 @@ from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView
 from django.core import serializers
 from django.http import HttpResponse
+from django.views.generic.edit import UpdateView
+from django.views.generic import DetailView, ListView
 
 from .models import Comodin, Marca
+
+
+
+
+
+
+@login_required(login_url='base')
+def index(request):
+    comodin = Comodin.objects.all().filter(tipo = True)
+
+    context = {
+        'comodin': comodin,
+    }
+
+    return render(request, 'comodin/proveedor_list.html', context)
+
+def clientes(request):
+    comodin = Comodin.objects.all().filter(tipo = False)
+
+    context = {
+        'comodin': comodin,
+    }
+
+    return render(request, 'comodin/clientes_list.html', context)
 
 class ComodinCreate(CreateView):
     model = Comodin
@@ -100,6 +126,32 @@ class MarcaCreate(CreateView):
         self.object = m.save()
 
         return super(MarcaCreate, self).form_valid(form)
+
+class ComodinProveedorList(ListView):
+    model = Comodin
+    context_object_name = "comodin_list"
+    template_name = "comodin/proveedor_list.html"
+
+    def get_queryset(self):
+        valor = 0
+        for key, value in self.kwargs.iteritems():
+            valor = value
+
+        self.comodin = get_object_or_404(Comodin, nombre__iexact = Comodin.objects.get(id=valor))
+        return Comodin.objects.filter(tipo=True)
+
+class ProveedorDetail(DetailView):
+    model = Comodin
+    template_name = 'Comodin/proveedor_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProveedorDetail, self).get_context_data(**kwargs)
+        context.update({'comodin' : Comodin.objects.all()})
+        return context
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ProveedorDetail, self).dispatch(request, *args, **kwargs)
 
 @login_required(login_url='base')
 def filtroP(request):
