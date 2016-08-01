@@ -46,6 +46,7 @@
         <option value="{{producto.id}}">{{producto.nombre}}</option>
       {% endfor %} -->
     </select>
+    <div><label>Existencias: <span id="existencias"></span></label></div>
     <label>Cantidad</label>
     <input id="cantidad" type="text" name="cantidad" value=0>
     <label>Precio</label>
@@ -77,6 +78,24 @@
   $('#agregar').on('click', agregarDetalle);
   $('#marca').on('change', busquedaProducto);
   $('#facturar').on('click',facturar);
+  $('#productos').on('change', existencias);
+
+  function existencias(){
+
+    var producto = $('#productos').val();
+
+    $.ajax({
+
+      data:{'producto': producto},
+      url: "{% url 'Producto:existencias' %}",
+      type: 'get',
+      success: function(data){
+        document.getElementById('existencias').innerHTML = data[0].fields.cantidad;
+      }
+
+    })
+
+  }
 
   function facturar(){
 
@@ -197,6 +216,7 @@
           inner.options.add(nuevo);
         }
 
+        existencias();
       }
 
     })

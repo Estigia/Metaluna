@@ -217,10 +217,11 @@ def venta(request):
                 total += value
                 detalle.subTotal = value
 
+
         mercaderia = Mercaderia.objects.get(
-                                        Agencia_id=agencia,
-                                        Producto_id=detalle.Producto_id
-                                        )
+                            Agencia_id=agencia,
+                            Producto_id=detalle.Producto_id
+                            )
 
         mercaderia.cantidad -= detalle.cantidad
 
@@ -278,10 +279,17 @@ def compra(request):
                 total += value
                 detalle.subTotal = value
 
-        mercaderia = Mercaderia.objects.get(
-                                        Agencia_id=agencia,
-                                        Producto_id=detalle.Producto_id
-                                        )
+        try:
+            mercaderia = Mercaderia.objects.get(
+                            Agencia_id=agencia,
+                            Producto_id=detalle.Producto_id
+                            )
+        except:
+            mercaderia = Mercaderia.objects.create(
+                Agencia_id = agencia,
+                Producto_id = detalle.Producto_id,
+                cantidad = 0
+            )
 
         print mercaderia.cantidad
         mercaderia.cantidad += detalle.cantidad

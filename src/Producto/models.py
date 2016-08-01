@@ -38,6 +38,7 @@ class Producto(models.Model):
 
         return total
 
+        
 class Tipo_Producto(models.Model):
     id = models.AutoField(primary_key = True)
     tipo = models.CharField(max_length = 45, blank = True, null = True)
