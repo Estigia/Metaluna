@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{empleado}}</h2>
+<br/>
+
+<div class = "listados">
+
+  <table class = "table">
+    <tr>
+      <th>CUI</th>
+      <td>
+        {{empleado.cui}}
+      </td>
+    </tr>
+    <tr>
+      <th>NIT</th>
+      <td>
+        {{empleado.nit}}
+      </td>
+    </tr>
+    <tr>
+      <th>Sueldo</th>
+      <td>
+        {{empleado.sueldo}}
+      </td>
+    </tr>
+    <tr>
+      <th>Puesto</th>
+      <td>
+        {{empleado.Puesto_id}}
+      </td>
+    </tr>
+    <tr>
+      <th>Agencia</th>
+      <td>
+        {{empleado.Agencia_id}}
+      </td>
+    </tr>
+
+  </table>
+
+</div>
+
+{% endblock %}

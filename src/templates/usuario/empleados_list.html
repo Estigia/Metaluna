@@ -1,47 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Facturas de {{mensaje}}</h2>
-</br>
+<h2>Empleados</h2>
+<br/>
 
 <div class = "listados">
 
 
   <table id='tblDatos' class = "table">
     <tr>
+      <td><strong>ID</td>
       <td><strong>Nombre</td>
-      <td><strong>Fecha</td>
-      <td><strong>Serie</td>
-      <td><strong>No. Factura</td>
-      <td><strong>Anulada</td>
-      <td><strong>Total</td>
+      <td><strong>CUI</td>
+      <td><strong>Agencia</td>
     </tr>
-    {% for factura in facturas %}
+    {% for empleado in empleados %}
     <tr>
       <td>
-        {{factura.Comodin_id}}
+        {{empleado.id}}
       </td>
       <td>
-        {{factura.fecha}}
+        {{empleado}}
       </td>
       <td>
-        {{factura.serie}}
+        {{empleado.cui}}
       </td>
       <td>
-        {{factura.noDocumento}}
+        {{empleado.Agencia_id}}
       </td>
       <td>
-        {% if factura.anulada %}
-        No
-        {% else %}
-        Si
-        {% endif %}
-      </td>
-      <td>
-        {{factura.precioTotal}}
-      </td>
-      <td>
-        <a href={% url 'Transacciones:facturas' factura.id %}>Ver</a>
+        <a href={% url 'Usuario:empleadoDetail' empleado.id %}>Ver</a>
       </td>
     </tr>
     {% endfor %}
