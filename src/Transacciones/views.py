@@ -352,3 +352,39 @@ class FacturaDetail(DetailView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(FacturaDetail, self).dispatch(request, *args, **kwargs)
+
+
+def creditoList(request, tipo):
+    if tipo == 'compras':
+        creditos = Credito.objects.filter(Factura_id__Comodin_id__tipo=1)
+        mensaje = 'compras'
+    if tipo == 'ventas':
+        creditos = Credito.objects.filter(Factura_id__Comodin_id__tipo=0)
+        mensaje = 'ventas'
+
+    return render(
+            request,
+            'transacciones/credito_list.html',
+            {
+                'creditos':creditos,
+                'mensaje': mensaje
+                }
+            )
+
+class CreditoProveedorDetail(DetailView):
+    model = Credito
+    template_name = 'transacciones/credito_detail.html'
+    queryset = Credito.objects.filter(Factura_id__Comodin_id__tipo=1)
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(CreditoProveedorDetail, self).dispatch(request, *args, **kwargs)
+
+class CreditoClienteDetail(DetailView):
+    model = Credito
+    template_name = 'transacciones/credito_detail.html'
+    queryset = Credito.objects.filter(Factura_id__Comodin_id__tipo=0)
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(CreditoClienteDetail, self).dispatch(request, *args, **kwargs)

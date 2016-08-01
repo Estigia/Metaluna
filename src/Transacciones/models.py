@@ -58,8 +58,8 @@ class Credito(models.Model):
     monto   =   models.FloatField(null = True,blank=True,validators=[MinValueValidator(0)])
     saldo   =   models.FloatField(null = True,blank=True,validators=[MinValueValidator(0)])
     finalizado  =   models.BooleanField(default=False)
-    fechaLimite =   models.DateTimeField()
-    fechaAprobacion =    models.DateTimeField()
+    fechaLimite =   models.DateField()
+    fechaAprobacion =    models.DateField()
     Usuario_id  =   models.ForeignKey('Usuario.Usuario')
     Factura_id   = models.ForeignKey('Factura')
 
