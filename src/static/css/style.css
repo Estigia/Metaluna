@@ -163,12 +163,12 @@ color: #fff;
 }
 .link:hover {
 	text-decoration:none;
-	color:#7cc576 !important;
+	color:#ff0000 !important;
 	background:#fff;
 }
 
 .link:active, .link:focus {
-	background: #7cc576;
+	background: #ff0000;
 	text-decoration:none;
 	color:#fff !important;
 }
@@ -207,7 +207,7 @@ color: #fff;
 
 .main-nav li a:hover{
 	text-decoration:none;
-	color: #7cc576;
+	color: #E48103;
 }
 
 .small-logo{
