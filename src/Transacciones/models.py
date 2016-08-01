@@ -26,14 +26,18 @@ class Factura(models.Model):
     noDocumento = models.PositiveIntegerField(null = True,blank = True)
     precioTotal = models.FloatField(null = True,blank=True,validators=[MinValueValidator(0)])
     anulada = models.BooleanField(default = False)
+    fecha = models.DateField(auto_now_add=False, auto_now = True)
 
     Comodin_id = models.ForeignKey('Comodin.Comodin')
 
     def __unicode__(self):
-        return str(self.noDocumento) + "  "+ self.serie + str(self.Comodin_id)
+        return str(self.noDocumento) + "  "+ self.serie
 
     def nombre_factura(self):
         return str(self.serie) + str(self.noDocumento)
+
+    class Meta:
+        ordering =['-fecha']
 
 class DetalleFactura(models.Model):
     Factura_id = models.ForeignKey('Factura')
@@ -54,8 +58,8 @@ class Credito(models.Model):
     monto   =   models.FloatField(null = True,blank=True,validators=[MinValueValidator(0)])
     saldo   =   models.FloatField(null = True,blank=True,validators=[MinValueValidator(0)])
     finalizado  =   models.BooleanField(default=False)
-    fechaLimite =   models.DateTimeField()
-    fechaAprobacion =    models.DateTimeField()
+    fechaLimite =   models.DateField()
+    fechaAprobacion =    models.DateField()
     Usuario_id  =   models.ForeignKey('Usuario.Usuario')
     Factura_id   = models.ForeignKey('Factura')
 

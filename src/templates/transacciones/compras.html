@@ -120,16 +120,18 @@
         'detalles': detalles,
         'proveedor': $('#proveedor').val(),
         'serie': $('#serie').val(),
-        'num_doc': $('#num').val(),
-        'credito': document.getElementById('credito').checked
+        'num_doc': $('#num').val()
       },
       url: "{% url 'Transacciones:compra' %}",
       type: 'get',
       dataType: 'json',
       success: function(data){
-        console.log(total);
         alert("Factura creada con exito.");
-        location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
+
+        if(!document.getElementById('credito').checked)
+          location.href += 'facturas/';
+        else
+          location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
       }
     });
 
@@ -174,6 +176,8 @@
       fila.appendChild(columna);
 
     tabla.appendChild(fila);
+
+    console.log(document.getElementById('credito').checked);
 
   }
 

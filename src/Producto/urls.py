@@ -11,7 +11,8 @@ from .views import (
     calibre,
     forma,
     longitud,
-    material
+    material,
+    existencias
 )
 
 urlpatterns = [
@@ -20,6 +21,7 @@ urlpatterns = [
     url(r'(?P<pk>\d+)$',ProductoDetail.as_view(), name='detail'),
     url(r'(?P<pk>\d+)/editar',ProductoUpdate.as_view(), name='edit'),
     url(r'filtroProducto/', filtroProducto, name='filtroProducto'),
+    url(r'^existencias/', existencias, name='existencias'),
     url(r'crear_lote', lote, name = 'lote'),
     url(r'tipoproducto', tipo_producto, name = 'tipo_producto'),
     url(r'crear_forma', forma, name = 'forma'),

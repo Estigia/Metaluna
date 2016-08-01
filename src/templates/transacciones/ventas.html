@@ -47,6 +47,7 @@
         <option value="{{producto.id}}">{{producto.nombre}}</option>
       {% endfor %} -->
     </select>
+    <div><label>Existencias: <span id="existencias"></span></label></div>
     <label>Cantidad</label>
     <input id="cantidad" type="text" name="cantidad" value=0>
     <label>Precio</label>
@@ -78,6 +79,24 @@
   $('#agregar').on('click', agregarDetalle);
   $('#marca').on('change', busquedaProducto);
   $('#facturar').on('click',facturar);
+  $('#productos').on('change', existencias);
+
+  function existencias(){
+
+    var producto = $('#productos').val();
+
+    $.ajax({
+
+      data:{'producto': producto},
+      url: "{% url 'Producto:existencias' %}",
+      type: 'get',
+      success: function(data){
+        document.getElementById('existencias').innerHTML = data[0].fields.cantidad;
+      }
+
+    })
+
+  }
 
   function facturar(){
 
@@ -114,14 +133,17 @@
           'cliente': $('#cliente').val(),
           'serie': $('#serie').val(),
           'num_doc': $('#num').val(),
-          'credito': document.getElementById('credito').checked
         },
       url: "{% url 'Transacciones:venta' %}",
       type: 'get',
       dataType: 'json',
       success: function(data){
         alert("Factura creada con exito.");
-        location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
+
+        if(!document.getElementById('credito').checked)
+          location.href += 'facturas/';
+        else
+          location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
       }
     });
 
@@ -133,6 +155,16 @@
     var cantidad = $('#cantidad').val();
     var producto = $('#productos').text();
     var precio = $('#precio').val();
+    var existencias = parseInt(document.getElementById('existencias').innerHTML);
+
+    if(existencias<cantidad){
+      alert(
+        'No se puede realizar esa accion,\n' +
+        'la cantidad debe ser menor a las existencias.'
+      );
+      return;
+    }
+
 
     var fila = document.createElement('tr');
     var columna = document.createElement("td");
@@ -196,6 +228,7 @@
           inner.options.add(nuevo);
         }
 
+        existencias();
       }
 
     })

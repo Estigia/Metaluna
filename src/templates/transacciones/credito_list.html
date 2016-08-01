@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Creditos de {{mensaje}}</h2>
+</br>
+
+<div class = "listados">
+
+
+  <table id='tblDatos' class = "table">
+    <tr>
+      <td><strong>Credito</td>
+      <td><strong>Usuario</td>
+      <td><strong>Finalizado</td>
+      <td><strong>Fecha Limite</td>
+      <td><strong>Saldo</td>
+      <td><strong>Monto</td>
+    </tr>
+    {% for credito in creditos %}
+    <tr>
+      <td>
+        {{credito.credito_name}}
+      </td>
+      <td>
+        {{credito.Usuario_id}}
+      </td>
+      <td>
+        {% if credito.finalizado %}
+        Si
+        {% else %}
+        No
+        {% endif %}
+      </td>
+      <td>
+        {{credito.fechaLimite}}
+      </td>
+      <td>
+        {{credito.saldo}}
+      </td>
+      <td>
+        {{credito.monto}}
+      </td>
+      {% if credito.Factura_id.Comodin_id.tipo %}
+      <td>
+        <a href={% url 'Transacciones:creditoPDetail' credito.id %}>Ver</a>
+      </td>
+      {% else %}
+      <td>
+        <a href={% url 'Transacciones:creditoCDetail' credito.id %}>Ver</a>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+
+  </table>
+  <div id="paginador"></div>
+
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript">
+  var p = new Paginador(
+    document.getElementById('paginador'),
+    document.getElementById('tblDatos'),
+    10
+  );
+
+  p.Mostrar();
+</script>
+{% endblock %}

@@ -3,12 +3,14 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponse
+from django.core.serializers.json import Serializer
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from .models import (Lote, Producto, Tipo_Producto,
                         Material, Longitud, Calibre, Forma)
+from Agencia.models import Mercaderia
 from .forms import (LoteForm, ProductoForm, Tipo_ProductoForm,
                     MaterialForm, LongitudForm, CalibreForm, FormaForm)
 
@@ -142,11 +144,34 @@ def forma(request):
 
     return render(request, 'producto/forma.html', context)
 
+
+#Serializador de filtroProducto--------------------------------
+
+# class ProductoSerializer(Serializer):
+#
+#     def get_dump_object(self, obj):
+#         dic = super(ProductoSerializer, self).get_dump_object(obj)
+
+#--------------------------------------------------------------
+
+@login_required(login_url='base')
+def existencias(request):
+    id_producto = request.GET['producto']
+    agencia = request.user.Empleado_id.Agencia_id
+
+    existencias = Mercaderia.objects.filter(
+        Producto_id__id = id_producto,
+        Agencia_id = agencia
+    )
+
+    data = serializers.serialize('json', existencias, fields=('cantidad'))
+
+    return HttpResponse(data, content_type='application/json')
+
 @login_required(login_url='base')
 def filtroProducto(request):
     id_marca = request.GET['id_marca']
     id_tipo = request.GET['id_tipo']
-
 
     productos = Producto.objects.filter(
                     Marca_id= id_marca,

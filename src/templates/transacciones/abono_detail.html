@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Abono {{abonos.id}}</h2>
+<br/>
+
+<div class = "listados">
+
+
+  <table class = "table">
+    <tr>
+      <th>Cliente</th>
+      <td>
+        {{abonos.id}}
+      </td>
+    </tr>
+    <tr>
+      <th>Fecha</th>
+      <td>
+        {{abonos.fecha}}
+      </td>
+    </tr>
+    <tr>
+      <th>No. Factura</th>
+      <td>
+        {{abonos.Credito_id.Factura_id.noDocumento}}
+      </td>
+    </tr>
+    <tr>
+      <th>Credito</th>
+      <td>
+        {{abonos.Credito_id}}
+      </td>
+    </tr>
+    <tr>
+      <th>Monto</th>
+      <td>
+        {{abonos.monto}}
+      </td>
+    </tr>
+
+  </table>
+
+</div>
+
+{% endblock %}
