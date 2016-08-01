@@ -154,6 +154,16 @@
     var cantidad = $('#cantidad').val();
     var producto = $('#productos').val();
     var precio = $('#precio').val();
+    var existencias = parseInt(document.getElementById('existencias').innerHTML);
+
+    if(existencias<cantidad){
+      alert(
+        'No se puede realizar esa accion,\n' +
+        'la cantidad debe ser menor a las existencias.'
+      );
+      return;
+    }
+
 
     var fila = document.createElement('tr');
     var columna = document.createElement("td");
