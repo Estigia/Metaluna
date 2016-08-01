@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Proveedor {{Proveedor.nombre}}</h2>
+
+  <div class = "listados">
+
+
+    <table class = "table">
+      <tr>
+        <td><strong>nombre</td>
+        <td>{{comodin.nombre}}</td>
+      </tr>
+      <tr>
+        <td><strong>Dirección</td>
+          <td>{{comodin.direccion}}<td>
+      </tr>
+      <tr>
+        <td><strong>Telefono</td>
+        <td>{{comodin.telefono}}<td>
+      </tr>
+
+      <tr>
+        <td><strong>Proveedores</td>
+        {% for el in empleados%}
+          <td>{{el}}</td>
+        {% endfor%}
+      </tr>
+    </table>
+
+  </div>
+
+{% endblock %}

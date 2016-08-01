@@ -17,10 +17,8 @@
         <td>{{dato.empresa}}</td>
         <td>{{dato.telefono}}</td>
         <td>{{dato.saldo}}</td>
-        <!-- <td><a href={% url 'Agencia:detalles' dato.id %}><i>Ver</i></a></td>
+        <td><a href={% url 'Agencia:detalles' dato.id %}><i>Ver</i></a></td>
         <td><a href={% url 'Agencia:editar' dato.id %}><i>Editar</i></a></td>
-        <td><a href={% url 'Agencia:detalles_empleado' dato.id %}><i>Empleados</i></a></td>
-        <td><a href={% url 'Agencia:detalles_producto' dato.id %}><i>Productos</i></a></td> -->
       </tr>
     {% endfor %}
 

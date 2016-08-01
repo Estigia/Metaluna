@@ -4642,14 +4642,16 @@ span.badge1 {
 /*-- //typo --*/
 /*-- sign-in --*/
 .sign-in-up{
-	background:#f9f9f9 !important;
+	background:#383838	 !important;
 	min-height: 830px;
 }
 .sign-in-form{
+  background:#383838	 !important;
 	margin:2em auto 4em;
 	width:35%;
 }
 .sign-in-wrapper{
+  background:#383838	 !important;
 	background:#f9f9f9;
 }
 .new_people{
@@ -4679,8 +4681,8 @@ span.badge1 {
 	border:1px solid #F44336;
 }
 .sign-in-form-top{
-	background:url(../images/3.jpg) no-repeat 0px -55px;
-	display:block;
+	background:url(../images/32.jpg) no-repeat 0px -55px;
+	display:line-block;
 	min-height:150px;
 	padding:3em 0 0;
 	text-align: center;
@@ -4699,7 +4701,7 @@ span.badge1 {
 	text-decoration:none;
 }
 .sign-in-form-top p span{
-	color:#8BC34A;
+	color:#DC731D;
 }
 .signin {
     padding: 2em;
@@ -4740,7 +4742,7 @@ span.badge1 {
 }
 .log-input-left {
   float: left;
-  width: 90%;
+  width: 100%;
 }
 span.checkbox1 {
   float: left;
@@ -4827,7 +4829,7 @@ span.checkbox2 {
 .sign-in-form input[type="submit"] {
 	font-size: 1.1em;
     color: #fff;
-    background: #00ACED;
+    background: #DC731D;
     border: none;
     padding: 0.7em 1em 0.7em 1em;
     width: 88.5%;

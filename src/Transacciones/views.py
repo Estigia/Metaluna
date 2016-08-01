@@ -49,6 +49,8 @@ def abonos(request):
         else:
             credito.saldo -= monto
             credito.save()
+            credito.Factura_id.Comodin_id.saldo = credito.Factura_id.Comodin_id.saldo - monto
+            credito.Factura_id.Comodin_id.save()
             form.save()
 
     return render(request,'transacciones/abonos.html',context)

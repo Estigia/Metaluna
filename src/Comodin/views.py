@@ -140,6 +140,19 @@ class ComodinProveedorList(ListView):
         self.comodin = get_object_or_404(Comodin, nombre__iexact = Comodin.objects.get(id=valor))
         return Comodin.objects.filter(tipo=True)
 
+class ProveedorDetail(DetailView):
+    model = Comodin
+    template_name = 'Comodin/proveedor_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProveedorDetail, self).get_context_data(**kwargs)
+        context.update({'comodin' : Comodin.objects.all()})
+        return context
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ProveedorDetail, self).dispatch(request, *args, **kwargs)
+
 @login_required(login_url='base')
 def filtroP(request):
     proveedores = Comodin.objects.filter(tipo=False)
