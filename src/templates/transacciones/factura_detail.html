@@ -46,6 +46,24 @@
 
   </table>
 
+  <table class="table">
+    <caption><strong>Detalles de Factura</caption>
+    <tr>
+      <th>Cantidad</th>
+      <th>Descripcion</th>
+      <th>Precio Unitario</th>
+      <th>Sub-Total</th>
+    </tr>
+    {% for detalle in detalles %}
+    <tr>
+      <td>{{detalle.cantidad}}</td>
+      <td>{{detalle.Producto_id}}</td>
+      <td>{{detalle.cantidad}}</td>
+      <td>{{detalle.subTotal}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
 </div>
 
 {% endblock %}

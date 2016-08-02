@@ -353,6 +353,19 @@ class FacturaDetail(DetailView):
     def dispatch(self, request, *args, **kwargs):
         return super(FacturaDetail, self).dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+
+        context = super(FacturaDetail, self).get_context_data(**kwargs)
+
+        factura = self.get_object(self.queryset)
+
+        detalles = DetalleFactura.objects.filter(Factura_id=factura)
+
+        context.update({
+            'detalles': detalles
+        })
+
+        return context
 
 def creditoList(request, tipo):
     if tipo == 'compras':
