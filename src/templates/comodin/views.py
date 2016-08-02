@@ -103,7 +103,7 @@ class ClienteDetail(DetailView):
     #     return Empleado.objects.filter(agencia=self.agencia)
 
     def get_context_data(self, **kwargs):
-        context = super(ClienteDetail, self).get_context_data(**kwargs)
+        context = super(ClienterDetail, self).get_context_data(**kwargs)
         context.update({'clientes' : Comodin.objects.all()}) #['empleados'] = Empleado.objects.all()
         return context
 
