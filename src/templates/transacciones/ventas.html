@@ -130,7 +130,8 @@
 
     var tabla = document.getElementById('detalles');
     var cantidad = $('#cantidad').val();
-    var producto = $('#productos').text();
+    var combo = document.getElementById('productos');
+    var producto = combo.options[combo.selectedIndex].text;
     var precio = $('#precio').val();
 
     var fila = document.createElement('tr');
