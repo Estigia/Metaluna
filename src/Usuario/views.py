@@ -1,17 +1,20 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.detail import DetailView
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 
-from .models import Empleado
+from .models import Empleado, Usuario
 from .forms import InicioForm, UserCreationForm
 
 class EmpleadoCreate(CreateView):
     model = Empleado
-    template_name = 'empleado_create.html'
+    template_name = 'usuario/empleado_create.html'
+    success_url = reverse_lazy('Usuario:empleadoList')
 
     fields = [
         'nombre',
@@ -26,6 +29,41 @@ class EmpleadoCreate(CreateView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(EmpleadoCreate, self).dispatch(request, *args, **kwargs)
+
+class EmpleadoUpdate(UpdateView):
+    model = Empleado
+    template_name = 'usuario/empleado_create.html'
+    success_url = reverse_lazy('Usuario:empleadoList')
+
+    fields = [
+        'nombre',
+        'apellidos',
+        'cui',
+        'nit',
+        'sueldo',
+        'Puesto_id',
+        'Agencia_id'
+    ]
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(EmpleadoUpdate, self).dispatch(request, *args, **kwargs)
+
+@login_required(login_url='base')
+def empleadoList(request):
+
+    context = {'empleados':Empleado.objects.all()}
+
+    return render(request, 'usuario/empleados_list.html', context)
+
+class EmpleadoDetail(DetailView):
+    model = Empleado
+    template_name = 'usuario/empleado_detail.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(EmpleadoDetail, self).dispatch(request, *args, **kwargs)
+
 
 def inicio(request):
     if request.user.is_authenticated():
@@ -88,6 +126,30 @@ def registro(request):
         return render(request,'usuario_create.html',context)
 
     return HttpResponseRedirect('/')
+
+@login_required(login_url='base')
+def usuarioList(request):
+    usuarios = Usuario.objects.exclude(id=request.user.id)
+
+    context = {
+        'usuarios': usuarios
+    }
+
+    return render(request, 'usuario/usuario_list.html', context)
+
+class UsuarioDetail(DetailView):
+    model = Usuario
+    template_name = "usuario/usuario_detail.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(UsuarioDetail, self).dispatch(request, *args, **kwargs)
+
+@login_required(login_url='base')
+def cerrar(request):
+    logout(request)
+    return redirect('base')
+
 
 def homepage(request):
     return render_to_response('usuario/inicio.html')

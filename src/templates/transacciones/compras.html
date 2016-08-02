@@ -14,14 +14,14 @@
           {% endfor %}
         </select>
 
-          <a href="/productos/crear" class = "lnk" target="_blank">+</a>
+          <a href="/proveedor" class = "lnk" target="_blank">+</a>
 
         <br></br>
         <label>Serie Factura:</label>
         <input type="text" id="serie" name="serie" value="A">
         <br></br>
         <label>No. Factura:</label>
-        <input type="text" id="num" name="num" value="0000">
+        <input type="text" id="num" name="num" value="0000" unique = True>
   </div>
 
 <hr>
@@ -120,16 +120,18 @@
         'detalles': detalles,
         'proveedor': $('#proveedor').val(),
         'serie': $('#serie').val(),
-        'num_doc': $('#num').val(),
-        'credito': document.getElementById('credito').checked
+        'num_doc': $('#num').val()
       },
       url: "{% url 'Transacciones:compra' %}",
       type: 'get',
       dataType: 'json',
       success: function(data){
-        console.log(total);
         alert("Factura creada con exito.");
-        location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
+
+        if(!document.getElementById('credito').checked)
+          location.href += 'facturas/';
+        else
+          location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
       }
     });
 
@@ -175,6 +177,8 @@
       fila.appendChild(columna);
 
     tabla.appendChild(fila);
+
+    console.log(document.getElementById('credito').checked);
 
   }
 

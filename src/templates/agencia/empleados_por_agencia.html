@@ -2,9 +2,18 @@
 
 {% block content %}
     <h2>Empleados de {{empleados_list.first.Agencia_id}}</h2>
-    <ul>
+    <div class="submenu">
+    <table class="table">
+        <tr>
+          <td>Nombre</td>
+        </tr>
         {% for empleado in empleados_list %}
-            <li>{{ empleado }}</li>
+        <tr>
+            <td>{{ empleado }} </td>
+            <td><a href={% url 'Usuario:empleadoDetail' empleado.id %}>Ver</a></td>
+        </tr>
         {% endfor %}
-    </ul>
+
+    </table>
+  </div>
 {% endblock %}

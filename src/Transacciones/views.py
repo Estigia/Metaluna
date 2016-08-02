@@ -15,7 +15,7 @@ from  Transacciones.models import Factura,Recibo
 from Comodin.models import Marca, Comodin
 from Producto.models import Tipo_Producto, Producto , Lote
 from Agencia.models import Mercaderia
-from .models import Factura, DetalleFactura, Credito
+from .models import Factura, DetalleFactura, Credito, Abonos
 from .forms import ReciboForm,AbonosForm,FacturaForm,DetalleFacturaForm,CreditoForm
 
 @login_required(login_url='base')
@@ -35,7 +35,7 @@ def abonos(request):
     form = AbonosForm(request.POST or None)
     context={
         "form":form,
-        "creditos": Credito.objects.filter(Factura_id__Comodin_id__tipo=0)
+        "creditos": Credito.objects.filter(Factura_id__Comodin_id__tipo=1)
     }
     if form.is_valid():
         form.save(commit=False)
@@ -45,13 +45,37 @@ def abonos(request):
 
         if monto > credito.saldo:
             messages.error(request,
-                'El monto es mayor que el saldo del credito, Saldo:'+credito.saldo)
+                'El monto es mayor que el saldo del credito, Saldo:'+str(credito.saldo))
         else:
             credito.saldo -= monto
             credito.save()
-            form.save()
+            credito.Factura_id.Comodin_id.saldo = credito.Factura_id.Comodin_id.saldo - monto
+            credito.Factura_id.Comodin_id.save()
+            abono = Abonos.objects.create(
+                monto=monto,
+                Credito_id=credito
+            )
+            return redirect('Transacciones:abonos_list')
 
-    return render(request,'transacciones/abonos.html',context)
+    return render(request, 'transacciones/abonos.html', context)
+
+@login_required(login_url='base')
+def abonosList(request):
+    abonos = Abonos.objects.all()
+
+    context = {
+        'abonos': abonos,
+    }
+
+    return render(request, 'transacciones/abonos_list.html', context)
+
+class AbonoDetail(DetailView):
+    model = Abonos
+    template_name = 'transacciones/abono_detail.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(AbonoDetail, self).dispatch(request, *args, **kwargs)
 
 @login_required(login_url='base')
 def factura(request):
@@ -84,7 +108,7 @@ def detalleFactura(request):
 
 @login_required(login_url='base')
 def credito(request):
-
+    print timezone.now()
     if request.GET:
         factura = request.GET['factura']
 
@@ -120,8 +144,12 @@ def credito(request):
                     )
 
 
+                    factura.Comodin_id.saldo = factura.Comodin_id.saldo + credito.saldo
+                    factura.Comodin_id.save()
 
                     credito.save()
+
+
 
                     return HttpResponse('Credito creado: ' + str(credito.id))
 
@@ -168,8 +196,6 @@ def venta(request):
     serie = request.GET['serie']
     numDoc = request.GET['num_doc']
 
-    credito = str(request.GET['credito'])
-
     comodin = Comodin.objects.get(id=cliente)
     factura = Factura.objects.create(
                 serie=serie,
@@ -197,10 +223,11 @@ def venta(request):
                 total += value
                 detalle.subTotal = value
 
+
         mercaderia = Mercaderia.objects.get(
-                                        Agencia_id=agencia,
-                                        Producto_id=detalle.Producto_id
-                                        )
+                            Agencia_id=agencia,
+                            Producto_id=detalle.Producto_id
+                            )
 
         mercaderia.cantidad -= detalle.cantidad
 
@@ -216,8 +243,6 @@ def venta(request):
     agencia.save()
 
 
-    f = Marca.objects.all()
-
     factura = Factura.objects.filter(id = factura.id)
 
 
@@ -232,7 +257,6 @@ def compra(request):
     serie = request.GET['serie']
     numDoc = request.GET['num_doc']
 
-    credito = str(request.GET['credito'])
 
     comodin = Comodin.objects.get(id=proveedor)
     factura = Factura.objects.create(
@@ -261,10 +285,17 @@ def compra(request):
                 total += value
                 detalle.subTotal = value
 
-        mercaderia = Mercaderia.objects.get(
-                                        Agencia_id=agencia,
-                                        Producto_id=detalle.Producto_id
-                                        )
+        try:
+            mercaderia = Mercaderia.objects.get(
+                            Agencia_id=agencia,
+                            Producto_id=detalle.Producto_id
+                            )
+        except:
+            mercaderia = Mercaderia.objects.create(
+                Agencia_id = agencia,
+                Producto_id = detalle.Producto_id,
+                cantidad = 0
+            )
 
         print mercaderia.cantidad
         mercaderia.cantidad += detalle.cantidad
@@ -327,3 +358,39 @@ class FacturaDetail(DetailView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(FacturaDetail, self).dispatch(request, *args, **kwargs)
+
+
+def creditoList(request, tipo):
+    if tipo == 'compras':
+        creditos = Credito.objects.filter(Factura_id__Comodin_id__tipo=1)
+        mensaje = 'compras'
+    if tipo == 'ventas':
+        creditos = Credito.objects.filter(Factura_id__Comodin_id__tipo=0)
+        mensaje = 'ventas'
+
+    return render(
+            request,
+            'transacciones/credito_list.html',
+            {
+                'creditos':creditos,
+                'mensaje': mensaje
+                }
+            )
+
+class CreditoProveedorDetail(DetailView):
+    model = Credito
+    template_name = 'transacciones/credito_detail.html'
+    queryset = Credito.objects.filter(Factura_id__Comodin_id__tipo=1)
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(CreditoProveedorDetail, self).dispatch(request, *args, **kwargs)
+
+class CreditoClienteDetail(DetailView):
+    model = Credito
+    template_name = 'transacciones/credito_detail.html'
+    queryset = Credito.objects.filter(Factura_id__Comodin_id__tipo=0)
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(CreditoClienteDetail, self).dispatch(request, *args, **kwargs)

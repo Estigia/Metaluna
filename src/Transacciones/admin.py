@@ -12,7 +12,7 @@ class AbonosAdmin(admin.ModelAdmin):
     form = AbonosForm
 
 class FacturaAdmin(admin.ModelAdmin):
-    list_display = ["__unicode__","serie","noDocumento","precioTotal","anulada","Comodin_id"]
+    list_display = ["__unicode__","fecha","serie","noDocumento","precioTotal","anulada","Comodin_id"]
     form = FacturaForm
 
 class DetalleFacturaAdmin(admin.ModelAdmin):

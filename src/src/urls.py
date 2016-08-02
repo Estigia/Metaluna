@@ -33,14 +33,14 @@ urlpatterns = [
     url(r'^transacciones/', include('Transacciones.urls', namespace='Transacciones')),
     url(r'^organizacion/', include('Comodin.urls', namespace='Comodin')),
     url(r'^registro/','Usuario.views.registro', name='registro'),
-    url(r'^proveedor/',ComodinCreate.as_view(),name='proveedor'),
+    url(r'^proveedor/',include('Comodin.urls', namespace='index')),
     url(r'^cliente/',ClienteCreate.as_view(), name = 'cliente'),
     url(r'^marca/',MarcaCreate.as_view(), name = 'marca'),
     url(r'^filtro/',filtroP,name = 'filtroP'),
     url(r'^productos/', include('Producto.urls', namespace= 'Producto')),
     url(r'^trans/','Transacciones.views.trans',name="trans"),
     url(r'^$','Usuario.views.inicio',name="base"),
-
+    url(r'^logout/$', 'Usuario.views.cerrar', name='cerrar')
 
 ]
 if settings.DEBUG:
