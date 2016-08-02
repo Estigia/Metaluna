@@ -926,3 +926,12 @@ border: 2px solid #fff;
     margin-bottom: 1%;
     padding-bottom: 0.3%;
   }
+
+  /*#divPaginador {
+    width: 100%;
+  }*/
+
+  #paginador {
+    margin-left: 30%;
+    width: 60%;
+  }
