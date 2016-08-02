@@ -6,6 +6,7 @@ from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models import Sum
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 from django.views.generic.detail import DetailView
@@ -361,8 +362,11 @@ class FacturaDetail(DetailView):
 
         detalles = DetalleFactura.objects.filter(Factura_id=factura)
 
+        total = detalles.aggregate(Sum('subTotal'))
+
         context.update({
-            'detalles': detalles
+            'detalles': detalles,
+            'total': total
         })
 
         return context

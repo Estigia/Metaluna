@@ -58,10 +58,16 @@
     <tr>
       <td>{{detalle.cantidad}}</td>
       <td>{{detalle.Producto_id}}</td>
-      <td>{{detalle.cantidad}}</td>
+      <td>{{detalle.precioUnitario}}</td>
       <td>{{detalle.subTotal}}</td>
     </tr>
     {% endfor %}
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <th>Total</th>
+      <td>{{total.subTotal__sum}}</td>
+    </tr>
   </table>
 
 </div>
