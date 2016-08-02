@@ -35,7 +35,7 @@ Paginador = function(divPaginador, tabla, tamPagina){
 this.Mostrar = function(){
     //Crear la tabla
     var tblPaginador = document.createElement('table');
-    tblPaginador.style.width = '20%';
+    tblPaginador.style.width = '60%';
 
     //Agregar una fila a la tabla
     var fil = tblPaginador.insertRow(tblPaginador.rows.length);
