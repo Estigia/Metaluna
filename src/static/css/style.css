@@ -935,3 +935,12 @@ border: 2px solid #fff;
     margin-left: 30%;
     width: 60%;
   }
+
+
+  .divBotonesAlternativo
+  {
+    width: 67%;
+    margin-left: 37%;
+    margin-bottom: 1%;
+    padding-bottom: 0.3%;
+  }
