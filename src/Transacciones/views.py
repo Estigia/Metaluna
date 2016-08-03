@@ -411,3 +411,22 @@ class CreditoClienteDetail(DetailView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(CreditoClienteDetail, self).dispatch(request, *args, **kwargs)
+
+@login_required(login_url='base')
+def anular(request):
+    vID = request.GET['id']
+    factura = Factura.objects.get(id=vID)
+
+    factura.anulada = not factura.anulada
+    factura.save()
+
+    if factura.anulada:
+        response = 'Factura anulada: '+vID
+    else:
+        response = 'Factura recuperada: '+vID
+
+    # messages.info(request, 'Factura anulada:'+vID)
+    #
+    # data = serializers.serialize('json', messages)
+
+    return HttpResponse(response)

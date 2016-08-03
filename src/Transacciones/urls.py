@@ -14,7 +14,8 @@ from .views import (
     AbonoDetail,
     creditoList,
     CreditoClienteDetail,
-    CreditoProveedorDetail
+    CreditoProveedorDetail,
+    anular
     #AbonoUpdate
     )
 
@@ -37,4 +38,5 @@ urlpatterns = [
     url(r'^(ventas)/creditos/$', creditoList, name='creditos_ventas'),
     url(r'^compras/creditos/(?P<pk>\d+)/detalles', CreditoProveedorDetail.as_view(), name='creditoPDetail'),
     url(r'^ventas/creditos/(?P<pk>\d+)/detalles', CreditoClienteDetail.as_view(), name='creditoCDetail'),
+    url(r'^anular/', anular, name='anular')
 ]

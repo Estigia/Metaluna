@@ -10,11 +10,6 @@ from django.views.generic import DetailView, ListView
 
 from .models import Comodin, Marca
 
-
-
-
-
-
 @login_required(login_url='base')
 def index(request):
 

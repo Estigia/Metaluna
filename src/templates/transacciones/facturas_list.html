@@ -38,6 +38,9 @@
         {% endif %}
       </td>
       <td>
+        <button onClick="javascript:anular({{factura.id}})" type="button">Anular</button>
+      </td>
+      <td>
         {{factura.precioTotal}}
       </td>
       <td>
@@ -56,12 +59,37 @@
 
 {% block js %}
 <script type="text/javascript">
-  var p = new Paginador(
-    document.getElementById('paginador'),
-    document.getElementById('tblDatos'),
-    10
-  );
 
-  p.Mostrar();
+  $(document).ready(function(){
+    var p = new Paginador(
+      document.getElementById('paginador'),
+      document.getElementById('tblDatos'),
+      10
+    );
+
+    p.Mostrar();
+  });
+
+  function anular(id_factura){
+
+    $.ajax({
+
+      data:{
+        'id':id_factura,
+      },
+      url: "{% url 'Transacciones:anular' %}",
+      type: 'get',
+      success: function(data){
+        alert(data);
+        location.reload();
+      },
+      error: function(){
+        alert('Error con el servidor, intente de nuevo.');
+      }
+
+    })
+
+  }
+
 </script>
 {% endblock %}
