@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
+
+
+
 {% block content %}
     <h2>Empleados de {{empleados_list.first.Agencia_id}}</h2>
+
+    <div class = "divBotonesAlternativo">
+      <a href="/empleados/crear" class = "lnk" target="_blank">+</a>
+      <a href="/empleados/crear" class = "descripcion"> Agregar</a>
+    </div>
+
+
     <div class="submenu">
     <table class="table">
         <tr>
