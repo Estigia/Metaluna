@@ -38,7 +38,13 @@
         {% endif %}
       </td>
       <td>
-        <a href="javascript:anular({{factura.id}})">Anular</a>
+        <a href="javascript:anular({{factura.id}})">
+          {% if factura.anulada %}
+          Recuperar
+          {% else %}
+          Anular
+          {% endif %}
+        </a>
       </td>
       <td>
         {{factura.precioTotal}}
@@ -80,6 +86,10 @@
       url: "{% url 'Transacciones:anular' %}",
       type: 'get',
       success: function(data){
+        // if(data.includes('recuparada'))
+        //   $('a#'+id_factura).text('Anular');
+        // else
+        //   $('a#'+id_factura).text('Recuperar');
         alert(data);
         location.reload();
       },
