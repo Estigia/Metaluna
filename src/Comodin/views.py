@@ -109,14 +109,17 @@ class ClienteDetail(DetailView):
 class ClienteUpdate(UpdateView):
     model = Comodin
     template_name = 'comodin/clientes_edit.html'
-    success_url = reverse_lazy('Comodin:index')
+    success_url = reverse_lazy('Comodin:clientes')
 
     fields = [
 
         'nombre',
+        'empresa',
         'direccion',
         'telefono',
-
+        'nit',
+        'bloqueado',
+        'municipio'
 
     ]
 
@@ -200,9 +203,12 @@ class ProveedorUpdate(UpdateView):
     fields = [
 
         'nombre',
+        'empresa',
         'direccion',
         'telefono',
+        'nit',
         'bloqueado',
+        'municipio',
 
     ]
 

@@ -17,6 +17,8 @@ class Comodin(models.Model):
     bloqueado = models.BooleanField(default = False)
     saldo = models.FloatField(null=True,blank=True,validators=[MinValueValidator(0)])
 
+    municipio = models.ForeignKey('Localizaciones.Municipio')
+
     def __unicode__(self):
         return str(self.nombre) + "--" + str(self.empresa)
 

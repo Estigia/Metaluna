@@ -31,7 +31,6 @@ urlpatterns = [
     url(r'^empleados/', include('Usuario.urls', namespace='Usuario')),
     url(r'^agencia/', include('Agencia.urls', namespace='Agencia')),
     url(r'^transacciones/', include('Transacciones.urls', namespace='Transacciones')),
-    url(r'^organizacion/', include('Comodin.urls', namespace='Comodin')),
     url(r'^registro/','Usuario.views.registro', name='registro'),
     url(r'^empresa/',include('Comodin.urls', namespace='index')),
     # url(r'^clientes/$','Comodin.views.clientes', name='clientes'),

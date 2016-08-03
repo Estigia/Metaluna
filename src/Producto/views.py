@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.core.serializers.json import Serializer
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
@@ -165,6 +165,9 @@ def existencias(request):
     )
 
     data = serializers.serialize('json', existencias, fields=('cantidad'))
+
+    if not len(existencias):
+        return HttpResponseBadRequest()
 
     return HttpResponse(data, content_type='application/json')
 

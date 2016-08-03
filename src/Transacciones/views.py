@@ -32,11 +32,17 @@ def recibo(request):
     return render(request, 'recibo.html', context)
 
 @login_required(login_url='base')
-def abonos(request):
+def abonos(request, tipo):
+    if tipo == 'compras':
+        creditos=Credito.objects.filter(Factura_id__Comodin_id__tipo=1)
+    else:
+        creditos=Credito.objects.filter(Factura_id__Comodin_id__tipo=0)
+
+    creditos = creditos.filter(finalizado=False)
     form = AbonosForm(request.POST or None)
     context={
         "form":form,
-        "creditos": Credito.objects.filter(Factura_id__Comodin_id__tipo=1)
+        "creditos": creditos
     }
     if form.is_valid():
         form.save(commit=False)
@@ -49,6 +55,8 @@ def abonos(request):
                 'El monto es mayor que el saldo del credito, Saldo:'+str(credito.saldo))
         else:
             credito.saldo -= monto
+            if not credito.monto:
+                credito.finalizado = True
             credito.save()
             credito.Factura_id.Comodin_id.saldo = credito.Factura_id.Comodin_id.saldo - monto
             credito.Factura_id.Comodin_id.save()
@@ -56,13 +64,24 @@ def abonos(request):
                 monto=monto,
                 Credito_id=credito
             )
-            return redirect('Transacciones:abonos_list')
+
+            if tipo=='compras':
+                return HttpResponseRedirect('/transacciones/compras/abonos')
+            else:
+                return HttpResponseRedirect('/transacciones/ventas/abonos')
 
     return render(request, 'transacciones/abonos.html', context)
 
 @login_required(login_url='base')
-def abonosList(request):
-    abonos = Abonos.objects.all()
+def abonosList(request, tipo):
+    if tipo == 'compras':
+        abonos = Abonos.objects.filter(
+            Credito_id__Factura_id__Comodin_id__tipo = 1
+        )
+    else:
+        abonos = Abonos.objects.filter(
+            Credito_id__Factura_id__Comodin_id__tipo = 0
+        )
 
     context = {
         'abonos': abonos,

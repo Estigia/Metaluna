@@ -34,6 +34,18 @@
     <td><a href= "/transacciones/ventas/creditos"><i>Desplegar</i></a></td>
   </tr>
 
+  <tr>
+    <td><strong>Abonos Compras</td>
+    <td><a href= {% url 'Transacciones:abonos' 'compras' %}><i>Crear</i></a></td>
+    <td><a href= {% url 'Transacciones:abonos_list' 'compras'%}><i>Desplegar</i></a></td>
+  </tr>
+
+  <tr>
+    <td><strong>Abonos Ventas</td>
+    <td><a href= {% url 'Transacciones:abonos_v' 'ventas' %}><i>Crear</i></a></td>
+    <td><a href= {% url 'Transacciones:abonos_list_v' 'ventas' %}><i>Desplegar</i></a></td>
+  </tr>
+
   </table>
 
 

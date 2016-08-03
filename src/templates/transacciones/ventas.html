@@ -12,7 +12,7 @@
       {% endfor %}
     </select>
 
-    <a href="/cliente" class = "lnk" target="_blank">+</a>
+    <a href={% url 'index:clientesCreate' %} class = "lnk" target="_blank">+</a>
 
     <br></br>
     <label>Serie Factura</label>
@@ -92,6 +92,10 @@
       type: 'get',
       success: function(data){
         document.getElementById('existencias').innerHTML = data[0].fields.cantidad;
+      },
+      error: function(){
+        document.getElementById('existencias').innerHTML = 0;
+        alert('No hay existencias de ese producto');
       }
 
     })

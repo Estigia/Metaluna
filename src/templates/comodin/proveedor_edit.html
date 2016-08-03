@@ -7,16 +7,24 @@
   <div class = "camposForms">
     <form method="post" action="">
       {%csrf_token%}
-      <h2>Editar Proveedor</h2>
+      <h2>Editar Cliente</h2>
       <label>Nombre</label>
         {{form.nombre}}
+        <label>Empresa</label>
+          {{form.empresa}}
+          <label>Municipio</label>
+          {{form.municipio}}
       <label>Direccion</label>
         {{form.direccion}}
       <label>Telefono</label>
         {{form.telefono}}
-      <label>Bloqueado</label>
-        {{form.bloqueado}}
-      <input type='submit' value='Agregar'>
+        <label>NIT</label>
+          {{form.nit}}
+          <!-- <label>Bloqueado</label>
+            {{form.bloqueado}} -->
+
+
+      <input type='submit' value='Guardar'>
     </form>
   </div>
 </div>
