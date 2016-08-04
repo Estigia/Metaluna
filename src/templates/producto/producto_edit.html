@@ -9,17 +9,29 @@
       <h2>Editar Producto</h2>
       <label>Descripcion</label>
         {{form.descripcion}}
+
       <label>Tipo de Producto</label>
+      <a href="/productos/tipoproducto" class = "lnk" target="_blank">+</a>
         {{form.Tipo_Producto_id}}
+
       <label>Material</label>
+      <a href="/productos/crear_material" class = "lnk" target="_blank">+</a>
         {{form.Material_id}}
+
       <label>Longitud</label>
+      <a href="/productos/crear_longitud" class = "lnk" target="_blank">+</a>
         {{form.Longitud_id}}
+
       <label>Calibre</label>
+      <a href="/productos/crear_calibre" class = "lnk" target="_blank">+</a>
         {{form.Calibre_id}}
+
       <label>Forma</label>
+      <a href="/productos/crear_forma" class = "lnk" target="_blank">+</a>
         {{form.Forma_id}}
+
       <label>Marca</label>
+      <a href="/marca" class = "lnk" target="_blank">+</a>
         {{form.Marca_id}}
 
       <input type='submit' value='Editar'>
