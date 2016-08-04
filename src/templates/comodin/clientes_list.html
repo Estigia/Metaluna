@@ -23,8 +23,8 @@
         <td>{{dato.empresa}}</td>
         <td>{{dato.telefono}}</td>
         <td>{{dato.saldo}}</td>
-        <td><a href={% url 'Comodin:detallesCliente' dato.id %}><i>Ver</i></a></td>
-        <td><a href={% url 'Comodin:editarCliente' dato.id %}><i>Editar</i></a></td>
+        <td><a href={% url 'index:detallesCliente' dato.id %}><i>Ver</i></a></td>
+        <td><a href={% url 'index:editarCliente' dato.id %}><i>Editar</i></a></td>
       </tr>
     {% endfor %}
 
