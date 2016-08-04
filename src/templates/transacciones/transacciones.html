@@ -5,6 +5,14 @@
 <h2>Transacciones</h2>
 <br/>
 
+<div class="messages">
+  {% if messages %}
+    {% for message in messages %}
+    <label>{{message}}</label>
+    {% endfor %}
+  {% endif %}
+</div>
+
 <div class = "submenu">
 
 

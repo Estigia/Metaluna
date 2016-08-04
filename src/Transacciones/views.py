@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 import json
 
 from django.shortcuts import render, redirect
@@ -38,7 +40,7 @@ def abonos(request, tipo):
     else:
         creditos=Credito.objects.filter(Factura_id__Comodin_id__tipo=0)
 
-    creditos = creditos.filter(finalizado=False)
+    creditos = creditos.filter(finalizado=0)
     form = AbonosForm(request.POST or None)
     context={
         "form":form,
@@ -55,8 +57,10 @@ def abonos(request, tipo):
                 'El monto es mayor que el saldo del credito, Saldo:'+str(credito.saldo))
         else:
             credito.saldo -= monto
-            if not credito.monto:
-                credito.finalizado = True
+
+            if credito.saldo == 0:
+                print 'monto 0'
+                credito.finalizado = 1
             credito.save()
             credito.Factura_id.Comodin_id.saldo = credito.Factura_id.Comodin_id.saldo - monto
             credito.Factura_id.Comodin_id.save()
@@ -171,16 +175,24 @@ def credito(request):
 
 
 
-                    return HttpResponse('Credito creado: ' + str(credito.id))
+                    messages.info(request,
+                        'Credito creado: ' + str(credito.id))
+                    return HttpResponseRedirect('/transacciones/')
 
                 return render(request,'transacciones/credito.html',context)
 
-            return HttpResponse('Esa factura ya tiene un credito.')
+            messages.error(request,
+                'Esa factura ya tiene un credito.')
+            return HttpResponseRedirect('/transacciones/')
 
         except Factura.DoesNotExist:
-            return HttpResponse('No existe esa factura.')
+            messages.error(request,
+                'No existe esa factura.')
+            return HttpResponseRedirect('/transacciones/')
 
-    return HttpResponse('No sirve')
+    messages.error(request,
+        'Ocurrió un error.')
+    return HttpResponseRedirect('/transacciones/')
 
 @login_required(login_url='base')
 def trans(request):
