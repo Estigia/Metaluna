@@ -52,7 +52,7 @@
     <input id="cantidad" type="text" name="cantidad" value=0>
     <label>Precio</label>
     <input id="precio" type="text" name="precio" value=0></br>
-    <label>Crédito</label>
+    <!-- <label>Crédito</label> -->
     <input type="checkbox" id="credito" name="credito" checked></br>
     <input id="agregar" type="button" value="Agregar detalle"></br>
   </form>
@@ -80,6 +80,8 @@
   $('#marca').on('change', busquedaProducto);
   $('#facturar').on('click',facturar);
   $('#productos').on('change', existencias);
+
+  document.getElementById("credito").style.visibility = "hidden";
 
   function existencias(){
 
