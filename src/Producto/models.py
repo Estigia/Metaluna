@@ -38,7 +38,7 @@ class Producto(models.Model):
 
         return total
 
-        
+
 class Tipo_Producto(models.Model):
     id = models.AutoField(primary_key = True)
     tipo = models.CharField(max_length = 45, blank = True, null = True)
@@ -71,13 +71,13 @@ class Longitud(models.Model):
 
 class Calibre(models.Model):
     id = models.AutoField(primary_key = True)
-    calibre = models.FloatField(null=True,blank=True,validators=[MinValueValidator(0)])
+    calibre = models.CharField(max_length = 10, blank = True, null = True)
 
     def natural_key(self):
         return (self.calibre)
 
     def __unicode__(self):
-        return str(self.calibre)
+        return self.calibre
 
 class Forma(models.Model):
     id = models.AutoField(primary_key = True)
