@@ -4,8 +4,8 @@
 <h2>Proveedores</h2>
 
 <div class = "divBotonesListado">
-  <a href="/proveedor/crear" class = "lnk" target="_blank">+</a>
-  <a href="/proveedor/crear" class = "descripcion"> Agregar</a>
+  <a href="/empresa/proveedores/crear" class = "lnk" target="_blank">+</a>
+  <a href="/empresa/proveedores/crear" class = "descripcion"> Agregar</a>
 </div>
 
 
@@ -24,8 +24,8 @@
         <td>{{dato.empresa}}</td>
         <td>{{dato.telefono}}</td>
         <td>{{dato.saldo}}</td>
-        <td><a href={% url 'Comodin:detallesProveedor' dato.id %}><i>Ver</i></a></td>
-        <td><a href={% url 'Comodin:editarProveedor' dato.id %}><i>Editar</i></a></td>
+        <td><a href={% url 'index:detallesProveedor' dato.id %}><i>Ver</i></a></td>
+        <td><a href={% url 'index:editarProveedor' dato.id %}><i>Editar</i></a></td>
       </tr>
     {% endfor %}
 

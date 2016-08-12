@@ -34,13 +34,14 @@ def clientes(request):
 class ComodinCreate(CreateView):
     model = Comodin
     template_name = 'comodin/comodin_create.html'
-    success_url = '/proveedor'
+    success_url = '/empresa/proveedores'
 
     fields = [
         'nombre',
         'empresa',
         'empresa',
         'direccion',
+        'municipio',
         'telefono',
         'nit',
         'saldo',
@@ -63,13 +64,14 @@ class ComodinCreate(CreateView):
 class ClienteCreate(CreateView):
     model = Comodin
     template_name = 'comodin/comodin_create.html'
-    success_url = '/cliente'
+    success_url = '/empresa/clientes'
 
     fields = [
         'nombre',
         'empresa',
         'empresa',
         'direccion',
+        'municipio',
         'telefono',
         'nit',
         'saldo',
@@ -109,7 +111,7 @@ class ClienteDetail(DetailView):
 class ClienteUpdate(UpdateView):
     model = Comodin
     template_name = 'comodin/clientes_edit.html'
-    success_url = reverse_lazy('Comodin:clientes')
+    success_url = reverse_lazy('index:clientes')
 
     fields = [
 
@@ -198,7 +200,7 @@ class ProveedorDetail(DetailView):
 class ProveedorUpdate(UpdateView):
     model = Comodin
     template_name = 'comodin/proveedor_edit.html'
-    success_url = reverse_lazy('Comodin:index')
+    success_url = reverse_lazy('index:index')
 
     fields = [
 

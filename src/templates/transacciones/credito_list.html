@@ -17,6 +17,41 @@
       <td><strong>Monto</td>
     </tr>
     {% for credito in creditos %}
+    {% if credito.finalizado %}
+    <tr>
+      <td bgcolor="#F5A9A9">
+        {{credito.credito_name}}
+      </td>
+      <td bgcolor="#F5A9A9">
+        {{credito.Usuario_id}}
+      </td>
+      <td bgcolor="#F5A9A9">
+        {% if credito.finalizado %}
+        Si
+        {% else %}
+        No
+        {% endif %}
+      </td>
+      <td bgcolor="#F5A9A9">
+        {{credito.fechaLimite}}
+      </td>
+      <td bgcolor="#F5A9A9">
+        {{credito.saldo}}
+      </td>
+      <td bgcolor="#F5A9A9">
+        {{credito.monto}}
+      </td>
+      {% if credito.Factura_id.Comodin_id.tipo %}
+      <td bgcolor="#F5A9A9">
+        <a href={% url 'Transacciones:creditoPDetail' credito.id %}>Ver</a>
+      </td>
+      {% else %}
+      <td bgcolor="#F5A9A9">
+        <a href={% url 'Transacciones:creditoCDetail' credito.id %}>Ver</a>
+      </td>
+      {% endif %}
+    </tr>
+    {% else %}
     <tr>
       <td>
         {{credito.credito_name}}
@@ -50,6 +85,7 @@
       </td>
       {% endif %}
     </tr>
+    {% endif %}
     {% endfor %}
 
   </table>
