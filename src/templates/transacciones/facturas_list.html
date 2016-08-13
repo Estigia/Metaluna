@@ -4,8 +4,45 @@
 <h2>Facturas de {{mensaje}}</h2>
 </br>
 
-<div class = "listados">
+<table style="margin: 0px auto;">
+  <tr>
+    <td>
+      <label>Anulada</label>
+      <label>Todas</label><input type="radio" name="anulada" value="Todas" checked>
+      <label>Si</label><input type="radio" name="anulada" value="Si">
+      <label>No</label><input type="radio" name="anulada" value="No">
+    </td>
+    <td>
+      <label>Serie</label>
+      <input type="text" name="serie" id="serie" value="">
+    </td>
+    <td>
+      <label>Numero</label>
+      <input type="text" name="numero" id="numero" value="">
+    </td>
+    <td>
+      <label>
+        {% if mensaje == 'compras' %}
+        Proveedor
+        {% else %}
+        Cliente
+        {% endif %}
+      </label>
+      <select id="comodin">
+        <option value="0" selected>------</option>
+        {% for comodin in comodines %}
+        <option value="{{comodin.id}}">{{comodin}}</option>
+        {% endfor %}
+      </select>
+    </td>
+    <td>
+      <button type="button" name="buscar" id="buscar" style="margin: 0px 0px 0px 25px;
+            width: 100px; height: 30px;">Buscar</button>
+    </td>
+  </tr>
+</table>
 
+<div class = "listados">
 
   <table id='tblDatos' class = "table">
     <tr>
@@ -65,6 +102,30 @@
 
 {% block js %}
 <script type="text/javascript">
+
+  $('#buscar').on('click', function(){
+
+    var anulada = "";
+    if($('input[type=radio]')[1].checked)
+      anulada = "anulada=1"
+    if($('input[type=radio]')[2].checked)
+      anulada = "anulada=0"
+
+    var comodin = "";
+    if($('#comodin').val()!=0)
+      comodin = "&comodin="+$('#comodin').val();
+
+    var serie = "";
+    if($('#serie').val()!="")
+      serie = "&serie="+$('#serie').val();
+
+    var numero = "";
+    if($('#numero').val()!="")
+      numero = '&numero='+$('#numero').val();
+
+    location.href = '?'+anulada+comodin+serie+numero;
+
+  })
 
   $(document).ready(function(){
     var p = new Paginador(
