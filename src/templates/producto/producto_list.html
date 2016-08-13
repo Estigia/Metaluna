@@ -19,6 +19,7 @@
         <td><strong>Longitud</td>
         <td><strong>Calibre</td>
         <td><strong>Forma</td>
+        <td><strong>Cantidad</td>
       </tr>
 
       {% for dato in productos %}
@@ -29,6 +30,7 @@
           <td>{{dato.Longitud_id}}</td>
           <td>{{dato.Calibre_id}}</td>
           <td>{{dato.Forma_id}}</td>
+          <td>{{dato.getTotal}}</td>
           <!-- <td><a href={% url 'Producto:detail' dato.id %}><i>Ver</i></a></td> -->
           <td><a href={% url 'Producto:edit' dato.id %}><i>Editar</i></a></td>
         </tr>
