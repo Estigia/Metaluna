@@ -364,24 +364,46 @@ def index(request):
 
     return render(request, 'transacciones/transacciones.html', context)
 
-
+@login_required(login_url='base')
 def facturaList(request, tipo):
 
     if tipo == 'compras':
+        comodines = Comodin.objects.filter(tipo=1)
         facturas = Factura.objects.filter(Comodin_id__tipo=1)
         mensaje = 'compras'
     if tipo == 'ventas':
+        comodines = Comodin.objects.filter(tipo=0)
         facturas = Factura.objects.filter(Comodin_id__tipo=0)
         mensaje = 'ventas'
+
+    if request.GET:
+        try:
+            facturas = facturas.filter(serie__iexact=request.GET['serie'])
+        except:
+            pass
+        try:
+            facturas = facturas.filter(noDocumento=request.GET['numero'])
+        except:
+            pass
+        try:
+            facturas = facturas.filter(Comodin_id__id=request.GET['comodin'])
+        except:
+            pass
+        try:
+            facturas = facturas.filter(anulada=request.GET['anulada'])
+        except:
+            pass
+
 
     return render(
             request,
             'transacciones/facturas_list.html',
             {
                 'facturas':facturas,
-                'mensaje': mensaje
-                }
-            )
+                'mensaje': mensaje,
+                'comodines': comodines
+            }
+        )
 
 class FacturaDetail(DetailView):
     model = Factura

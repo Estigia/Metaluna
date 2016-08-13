@@ -10,6 +10,7 @@ from django.utils.decorators import method_decorator
 
 from .models import (Lote, Producto, Tipo_Producto,
                         Material, Longitud, Calibre, Forma)
+from Comodin.models import Marca
 from Agencia.models import Mercaderia
 from .forms import (LoteForm, ProductoForm, Tipo_ProductoForm,
                     MaterialForm, LongitudForm, CalibreForm, FormaForm)
@@ -19,8 +20,44 @@ from .forms import (LoteForm, ProductoForm, Tipo_ProductoForm,
 def index(request):
     productos = Producto.objects.all()
 
+    if request.GET:
+        try:
+            productos = productos.filter(descripcion__icontains=request.GET['descripcion'])
+        except:
+            pass
+        try:
+            productos = productos.filter(Tipo_Producto_id__id=request.GET['tipo'])
+        except:
+            pass
+        try:
+            productos = productos.filter(Material_id__id=request.GET['material'])
+        except:
+            pass
+        try:
+            productos = productos.filter(Longitud_id=request.GET['longitud'])
+        except:
+            pass
+        try:
+            productos = productos.filter(Calibre_id__id=request.GET['calibre'])
+        except:
+            pass
+        try:
+            productos = productos.filter(Forma_id__id=request.GET['forma'])
+        except:
+            pass
+        try:
+            productos = productos.filter(Marca_id__id=request.GET['marca'])
+        except:
+            pass
+
     context = {
         "productos" : productos,
+        "tipos": Tipo_Producto.objects.all(),
+        "materiales": Material.objects.all(),
+        "longitudes": Longitud.objects.all(),
+        "calibres": Calibre.objects.all(),
+        "formas": Forma.objects.all(),
+        "marcas": Marca.objects.all()
     }
 
     return render(request, 'producto/producto_list.html', context)
