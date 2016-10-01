@@ -3357,3 +3357,68 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       margin-left: 40%;
       width: 25%;
     }
+
+
+    .encabezadoForms{
+			  margin-bottom: 15px;
+			  width: 34%;
+        margin-left: 34%;
+        align-items: center;
+		}
+		.encabezadoForms form{
+			width: 65%;
+			margin: 0 auto;
+      margin-left: 14%;
+		}
+		.encabezadoForms form label, .encabezadoForms form textarea, .encabezadoForms form select, .encabezadoForms form a, .encabezadoForms h2{
+			width: 100%;
+			float: left;
+			display: block;
+			padding: 3px;
+			margin-left: 12%;
+		}
+
+
+
+    .encabezadoForms form option{
+			margin-: 12px;
+		}
+
+    .encabezadoForms [type = "submit"], [type = "button"] {
+      /*margin: 10%;*/
+      width: 37%;
+      margin-left: 35%;
+      position: relative;
+    }
+
+
+
+    #filtroForms
+    		{
+    			text-align: left;
+    			color: rgba(0,0,0,0.6);
+    			align-content: right;
+    			margin: 0 auto;
+    		}
+    		#filtroForms .formularios p label{
+    			background: #FFF;
+    			display: block;
+    			float: left;
+    			width: 36%;
+    		}
+
+    		#filtroForms li {
+    			text-align: center;
+    			padding-right: 2%;
+    			list-style: none;
+    		}
+    		/*#filtroForms h2{
+    			text-align: center;
+    		}*/
+
+
+    		#filtroForms .formularios{
+    			margin: 0 auto;
+    			width: 400px;
+
+    		}

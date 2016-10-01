@@ -3,52 +3,54 @@
 {% block content %}
 <h2>Facturas de {{mensaje}}</h2>
 </br>
-<div class = "camposForms">
-<table style="margin: 0px auto;">
-  <tr>
-    <td>
-      <label>Anulada</label>
-      <label>Todas</label><input type="radio" name="anulada" value="Todas" checked>
-      <label>Si</label><input type="radio" name="anulada" value="Si">
-      <label>No</label><input type="radio" name="anulada" value="No">
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <label>Serie</label>
-      <input type="text" name="serie" id="serie" value="">
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <label>Numero</label>
-      <input type="text" name="numero" id="numero" value="">
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <label>
-        {% if mensaje == 'compras' %}
-        Proveedor
-        {% else %}
-        Cliente
-        {% endif %}
-      </label>
-      <select id="comodin">
-        <option value="0" selected>------</option>
-        {% for comodin in comodines %}
-        <option value="{{comodin.id}}">{{comodin}}</option>
-        {% endfor %}
-      </select>
-    </td>
-    <td>
-      <button type="button" name="buscar" id="buscar" style="margin: 0px 0px 0px 25px;
-            width: 100px; height: 30px;">Buscar</button>
-    </td>
-  </tr>
 
-</table>
+<div id="filtroForms">
+  <div class = "encabezadoForms">
+
+
+      <table class = "table">
+        <tr>
+          <td>Buscar todas las facturas</td>
+          <td><input type="radio" name="anulada" value="Todas" checked style="margin: 0px 0px 0px 42%;"></input></td>
+        </tr>
+        <tr>
+          <td>Facturas anuladas</td>
+          <td><input type="radio" name="anulada" value="Si" style="margin: 0px 0px 0px 42%;"></input></td>
+        </tr>
+        <tr>
+          <td>Facturas válidas</td>
+          <td><input type="radio" name="anulada" value="No" style="margin: 0px 0px 0px 42%;"></input></td>
+        </tr>
+        <tr>
+          <td>No. Serie</td>
+          <td><input type="text" name="serie" id="serie" value=""></td>
+        </tr>
+        <tr>
+          <td>Numero de Factura</td>
+          <td><input type="text" name="numero" id="numero" value=""></td>
+        </tr>
+        <tr>
+          <td>{% if mensaje == 'compras' %}
+          Proveedor
+          {% else %}
+          Cliente
+          {% endif %}</td>
+          <td><select id="comodin">
+            <option value="0" selected>------</option>
+            {% for comodin in comodines %}
+            <option value="{{comodin.id}}">{{comodin}}</option>
+            {% endfor %}
+          </select></td>
+        </tr>
+      </table>
+      <button type="button" name="buscar" id="buscar">Buscar</button>
+
+    <br></br>
+
 </div>
+</div>
+
+
 
 <div class = "listados">
 
