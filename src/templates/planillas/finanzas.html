@@ -17,6 +17,9 @@
           <th>
             Egresos
           </th>
+          <th>
+            Fecha
+          </th>
         </thead>
         <tbody>
           <tr>
@@ -42,9 +45,11 @@
                 {{transaccion.monto}}
               {% endif %}
             </td>
+            <td>
+              {{transaccion.fecha}}
+            </td>
           </tr>
           {% endfor %}
-          <tr>
           </tbody>
           <tfoot>
             <th>
@@ -54,7 +59,6 @@
               {{utilidad}}
             </td>
           </tfoot>
-        </tr>
       </table>
       <!-- <h4>{{utilidad}}</h4> -->
       <h2>Finanzas</h2>

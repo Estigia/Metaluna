@@ -26,6 +26,7 @@ class Planilla(models.Model):
 class Finanzas(models.Model):
     id = models.AutoField(primary_key = True)
     descripcion = models.CharField(max_length = 100, blank = False, null = False)
+    fecha = models.DateField()
     #True = ingreso False = egreso
     tipo = models.BooleanField(default = None)
     monto = models.FloatField(blank = False, null = False)
