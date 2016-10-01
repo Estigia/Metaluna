@@ -59,27 +59,41 @@ function borrarColumna(idTabla)
     else
     {
       //fila[i].getElementsByTagName('td')[0].style.display = "none";
-      fila[i].getElementsByTagName('td')[6].style.display = "none";
-      fila[i].getElementsByTagName('td')[5].style.display = "none";
+      fila[i].getElementsByTagName('td')[6].innerHTML = "_____________";
+      fila[i].getElementsByTagName('td')[5].style.display  = "none";
     }
   }
   }
 
 
+  function agregarFila(idtabla){
 
+            var table = document.getElementById(idtabla);
+           var rowCount = table.rows.length;
+           var row = table.insertRow(7);
+           for(var i=0; i<7; i++){
+                    row.insertCell(i);
+
+            }
+            alert("function");
+            imprimir(idtabla);
+  }
 
 
 
 
 
 function imprimir(soloEsto){
+
+
 var contenido = document.getElementById(soloEsto).outerHTML;
 ventana=window.open("about :blank","ventana","width=700,height=600,top=0,left=3000");
 ventana.document.open();
-ventana.document.write(contenido);
-ventana.document.write('<html><link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css"/><head><title>METALUNA</title></head><body class="table" onprint="self.close()">');
 
+ventana.document.write('<html><link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css"/><head><title>METALUNA</title></head><body class="table" onprint="self.close()">');
+ventana.document.write('<br></br><br></br><br></br><br></br><br></br><br>');
 ventana.document.write('</body></html>');
+ventana.document.write(contenido);
 ventana.document.close();
 ventana.print();
 ventana.focus();
