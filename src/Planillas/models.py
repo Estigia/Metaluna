@@ -7,7 +7,6 @@ from django.core.validators import MinValueValidator
 
 # Create your models here.
 class Planilla(models.Model):
-
     sueldo = models.FloatField(blank = True, null = True)
     horasExtra = models.FloatField(blank = True, null = True)
     bonoIncentivo = models.FloatField(blank = True, null = True)
@@ -23,3 +22,10 @@ class Planilla(models.Model):
     Agencia_id = models.ForeignKey('Agencia.Agencia',default = 1)
     def __unicode__(self):
         return self.totalLiquido
+
+class Finanzas(models.Model):
+    id = models.AutoField(primary_key = True)
+    descripcion = models.CharField(max_length = 100, blank = False, null = False)
+    #True = ingreso False = egreso
+    tipo = models.BooleanField(default = None)
+    monto = models.FloatField(blank = False, null = False)

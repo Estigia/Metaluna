@@ -1,5 +1,5 @@
 from django import forms
-from .models import Planilla
+from .models import Planilla, Finanzas
 
 class PlanillaForm(forms.ModelForm):
     class Meta:
@@ -18,3 +18,12 @@ class PlanillaForm(forms.ModelForm):
         "Empleado_id",
         "Agencia_id",
         ]
+
+class FinanzasForm(forms.ModelForm):
+    class Meta:
+        model = Finanzas
+        fields = {
+            "descripcion",
+            "tipo",
+            "monto",
+        }

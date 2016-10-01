@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="bloqueForms">
+  <div class = "camposForms">
+    <form method="post" action="">
+      {%csrf_token%}
+      <h2>Utilidad</h2>
+      <table class="table">
+        <thead>
+          <th>
+            Descripción
+          </th>
+          <th>
+            Ingresos
+          </th>
+          <th>
+            Egresos
+          </th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              Capital
+            </th>
+            <td>
+              {{capital}}
+            </td>
+          </tr>
+          {% for transaccion in transacciones %}
+          <tr>
+            <th>
+              {{transaccion.descripcion}}
+            </th>
+            <td>
+              {% if transaccion.tipo %}
+                {{transaccion.monto}}
+              {% endif %}
+            </td>
+            <td>
+              {% if not transaccion.tipo %}
+                {{transaccion.monto}}
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+          </tbody>
+          <tfoot>
+            <th>
+              Utilidad
+            </th>
+            <td>
+              {{utilidad}}
+            </td>
+          </tfoot>
+        </tr>
+      </table>
+      <!-- <h4>{{utilidad}}</h4> -->
+      <h2>Finanzas</h2>
+
+      <label>Ingreso</label>
+        {{form.tipo}}
+      <label>Egreso</label>
+        <input type="checkbox" name="egreso" id="egreso" value="" checked>
+      <label>Monto</label>
+        {{form.monto}}
+      <label>Descripción</label>
+        {{form.descripcion}}
+      <input type='submit' value='Agregar'>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+  $('#egreso').on('change', function(){
+    $("#id_tipo")[0].checked = false;
+  })
+
+  $('#id_tipo').on('change', function(){
+    $("#egreso")[0].checked = false;
+  })
+</script>
+{% endblock %}

@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^transacciones/', include('Transacciones.urls', namespace='Transacciones')),
     url(r'^registro/','Usuario.views.registro', name='registro'),
     url(r'^empresa/',include('Comodin.urls', namespace='index')),
+    url(r'^finanzas/','Planillas.views.finanzas', name= 'finanzas'),
     # url(r'^clientes/$','Comodin.views.clientes', name='clientes'),
     url(r'^marca/',MarcaCreate.as_view(), name = 'marca'),
     url(r'^filtro/',filtroP,name = 'filtroP'),
