@@ -3370,13 +3370,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			margin: 0 auto;
       margin-left: 14%;
 		}
-		.encabezadoForms form label, .encabezadoForms form textarea, .encabezadoForms form select, .encabezadoForms form a, .encabezadoForms h2{
+		.encabezadoForms form label, .encabezadoForms form textarea, .encabezadoForms form a, .encabezadoForms h2{
 			width: 100%;
 			float: left;
 			display: block;
 			padding: 3px;
 			margin-left: 12%;
 		}
+
+    .encabezadoForms form select {
+      width: 100px;
+    }
 
 
 
