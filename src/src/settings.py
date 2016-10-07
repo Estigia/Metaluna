@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'metalunadb',
         'USER': 'metaluna',
         'PASSWORD': 'SGeDU3yC',
-        'HOST': 'distribuidorametaluna.com',
+        'HOST': '162.243.174.219',
         'PORT': '5432',
     }
 }
