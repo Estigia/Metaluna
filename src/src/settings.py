@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'src.wsgi.application'
 DATABASES = {
   'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'MetalunaDB',
+        'NAME': 'metalunadb',
         'USER': 'metaluna',
         'PASSWORD': 'SGeDU3yC',
         'HOST': 'distribuidorametaluna.com',
