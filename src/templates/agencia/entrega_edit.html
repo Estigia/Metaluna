@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="bloqueForms">
+  <div class = "camposForms">
+    <form method="post" action="">
+      {%csrf_token%}
+      <h2>Editar Entrega</h2>
+
+      <label>Kilometraje de salida</label>
+        {{form.kSalida}}
+      <label>Kilometraje de entrada</label>
+        {{form.kEntrada}}
+      <label>Fecha</label>
+        {{form.fecha}}
+      <label>Vale</label>
+        {{form.vale}}
+      <label>Vehiculo</label>
+        {{form.Vehiculo_id}}
+
+      <input type='submit' value='Editar'>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

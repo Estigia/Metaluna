@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h2>Vehiculo {{vehiculo.placa}} </h2>
+    <div class = "listados">
+      <table class = "table">
+        <tr>
+          <td><strong>Marca</td>
+          <td>{{vehiculo.marca}}<td>
+        </tr>
+        <tr>
+          <td><strong>Modelo</td>
+          <td>{{vehiculo.modelo}}<td>
+        </tr>
+        <tr>
+          <td><strong>Placa</td>
+          <td>{{vehiculo.placa}}</td>
+        </tr>
+        <tr>
+          <td><strong>Agencia a la que pertenece</td>
+          <td>{{vehiculo.Agencia_id}}</td>
+        </tr>
+      </table>
+    </div>
+{% endblock %}

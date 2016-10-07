@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Facturas de {{mensaje}}</h2>
+</br>
+
+<div id="filtroForms">
+  <div class = "encabezadoForms">
+
+
+      <table class = "table">
+        <tr>
+          <td>Buscar todas las facturas</td>
+          <td><input type="radio" name="anulada" value="Todas" checked style="margin: 0px 0px 0px 42%;"></input></td>
+        </tr>
+        <tr>
+          <td>Facturas anuladas</td>
+          <td><input type="radio" name="anulada" value="Si" style="margin: 0px 0px 0px 42%;"></input></td>
+        </tr>
+        <tr>
+          <td>Facturas válidas</td>
+          <td><input type="radio" name="anulada" value="No" style="margin: 0px 0px 0px 42%;"></input></td>
+        </tr>
+        <tr>
+          <td>No. Serie</td>
+          <td><input type="text" name="serie" id="serie" value=""></td>
+        </tr>
+        <tr>
+          <td>Numero de Factura</td>
+          <td><input type="text" name="numero" id="numero" value=""></td>
+        </tr>
+        <tr>
+          <td>{% if mensaje == 'compras' %}
+          Proveedor
+          {% else %}
+          Cliente
+          {% endif %}</td>
+          <td><select id="comodin">
+            <option value="0" selected>------</option>
+            {% for comodin in comodines %}
+            <option value="{{comodin.id}}">{{comodin}}</option>
+            {% endfor %}
+          </select></td>
+        </tr>
+      </table>
+      <button type="button" name="buscar" id="buscar">Buscar</button>
+
+    <br></br>
+
+</div>
+</div>
+
+
+
+<div class = "listados">
+
+  <table id='tblDatos' class = "table">
+    <tr>
+      <td><strong>Nombre</td>
+      <td><strong>Fecha</td>
+      <td><strong>Serie</td>
+      <td><strong>No. Factura</td>
+      <td><strong>Anulada</td>
+      <td><strong>Total</td>
+    </tr>
+    {% for factura in facturas %}
+    <tr>
+      <td>
+        {{factura.Comodin_id}}
+      </td>
+      <td>
+        {{factura.fecha}}
+      </td>
+      <td>
+        {{factura.serie}}
+      </td>
+      <td>
+        {{factura.noDocumento}}
+      </td>
+      <td>
+        {% if factura.anulada %}
+        Si
+        {% else %}
+        No
+        {% endif %}
+      </td>
+      <td>
+        <a href="javascript:anular({{factura.id}})">
+          {% if factura.anulada %}
+          Recuperar
+          {% else %}
+          Anular
+          {% endif %}
+        </a>
+      </td>
+      <td>
+        {{factura.precioTotal}}
+      </td>
+      <td>
+        <a href={% url 'Transacciones:facturas' factura.id %}>Ver</a>
+      </td>
+    </tr>
+    {% endfor %}
+
+  </table>
+  <div id="paginador"></div>
+
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript">
+
+  $('#buscar').on('click', function(){
+
+    var anulada = "";
+    if($('input[type=radio]')[1].checked)
+      anulada = "anulada=1"
+    if($('input[type=radio]')[2].checked)
+      anulada = "anulada=0"
+
+    var comodin = "";
+    if($('#comodin').val()!=0)
+      comodin = "&comodin="+$('#comodin').val();
+
+    var serie = "";
+    if($('#serie').val()!="")
+      serie = "&serie="+$('#serie').val();
+
+    var numero = "";
+    if($('#numero').val()!="")
+      numero = '&numero='+$('#numero').val();
+
+    location.href = '?'+anulada+comodin+serie+numero;
+
+  })
+
+  $(document).ready(function(){
+    var p = new Paginador(
+      document.getElementById('paginador'),
+      document.getElementById('tblDatos'),
+      10
+    );
+
+    p.Mostrar();
+  });
+
+  function anular(id_factura){
+
+    $.ajax({
+
+      data:{
+        'id':id_factura,
+      },
+      url: "{% url 'Transacciones:anular' %}",
+      type: 'get',
+      success: function(data){
+        // if(data.includes('recuparada'))
+        //   $('a#'+id_factura).text('Anular');
+        // else
+        //   $('a#'+id_factura).text('Recuperar');
+        alert(data);
+        location.reload();
+      },
+      error: function(){
+        alert('Error con el servidor, intente de nuevo.');
+      }
+
+    })
+
+  }
+
+</script>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{usuario}}</h2>
+<br/>
+
+<div class = "listados">
+
+  <table class = "table">
+    <tr>
+      <th>Nombre</th>
+      <td>
+        {{usuario.get_full_name}}
+      </td>
+    </tr>
+    <tr>
+      <th>Activo</th>
+      <td>
+
+        {% if empleado.is_active %}
+        Si
+        {% else %}
+        No
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <th>Ultima conexión</th>
+      <td>
+        {{usuario.ultima_conexion}}
+      </td>
+    </tr>
+    <tr>
+      <th>Empleado</th>
+      <td>
+        {{usuario.Empleado_id}}
+      </td>
+    </tr>
+
+  </table>
+
+</div>
+
+{% endblock %}

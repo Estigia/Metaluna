@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class = "camposForms">
+
+  <div class="tboxs">
+      <label>Proveedor:</label>
+      {% csrf_token %}
+        <select id="proveedor" name="proveedor">
+        <option selected>------</option>
+        {% for proveedor in proveedores %}
+          <option value="{{proveedor.id}}">{{proveedor}}</option>
+          {% endfor %}
+        </select>
+
+          <a href={% url 'index:comodinCreate' %} class = "lnk" target="_blank">+</a>
+
+        <br></br>
+        <label>Serie Factura:</label>
+        <input type="text" id="serie" name="serie" value="A">
+        <br></br>
+        <label>No. Factura:</label>
+        <input type="text" id="num" name="num" value="0000" unique = True>
+  </div>
+
+<hr>
+<div class = "tbox1">
+  <form action="" method="post" onsubmit="return validacion()">
+    {% csrf_token %}
+    <label>Tipo de Producto</label>
+    <select id="tipo" name="tipo1">
+      <option selected>------</option>
+      {% for tipo in tipos %}
+        <option value="{{tipo.id}}">{{tipo}}</option>
+      {% endfor %}
+    </select></br>
+    <label>Marca</label>
+    <select id="marca" name="marca">
+      <option selected>------</option>
+      {% for marca in marcas %}
+        <option value="{{marca.id}}">{{marca}}</option>
+      {% endfor %}
+    </select></br>
+    <label>Producto</label>
+    <select id='productos' name='productos1'>
+      <option selected>------</option>
+      <!-- {% for producto in productos %}
+        <option value="{{producto.id}}">{{producto.nombre}}</option>
+      {% endfor %} -->
+    </select></br>
+    <label>Cantidad</label>
+    <input id="cantidad" type="number" name="cantidad" value=0 min="0"></br>
+    <label>Precio</label>
+    <input id="precio" type="text" name="precio" value=0></br>
+    <label>Crédito</label>
+    <input type="checkbox" id="credito" name="credito" checked></br>
+    <input id="agregar" type="button" value="Agregar detalle"></br>
+  </form>
+</div>
+
+</div>
+
+<div class = "tbox2">
+  <table class="table" id='detalles' name="detalles">
+    <tr>
+      <td>Cantidad</td>
+      <td width=50%>Descripción</td>
+      <td>Precio unitario</td>
+      <td>Sub-Total</td>
+    </tr>
+  </table>
+  <input id="facturar" type="button" value="Facturar"></br>
+</div>
+
+{% endblock %}
+
+{% block js %}
+{% csrf_token %}
+<script type="text/javascript">
+  $('#agregar').on('click', agregarDetalle);
+  $('#marca').on('change', busquedaProducto);
+  $('#facturar').on('click',facturar);
+
+  //$('#credito').on('change',function(){
+    //alert(document.getElementById('credito').checked)
+  //})
+
+  function facturar(){
+
+    var filas = document.getElementById('detalles').rows;
+    var total = 0;
+
+    var detalles = '{\n';
+
+    for(var i=1; i<filas.length;i++){
+      var detalle = '\n"detalle'+i+'":'+'{'+
+        '\n\t"cantidad":' + filas[i].cells[0].innerHTML +','+
+        '\n\t"descripcion":' + filas[i].cells[1].id +','+
+        '\n\t"subtotal":' + filas[i].cells[3].innerHTML;
+        total = total + parseInt(filas[i].cells[3].innerHTML);
+      if (i==filas.length-1){
+        detalle += '\n\t}\n';
+      }else{
+        detalle += '\n\t}, \n';
+      }
+
+      detalles = detalles + detalle;
+      //console.log(detalle);
+    }
+
+    detalles = detalles + '}';
+    console.log(total);
+
+    //var json = JSON.parse(detalles);
+
+    $.ajax({
+
+      data: {
+        'detalles': detalles,
+        'proveedor': $('#proveedor').val(),
+        'serie': $('#serie').val(),
+        'num_doc': $('#num').val()
+      },
+      url: "{% url 'Transacciones:compra' %}",
+      type: 'get',
+      dataType: 'json',
+      success: function(data){
+        alert("Factura creada con exito.");
+
+        if(!document.getElementById('credito').checked)
+          location.href += 'facturas/';
+        else
+          location.href = location.href + 'crear_credito/?factura='+data[0].pk+'&monto='+total;
+      }
+    });
+
+  }
+
+  function agregarDetalle(){
+
+    var tabla = document.getElementById('detalles');
+    var cantidad = $('#cantidad').val();
+    var combo = document.getElementById('productos');
+    var producto = combo.options[combo.selectedIndex].text;
+    var precio = $('#precio').val();
+
+    if(cantidad <= 0 || precio<0){
+      alert("Ingrese valores positivos en los campos Precio y Cantidad");
+      return;
+    }
+
+    var fila = document.createElement('tr');
+    var columna = document.createElement("td");
+
+    var texto = document.createTextNode(cantidad);
+    var columna = document.createElement("td");
+      columna.appendChild(texto);
+      fila.appendChild(columna);
+
+    texto = document.createTextNode(producto);
+    var columna = document.createElement("td");
+      columna.appendChild(texto);
+      columna.id = $('#productos').val();
+      fila.appendChild(columna);
+
+    texto = document.createTextNode(precio);
+    var columna = document.createElement("td");
+      columna.appendChild(texto);
+      fila.appendChild(columna);
+
+    var subtotal = cantidad * precio;
+
+    texto = document.createTextNode(subtotal);
+    var columna = document.createElement("td");
+      columna.appendChild(texto);
+      fila.appendChild(columna);
+
+    tabla.appendChild(fila);
+
+    console.log(document.getElementById('credito').checked);
+
+  }
+
+
+
+  function busquedaProducto(){
+    var id_marca = $(this).val();
+    var id_tipo = $('#tipo').val();
+
+    $.ajax({
+
+      data: {
+        'id_marca':id_marca,
+        'id_tipo' : id_tipo
+      },
+      url: "{% url 'Producto:filtroProducto' %}",
+      type: 'get',
+      success: function(data){
+        var inner = document.getElementById('productos');
+
+        inner.innerHTML = "";
+
+        for(var i=0; i<data.length;i++){
+          var nuevo = document.createElement("option");
+
+          nuevo.value = data[i].pk;
+          nuevo.innerHTML = data[i].fields.descripcion + "-"
+                            + data[i].fields.Material_id + "-"
+                            + data[i].fields.Calibre_id + "-"
+                            + data[i].fields.Forma_id + "-"
+                            + data[i].fields.Longitud_id;
+
+          inner.options.add(nuevo);
+        }
+
+      }
+
+    })
+
+  }
+
+
+</script>
+{% endblock %}

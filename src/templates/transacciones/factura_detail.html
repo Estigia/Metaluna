@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Factura: {{factura.nombre_factura}}</h2>
+<br/>
+
+<div class = "listados">
+
+
+  <table class = "table">
+    <tr>
+      <th>Nombre</th>
+      <td>
+        {{factura.Comodin_id}}
+      </td>
+    </tr>
+    <tr>
+      <th>Serie</th>
+      <td>
+        {{factura.serie}}
+      </td>
+    </tr>
+    <tr>
+      <th>No. Factura</th>
+      <td>
+        {{factura.noDocumento}}
+      </td>
+    </tr>
+    <tr>
+      <th>Anulada</th>
+      <td>
+        {% if factura.anulada %}
+        Si
+        {% else %}
+        No
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+            <th>Total</th>
+      <td>
+        {{factura.precioTotal}}
+      </td>
+    </tr>
+
+  </table>
+
+  <table class="table">
+    <caption><strong>Detalles de Factura</caption>
+    <tr>
+      <th>Cantidad</th>
+      <th>Descripcion</th>
+      <th>Precio Unitario</th>
+      <th>Sub-Total</th>
+    </tr>
+    {% for detalle in detalles %}
+    <tr>
+      <td>{{detalle.cantidad}}</td>
+      <td>{{detalle.Producto_id}}</td>
+      <td>{{detalle.precioUnitario}}</td>
+      <td>{{detalle.subTotal}}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <th>Total</th>
+      <td>{{total.subTotal__sum}}</td>
+    </tr>
+  </table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h2>Mercaderia</h2>
+  <div class = "listados">
+    <table class = "table">
+
+      <tr>
+        <td><strong>Producto</td>
+        <td><strong>Agencia</td>
+        <td><strong>Cantidad</td>
+      </tr>
+
+      {% for dato in mercaderia %}
+        <tr>
+          <td>{{dato.Producto_id}}</td>
+          <td>{{dato.Agencia_id}}</td>
+          <td>{{dato.cantidad}}</td>
+          <td><a href={% url 'Agencia:detail_m' dato.id %}><i>Ver</i></a></td>
+          <td><a href={% url 'Agencia:edit_m' dato.id %}><i>Editar</i></a></td>
+        </tr>
+      {% endfor %}
+
+    </table>
+  </div>
+
+{% endblock %}

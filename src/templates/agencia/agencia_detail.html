@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Agencia {{agencia.nombre}}</h2>
+
+  <div class = "listados">
+
+
+    <table class = "table">
+      <tr>
+        <td><strong>Dirección</td>
+          <td>{{agencia.direccion}}<td>
+      </tr>
+      <tr>
+        <td><strong>Capital</td>
+        <td>{{agencia.capital}}<td>
+      </tr>
+      <tr>
+        <td><strong>Municipio</td>
+        <td>{{agencia.Municipio_id}}</td>
+      </tr>
+    </table>
+
+  </div>
+
+{% endblock %}

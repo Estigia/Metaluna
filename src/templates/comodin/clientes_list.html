@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<h2>Clientes</h2>
+
+<div class = "divBotonesListado">
+  <a href="/empresa/clientes/crear" class = "lnk" target="_blank">+</a>
+  <a href="/empresa/clientes/crear" class = "descripcion"> Agregar</a>
+</div>
+
+<div class = "listados" >
+  <table class = "table"   id = tablaDatos>
+    <tr>
+      <td></td>
+      <td><strong>Nombre</td>
+      <td><strong>Empresa</td>
+      <td><strong>Telefono</td>
+      <td><strong>Saldo</td>
+    </tr>
+
+
+    {% for dato in comodin %}
+      <tr id=datosTablaImprimir>
+        <td><a><input type = "checkbox" value = "Falso" id = {{dato.telefono}}  ></a></td>
+        <td>{{dato.nombre}}</td>
+        <td>{{dato.empresa}}</td>
+        <td>{{dato.telefono}}</td>
+        <td>{{dato.saldo}}</td>
+        <td><a href={% url 'index:detallesCliente' dato.id %}><i>Ver</i></a></td>
+        <td><a href={% url 'index:editarCliente' dato.id %}><i>Editar</i></a></td>
+      </tr>
+    {% endfor %}
+
+  </table>
+
+</div>
+<input type=button value="ajustar" onclick="borrarColumna('tablaDatos')">
+<input type=button value="imprimir" onclick="imprimir('tablaDatos')">
+
+<script type="text/javascript">
+
+
+
+function borrarColumna(idTabla)
+{
+  var fila;
+  fila=document.getElementById(idTabla).getElementsByTagName('tr');
+  var tabla   = document.createElement("table");
+  ultimaColumna=fila.length;
+  for(var i=1;ultimaColumna;i++)
+  {
+    var telefono = fila[i].getElementsByTagName('td')[3].innerHTML;
+    var x = document.getElementById(telefono).checked;
+    if(x==false)
+    {
+      document.getElementById(idTabla).deleteRow(i);
+    }
+
+    else
+    {
+      //fila[i].getElementsByTagName('td')[0].style.display = "none";
+      fila[i].getElementsByTagName('td')[6].innerHTML = "_____________";
+      fila[i].getElementsByTagName('td')[5].style.display  = "none";
+    }
+  }
+  }
+
+
+  function agregarFila(idtabla){
+
+            var table = document.getElementById(idtabla);
+           var rowCount = table.rows.length;
+           var row = table.insertRow(7);
+           for(var i=0; i<7; i++){
+                    row.insertCell(i);
+
+            }
+            alert("function");
+            imprimir(idtabla);
+  }
+
+
+
+
+
+function imprimir(soloEsto){
+
+
+var contenido = document.getElementById(soloEsto).outerHTML;
+ventana=window.open("about :blank","ventana","width=700,height=600,top=0,left=3000");
+ventana.document.open();
+
+ventana.document.write('<html><link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css"/><head><title>METALUNA</title></head><body class="table" onprint="self.close()">');
+ventana.document.write('<br></br><br></br><br></br><br></br><br></br><br>');
+ventana.document.write('</body></html>');
+ventana.document.write(contenido);
+ventana.document.close();
+ventana.print();
+ventana.focus();
+ventana.close();
+
+}
+</script>
+
+{% endblock %}

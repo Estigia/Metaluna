@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Productos de {{productos_list.first.Agencia_id}}</h2>
+
+  <div class="submenu">
+    <table class="table">
+      <tr>
+        <td>Descripcion</td>
+        <td>Cantidad</td>
+      </tr>
+      {% for producto in productos_list %}
+      <tr>
+        <td>{{ producto }}</td>
+        <td>{{ producto.cantidad }}</td>
+        <td><a href={% url 'Producto:detail' producto.id %}><i>Ver</i></a></td>
+        <td><a href={% url 'Producto:edit' producto.id %}><i>Editar</i></a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

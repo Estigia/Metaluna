@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="bloqueForms">
+  <div class = "camposForms">
+    <form method="post" action="">
+      {%csrf_token%}
+      <h2>Agregar Marca</h2>
+
+      <label>Marca</label>
+        {{form.marca}}
+
+      <label>Proveedor</label>
+      <a href="/proveedor" class = "lnk" target="_blank">+</a>
+      <select id = "proveedor_id" name = "proveedor">
+        <option selected>------</option>
+          {% for dato in proveedores %}
+            <option value="{{dato.id}}">{{dato.empresa}}---{{dato.nombre}}</option>
+          {% endfor %}
+      </select>
+
+      <input type='submit' value='Agregar'>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div id="bloqueForms">
+  <div class = "camposForms">
+    <form method="post" action="">
+      {%csrf_token%}
+      <h2>Editar Agencia</h2>
+      <label>Nombre</label>
+        {{form.nombre}}
+      <label>Direccion</label>
+        {{form.direccion}}
+      <label>Capital</label>
+        {{form.capital}}
+      <label>Municipio</label>
+        {{form.Municipio_id}}
+      <input type='submit' value='Agregar'>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

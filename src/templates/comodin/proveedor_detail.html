@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Proveedor {{comodin.nombre}}</h2>
+
+  <div class = "listados">
+
+
+    <table class = "table">
+      <tr>
+        <td><strong>Nombre</td>
+        <td>{{comodin.nombre}}</td>
+      </tr>
+      <tr>
+        <td><strong>Bloqueado</td>
+        <td>
+          {% if comodin.bloqueado %}
+          Si
+          {% else %}
+          No
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td><strong>NIT</td>
+        <td>{{comodin.nit}}</td>
+      </tr>
+      <tr>
+        <td><strong>Empresa</td>
+        <td>{{comodin.empresa}}</td>
+      </tr>
+      <tr>
+        <td><strong>Dirección</td>
+          <td>{{comodin.direccion}}, {{comodin.municipio}}, {{comodin.municipio.Departamento_id}}<td>
+      </tr>
+      <tr>
+        <td><strong>Telefono</td>
+        <td>{{comodin.telefono}}<td>
+      </tr>
+      <tr>
+        <td><strong>Saldo</td>
+        <td>{{comodin.saldo}}</td>
+      </tr>
+
+    </table>
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h2>Detalle de Producto {{mercaderia.Producto_id}} </h2>
+    <div class = "listados">
+      <table class = "table">
+
+        <tr>
+          <td><strong>Producto</td>
+          <td>{{mercaderia.Producto_id}}<td>
+        </tr>
+        <tr>
+          <td><strong>Agencia</td>
+          <td>{{mercaderia.Agencia_id}}<td>
+        </tr>
+        <tr>
+          <td><strong>Cantidad</td>
+          <td>{{mercaderia.cantidad}}</td>
+        </tr>
+      </table>
+    </div>
+
+{% endblock %}

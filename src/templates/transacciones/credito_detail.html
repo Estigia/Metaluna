@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Credito {{credito.id}}</h2>
+<br/>
+
+<div class = "listados">
+
+
+  <table class = "table">
+    <tr>
+      <th>
+      {% if credito.Factura_id.Comodin_id.tipo %}
+      Proveedor
+      {% else %}
+      Cliente
+      {% endif %}
+      </th>
+      <td>
+        {{credito.Factura_id.Comodin_id}}
+      </td>
+    </tr>
+    <tr>
+      <th>No. Factura</th>
+      <td>
+        {{credito.Factura_id.noDocumento}}
+      </td>
+    </tr>
+    <tr>
+      <th>Aprobado</th>
+      <td>
+        {% if credito.aprobado %}
+        Si
+        {% else %}
+        No
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <th>Finalizado</th>
+      <td>
+        {% if credito.finalizado %}
+        Si
+        {% else %}
+        No
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <th>Monto</th>
+      <td>
+        {{credito.monto}}
+      </td>
+    </tr>
+    <tr>
+      <th>Saldo</th>
+      <td>
+        {{credito.saldo}}
+      </td>
+    </tr>
+    <tr>
+      <th>Fecha Aprobacion</th>
+      <td>
+        {{credito.fechaAprobacion}}
+      </td>
+    </tr>
+    <tr>
+      <th>Fecha Limite</th>
+      <td>
+        {{credito.fechaLimite}}
+      </td>
+    </tr>
+    <tr>
+      <th>Aprobado por</th>
+      <td>
+        {{credito.Usuario_id}}
+      </td>
+    </tr>
+
+  </table>
+
+</div>
+
+{% endblock %}

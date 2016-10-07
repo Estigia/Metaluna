@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Transacciones</h2>
+<br/>
+
+<div class="messages">
+  {% if messages %}
+    {% for message in messages %}
+    <label>{{message}}</label>
+    {% endfor %}
+  {% endif %}
+</div>
+
+<div class = "submenu">
+
+
+  <table class = "table">
+  <tr>
+    <td><strong>Compras</td>
+    <td><a href= "/transacciones/compras"><i>Crear</i></a></td>
+    <td><a href= "/transacciones/compras/facturas"><i>Desplegar</i></a></td>
+  </tr>
+
+  <tr>
+    <td><strong>Ventas</td>
+    <td><a href= "/transacciones/ventas"><i>Crear</i></a></td>
+    <td><a href= "/transacciones/ventas/facturas"><i>Desplegar</i></a></td>
+  </tr>
+
+  <tr>
+    <td><strong>Créditos Compras</td>
+    <td><a href= "/"><i></i></a></td>
+    <td><a href= "/transacciones/compras/creditos"><i>Desplegar</i></a></td>
+  </tr>
+
+
+  <tr>
+    <td><strong>Créditos Ventas</td>
+    <td><a href= "/"><i></i></a></td>
+    <td><a href= "/transacciones/ventas/creditos"><i>Desplegar</i></a></td>
+  </tr>
+
+  <tr>
+    <td><strong>Abonos Compras</td>
+    <td><a href= {% url 'Transacciones:abonos' 'compras' %}><i>Crear</i></a></td>
+    <td><a href= {% url 'Transacciones:abonos_list' 'compras'%}><i>Desplegar</i></a></td>
+  </tr>
+
+  <tr>
+    <td><strong>Abonos Ventas</td>
+    <td><a href= {% url 'Transacciones:abonos_v' 'ventas' %}><i>Crear</i></a></td>
+    <td><a href= {% url 'Transacciones:abonos_list_v' 'ventas' %}><i>Desplegar</i></a></td>
+  </tr>
+
+  </table>
+
+
+
+</div>
+{% endblock %}

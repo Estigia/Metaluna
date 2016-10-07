@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Empleados</h2>
+<br/>
+
+<div class = "listados">
+
+
+  <table id='tblDatos' class = "table">
+    <tr>
+      <td><strong>ID</td>
+      <td><strong>Nombre</td>
+      <td><strong>CUI</td>
+      <td><strong>Agencia</td>
+    </tr>
+    {% for empleado in empleados %}
+    <tr>
+      <td>
+        {{empleado.id}}
+      </td>
+      <td>
+        {{empleado}}
+      </td>
+      <td>
+        {{empleado.cui}}
+      </td>
+      <td>
+        {{empleado.Agencia_id}}
+      </td>
+      <td>
+        <a href={% url 'Usuario:empleadoDetail' empleado.id %}>Ver</a>
+      </td>
+    </tr>
+    {% endfor %}
+
+  </table>
+  <div id="paginador"></div>
+
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript">
+  var p = new Paginador(
+    document.getElementById('paginador'),
+    document.getElementById('tblDatos'),
+    10
+  );
+
+  p.Mostrar();
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Detalle de Producto</h2>
+  <div class = "listados">
+    <table class = "table">
+      <tr>
+        <td><strong>Descripcion</td>
+        <td>{{producto.descripcion}}<td>
+      </tr>
+      <tr>
+        <td><strong>Tipo de Producto</td>
+        <td>{{producto.Tipo_Producto_id}}<td>
+      </tr>
+      <tr>
+        <td><strong>Material</td>
+        <td>{{producto.Material_id}}</td>
+      </tr>
+      <tr>
+        <td><strong>Longitud</td>
+        <td>{{producto.Longitud_id}}</td>
+      </tr>
+      <tr>
+        <td><strong>Calibre</td>
+        <td>{{producto.Calibre_id}}</td>
+      </tr>
+      <tr>
+        <td><strong>Forma</td>
+        <td>{{producto.Forma_id}}</td>
+      </tr>
+    </table>
+
+  </div>
+
+{% endblock %}

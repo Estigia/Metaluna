@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Productos</h2>
+
+  <div id="filtroForms">
+    <div class = "encabezadoForms">
+      <table class = "table">
+        <tr>
+          <td>Descripcion</td>
+          <td><input type="text" name="name" id="descripcion"></td>
+        </tr>
+
+        <tr>
+          <td>Tipo</td>
+          <td><select id="tipo">
+            <option value="0" selected>------</option>
+            {% for tipo in tipos %}
+            <option value="{{tipo.id}}" >{{tipo}}</option>
+            {% endfor %}
+          </select></td>
+        </tr>
+
+        <tr>
+          <td>Material</td>
+          <td><select id="material">
+            <option value="0" selected>------</option>
+            {% for material in materiales %}
+            <option value="{{material.id}}" >{{material}}</option>
+            {% endfor %}
+          </select></td>
+        </tr>
+
+        <tr>
+          <td>Longitud</td>
+          <td>  <select id="longitud">
+              <option value="0" selected>------</option>
+              {% for longitud in longitudes %}
+              <option value="{{longitud.id}}" >{{longitud}}</option>
+              {% endfor %}
+            </select></td>
+        </tr>
+
+        <tr>
+          <td>Calibre</td>
+          <td><select id="calibre">
+            <option value="0" selected>------</option>
+            {% for calibre in calibres %}
+            <option value="{{calibre.id}}" >{{calibre}}</option>
+            {% endfor %}
+          </select></td>
+        </tr>
+
+        <tr>
+          <td>Forma</td>
+          <td><select id="forma">
+            <option value="0" selected>------</option>
+            {% for forma in formas %}
+            <option value="{{forma.id}}" >{{forma}}</option>
+            {% endfor %}
+          </select></td>
+        </tr>
+
+        <tr>
+          <td>Marca</td>
+          <td><select id="marca">
+            <option value="0" selected>------</option>
+            {% for marca in marcas %}
+            <option value="{{marca.id}}">{{marca}}</option>
+            {% endfor %}
+          </select></td>
+        </tr>
+      </table>
+      <button type="button" name="buscar" id="buscar">Buscar</button>
+    </div>
+  </div>
+
+  <div class = "divBotonesListado">
+    <a href="/productos/crear" class = "lnk" target="_blank">+</a>
+    <a href="/productos/crear" class = "descripcion"> Agregar</a>
+  </div>
+
+
+
+  <div class = "listados">
+    <table class = "table">
+      <tr>
+        <td><strong>Descripción</td>
+        <td><strong>Tipo de Producto</td>
+        <td><strong>Material</td>
+        <td><strong>Longitud</td>
+        <td><strong>Calibre</td>
+        <td><strong>Forma</td>
+        <td><strong>Cantidad</td>
+      </tr>
+
+      {% for dato in productos %}
+        <tr>
+          <td>{{dato.descripcion}}</td>
+          <td>{{dato.Tipo_Producto_id}}</td>
+          <td>{{dato.Material_id}}</td>
+          <td>{{dato.Longitud_id}}</td>
+          <td>{{dato.Calibre_id}}</td>
+          <td>{{dato.Forma_id}}</td>
+          <td>{{dato.getTotal}}</td>
+          <!-- <td><a href={% url 'Producto:detail' dato.id %}><i>Ver</i></a></td> -->
+          <td><a href={% url 'Producto:edit' dato.id %}><i>Editar</i></a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$('#buscar').on('click', function(){
+
+  var descripcion = "";
+  if($('#descripcion').val()!="")
+    descripcion = "&descripcion="+$('#descripcion').val();
+
+  var tipo = "";
+  if($('#tipo').val()!=0)
+    tipo = "&tipo="+$('#tipo').val();
+
+  var material = "";
+  if($('#material').val()!=0)
+    material = "&material="+$('#material').val();
+
+  var longitud = "";
+  if($('#longitud').val()!=0)
+    longitud = "&longitud="+$('#longitud').val();
+
+  var calibre = "";
+  if($('#calibre').val()!=0)
+    calibre = "&calibre="+$('#calibre').val();
+
+  var forma = "";
+  if($('#forma').val()!=0)
+    forma = "&forma="+$('#forma').val();
+
+  var marca = "";
+  if($('#marca').val()!=0)
+    marca = "&marca="+$('#marca').val();
+
+  location.href = '?'+descripcion+tipo+material+longitud+calibre+forma+marca;
+
+})
+</script>
+{% endblock %}

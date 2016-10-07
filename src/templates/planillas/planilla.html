@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div id="bloqueForms">
+  <div class = "camposForms">
+    <form method="post" action="">
+      {%csrf_token%}
+      <h2>Planilla</h2>
+
+      <label>Agencia</label>
+        {{form.Agencia_id}}
+      <label>Empleado</label>
+        {{form.Empleado_id}}
+      <label>Sueldo</label>
+        {{form.sueldo}}
+      <label>Horas extra</label>
+        {{form.horasExtra}}
+      <label>Bono Incentivo</label>
+        {{form.bonoIncentivo}}
+      <label>IGSS</label>
+        {{form.igss}}
+      <label>ISR</label>
+        {{form.isr}}
+      <label>Anticipos</label>
+        {{form.anticipos}}
+      <label>Judiciales</label>
+        {{form.judiciales}}
+      <label>Otros Descuentos</label>
+        {{form.otros}}
+      <label>Total de Descuentos</label>
+        {{form.totalDescuento}}
+      <label>Total Liquido</label>
+        {{form.totalLiquido}}
+
+      <input type='submit' value='Agregar'>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+    <h2>Nuevo Empleado</h2>
+    <label>Nombre</label>
+      {{form.nombre}}</br>
+<label>Apellidos</label>
+      {{form.apellidos}}</br>
+<label>CUI</label>
+      {{form.cui}}</br>
+<label>NIT</label>
+      {{form.nit}}</br>
+<label>Sueldo</label>
+      {{form.sueldo}}</br>
+<label>Puesto</label>
+      {{form.Puesto_id}}</br>
+
+<label>Agencia</label>
+      {{form.Agencia_id}}</br>
+
+
+    <input type='submit' value='Guardar'>
+
+  </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block navegacion %}
+    <div class="column1">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column2">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column3">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column4">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+{% endblock %}

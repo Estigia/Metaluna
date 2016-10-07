@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Detalle de Entrega No. {{entrega.id}} </h2>
+    <div class = "listados">
+
+      <table class = "table">
+        <tr>
+          <td><strong>Kilometraje de salida</td>
+          <td>{{entrega.kSalida}}<td>
+        </tr>
+        <tr>
+          <td><strong>Kilometraje de entrada</td>
+          <td>{{entrega.kEntrada}}<td>
+        </tr>
+        <tr>
+          <td><strong>Fecha</td>
+          <td>{{entrega.fecha}}</td>
+        </tr>
+        <tr>
+          <td><strong>Vale</td>
+          <td>{{entrega.vale}}</td>
+        </tr>
+        <tr>
+          <td><strong>Vehiculo</td>
+          <td>{{entrega.Vehiculo_id}}</td>
+        </tr>
+      </table>
+
+    </div>
+{% endblock %}

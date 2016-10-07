@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="bloqueForms">
+  <div class = "camposForms">
+    <form method="post" action="">
+      {%csrf_token%}
+      <h2>Ingresar</h2>
+      <label>Nombre</label>
+        {{form.nombre}}
+      <label>Empresa</label>
+        {{form.empresa}}
+      <label>Direccion</label>
+        {{form.direccion}}
+      <label>Municipio</label>
+        {{form.municipio}}
+      <label>Telefono</label>
+        {{form.telefono}}
+      <label>NIT</label>
+        {{form.nit}}
+      <label>Saldo</label>
+        {{form.saldo}}
+
+      <input type='submit' value='Guardar'>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

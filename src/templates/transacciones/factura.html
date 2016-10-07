@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+
+<div id="bloqueForms">
+
+  <div class = "camposForms">
+
+    <form method="post" action="">
+    {%csrf_token%}
+
+      <!-- <h1>{{datos}}</h1> -->
+    <h2>Agregar Factura</h2>
+    <label>serie</label>
+    {{form.serie}}
+<label>numero Documento</label>
+    {{form.noDocumento}}
+<label>Precio Total</label>
+    {{form.precioTotal}}
+<label>anulada</label>
+    {{form.anulada}}
+<label>anulada</labe>
+    {{form.Comodin_id}}
+    <input type='submit' value='Agregar'>
+
+  </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block navegacion %}
+    <div class="column1">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column2">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column3">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+    <div class="column4">
+      <a href="http://www.facebook.com"><span class="icon icon-circle-arrow-left"></span></a>
+      <div class="title">
+        <h2>Atrás</h2>
+      </div>
+    </div>
+{% endblock %}
