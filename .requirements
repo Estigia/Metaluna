@@ -1,0 +1,15 @@
+chardet==2.2.1
+cssselect==0.9.1
+Django==1.9.5
+django-datetime-widget==0.9.3
+ecdsa==0.13
+lxml==3.4.4
+paramiko==1.16.0
+pycrypto==2.6.1
+pyquery==1.2.8
+PySocks==1.5.6
+pytz==2016.6.1
+requests==2.10.0
+six==1.10.0
+urllib3==1.15.1
+virtualenv==15.0.3
