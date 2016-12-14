@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 from django.core.validators import MinValueValidator
+from django.utils import timezone
 
 
 
@@ -26,7 +27,7 @@ class Planilla(models.Model):
 class Finanzas(models.Model):
     id = models.AutoField(primary_key = True)
     descripcion = models.CharField(max_length = 100, blank = False, null = False)
-    fecha = models.DateField()
+    fecha = models.DateField(default = timezone.now())
     #True = ingreso False = egreso
     tipo = models.BooleanField(default = None)
     monto = models.FloatField(blank = False, null = False)
