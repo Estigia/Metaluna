@@ -19,7 +19,7 @@ class UserCreationForm(forms.ModelForm):
         model = Usuario
         fields = [
             'username',
-            'Tipo_Usuario_id',
+            'is_staff'
         ]
 
     def clean_password1(self):

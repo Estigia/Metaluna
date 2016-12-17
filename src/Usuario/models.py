@@ -13,12 +13,12 @@ class Puesto(models.Model):
     def __unicode__(self):
         return self.puesto
 
-class Tipo_Usuario(models.Model):
-    id = models.AutoField(primary_key = True)
-    tipo = models.CharField(max_length = 45)
-
-    def __unicode__(self):
-        return str(self.tipo)
+#class Tipo_Usuario(models.Model):
+#    id = models.AutoField(primary_key = True)
+#    tipo = models.CharField(max_length = 45)
+#
+#    def __unicode__(self):
+#        return str(self.tipo)
 
 class Empleado(models.Model):
     id = models.AutoField(primary_key = True)
@@ -56,20 +56,21 @@ class UsuarioManager(BaseUserManager):
 
 
     def create_superuser(self, username, password=None):
-	 	usuario = self.create_user(username, password)
-	 	usuario.is_admin = True
-	 	usuario.save()
-	 	return usuario
+        usuario = self.create_user(username, password)
+        usuario.is_staff = True
+        usuario.is_admin = True
+        usuario.save()
+        return usuario
 
 
 class Usuario(AbstractBaseUser):
     id = models.AutoField(primary_key = True)
     username = models.CharField(max_length = 45,unique = True)
-    is_staff = models.BooleanField(default = True)
+    is_staff = models.BooleanField(default = False)
     is_active = models.BooleanField(default = True)
     ultima_conexion = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-    Tipo_Usuario_id = models.ForeignKey('Tipo_Usuario', default = 1)
+    #Tipo_Usuario_id = models.ForeignKey('Tipo_Usuario', default = 1)
     Empleado_id = models.ForeignKey('Empleado', default=1)
 
     objects = UsuarioManager()
@@ -77,13 +78,13 @@ class Usuario(AbstractBaseUser):
     USERNAME_FIELD = 'username'
 
     def get_full_name(self):
-		return str(self.Empleado_id.nombre) + str(self.Empleado_id.apellidos)
+		return self.Empleado_id.nombre + self.Empleado_id.apellidos
 
     def get_short_name(self):
-        return str(self.username)
+        return self.username
 
     def __unicode__(self):
-		return str(self.username)
+		return self.username
 
     def has_module_perms(self,perm_list):
         return True
