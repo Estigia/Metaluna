@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'n$2rl*iv195tm)$h^*@56@36tcyap_w-erm^fvl3dgs0a$43^k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0"]
 
 
 # Application definition
@@ -83,12 +83,7 @@ WSGI_APPLICATION = 'src.wsgi.application'
 
 DATABASES = {
   'default': {
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': 'MetalunaDB',
-        # 'USER': 'metaluna',
-        # 'PASSWORD': 'SGeDU3yC',
-        # 'HOST': 'distribuidorametaluna.com',
-        # 'PORT': '5432',
+
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
@@ -134,9 +129,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
 STATIC_URL = '/static/'
-MEDIA_URL = 'http://localhost:80/static/'
+STATIC_ROOT = '/home/Chofo2003/www/static'
+#/var/www/distribuidorametaluna.com/static
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media'
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )

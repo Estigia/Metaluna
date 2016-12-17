@@ -43,5 +43,9 @@ urlpatterns = [
     url(r'^logout/$', 'Usuario.views.cerrar', name='cerrar')
 
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+else:
+    urlpatterns += url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
+                        {'document_root': settings.STATIC_ROOT}),
