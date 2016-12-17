@@ -107,7 +107,7 @@ def inicio(request):
             'form': form
         }
 
-        return render(request, 'usuario/inicio.html', context)
+        return render(request, 'usuario/plantillaLogin.html', context)
 
 def registro(request):
 
@@ -152,4 +152,4 @@ def cerrar(request):
 
 
 def homepage(request):
-    return render_to_response('usuario/inicio.html')
+    return render_to_response('usuario/index.html')
