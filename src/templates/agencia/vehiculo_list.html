@@ -5,8 +5,8 @@
   <h2>Vehiculos</h2>
 
   <div class = "divBotonesListado">
-    <a href="/agencia/crear" class = "lnk" target="_blank">+</a>
-    <a href="/agencia/crear" class = "descripcion"> Agregar</a>
+    <a href="/agencia/vehiculo/crear/" class = "lnk" target="_blank">+</a>
+    <a href="/agencia/vehiculo/crear/" class = "descripcion"> Agregar</a>
   </div>
 
 
@@ -27,6 +27,7 @@
           <td>{{dato.Agencia_id}}</td>
           <td><a href={% url 'Agencia:detail_v' dato.id %}><i>Ver</i></a></td>
           <td><a href={% url 'Agencia:edit_v' dato.id %}><i>Editar</i></a></td>
+          <td><a href={% url 'Agencia:list_e' dato.id %}><i>Entregas</i></a></td>
         </tr>
       {% endfor %}
     </table>

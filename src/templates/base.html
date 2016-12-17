@@ -43,7 +43,7 @@
 <header class="header" id="header"><!--header-start-->
 	<div class="container">
 
-					<a href="#"><img src="/static/img/logo.png"></a>
+					<a href="/"><img src="/static/img/logo.png"></a>
 
         <ul class="we-create animated fadeInUp delay-1s">
         	<li></li>
@@ -58,6 +58,7 @@
         <ul class="main-nav">
         	<li><a href="/">Home</a></li>
             <li><a href="/agencia">Agencias</a></li>
+						<li><a href={% url 'Agencia:list_v' %}>Vehiculos</a></li>
             <li><a href="/productos">Productos</a></li>
             <li><a href="/transacciones">Transacciones</a></li>
 						<li><a href={% url 'index:index' %}>Proveedores</a></li>
@@ -93,7 +94,6 @@
     <div class="container">
 			<span class="copyright"><a href="/logout">Cerrar Sesión</a></span>
 				<span class="copyright">Copyright © 2016 | <a href="http://bootstraptaste.com/">Developed by Estigia</a></span>
-        <span class="copyright">Template by BootstrapTaste</span>
     </div>
     <!--
         All links in the footer should remain intact.
