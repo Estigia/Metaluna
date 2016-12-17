@@ -163,11 +163,16 @@ def entrega(request):
 
     context = {"form": form}
 
+    if form.is_valid():
+        form.save()
+        return redirect("Agencia:list_e")
+        #aca agregue el form save
+
     return render(request, "agencia/entrega.html", context)
 
 @login_required(login_url='base')
-def entregaList(request):
-    entregas = Entrega.objects.all()
+def entregaList(request, vehiculo_id):
+    entregas = Entrega.objects.filter(Vehiculo_id = vehiculo_id)
 
     context = {
         'entregas': entregas,
@@ -177,7 +182,7 @@ def entregaList(request):
 
 class EntregaDetail(DetailView):
     model = Entrega
-    template_name = 'agencia/entrega_detail.hmtl'
+    template_name = 'agencia/entrega_detail.html'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):

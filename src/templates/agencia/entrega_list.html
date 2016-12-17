@@ -3,22 +3,41 @@
 {% block content %}
 <h2>Entregas</h2>
 
+<div class = "divBotonesListado">
+  <a href="/agencia/entrega/crear" class = "lnk" target="_blank">+</a>
+  <a href="/agencia/entrega/crear/" class = "descripcion"> Agregar</a>
+</div>
+
 <div class = "listados">
   <table class = "table">
     <tr>
       <td><strong>Fecha</td>
-      <td><strong>Vehiculo</td>
+      <td><strong>Kilometraje Entrada</td>
+      <td><strong>Kilometraje Salida</td>
+      <td><strong>Kilometraje</td>
     </tr>
-
     {% for dato in entregas %}
       <tr>
         <td>{{dato.fecha}}</td>
-        <td>{{dato.Vehiculo_id}}</td>
+        <td>{{dato.kEntrada}}</td>
+        <td>{{dato.kSalida}}</td>
+
+        <script type="text/javascript">
+          var kTotal;
+          var entrada = {{dato.kEntrada}};
+          var salida = {{dato.kSalida}};
+          kTotal = parseInt(entrada) - parseInt(salida);
+          data {
+            'x1':kTotal
+          };
+        </script>
+        <td id = "x1">Total</td>
+
         <td><a href={% url 'Agencia:detail_e' dato.id %}><i>Ver</i></a></td>
         <td><a href={% url 'Agencia:edit_e' dato.id %}><i>Editar</i></a></td>
       </tr>
     {% endfor %}
-    
+
   </table>
 </div>
 

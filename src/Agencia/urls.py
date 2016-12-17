@@ -39,7 +39,7 @@ urlpatterns = [
     url(r'^entrega/crear/',entrega,name = 'crear_e'),
     url(r'^entrega/(?P<pk>\d+)/detalle/', EntregaDetail.as_view(), name='detail_e'),
     url(r'^entrega/(?P<pk>\d+)/editar/', EntregaUpdate.as_view(), name='edit_e'),
-    url(r'^entrega/$', entregaList, name='list_e'),
+    url(r'^entrega/vehiculo/(?P<vehiculo_id>\d+)', entregaList, name='list_e'),
     #------Mercaderia-----------------------------
     url(r'^mercaderia/crear/', mercaderia, name = 'crear_m'),
     url(r'^mercaderia/(?P<pk>\d+)/detalle/', MercaderiaDetail.as_view(), name='detail_m'),
