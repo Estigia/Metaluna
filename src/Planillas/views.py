@@ -10,6 +10,9 @@ from .models import Finanzas
 # Create your views here.
 @login_required(login_url='base')
 def Planilla(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     form = PlanillaForm(request.POST or None)
     context = {
         "form":form,
@@ -22,6 +25,8 @@ def Planilla(request):
 
 @login_required(login_url='base')
 def finanzas(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
 
     agencias = Agencia.objects.all()
     capital_total = 0
