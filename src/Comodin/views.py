@@ -1,17 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView
 from django.core import serializers
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView, ListView
 
 from .models import Comodin, Marca
 
+#Lista de proveedores
 @login_required(login_url='base')
 def index(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
 
     comodin = Comodin.objects.all().filter(tipo = True)
 
@@ -22,6 +25,8 @@ def index(request):
     return render(request, 'comodin/proveedor_list.html', context)
 
 def clientes(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
 
     comodin = Comodin.objects.all().filter(tipo = False)
 
@@ -49,6 +54,9 @@ class ComodinCreate(CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
         return super(ComodinCreate, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -79,6 +87,9 @@ class ClienteCreate(CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
         return super(ClienteCreate, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -106,6 +117,9 @@ class ClienteDetail(DetailView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
         return super(ClienteDetail, self).dispatch(request, *args, **kwargs)
 
 class ClienteUpdate(UpdateView):
@@ -127,6 +141,9 @@ class ClienteUpdate(UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
         return super(ClienteUpdate, self).dispatch(request, *args, **kwargs)
 
 #---------------------------Marca
@@ -139,6 +156,9 @@ class MarcaCreate(CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
         return super(MarcaCreate, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -172,6 +192,13 @@ class ComodinProveedorList(ListView):
     context_object_name = "comodin_list"
     template_name = "comodin/proveedor_list.html"
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
+        return super(ComodinProveedorList, self).dispatch(request, *args, **kwargs)
+
     def get_queryset(self):
         valor = 0
         for key, value in self.kwargs.iteritems():
@@ -187,6 +214,13 @@ class ProveedorDetail(DetailView):
     # def get_queryset(self):
     #     self.agencia = get_object_or_404(Agencia, id=self.args[0])
     #     return Empleado.objects.filter(agencia=self.agencia)
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
+        return super(ProveedorDetail, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(ProveedorDetail, self).get_context_data(**kwargs)
@@ -216,6 +250,9 @@ class ProveedorUpdate(UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
         return super(ProveedorUpdate, self).dispatch(request, *args, **kwargs)
 
 @login_required(login_url='base')

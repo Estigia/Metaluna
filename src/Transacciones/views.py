@@ -23,6 +23,9 @@ from .forms import ReciboForm,AbonosForm,FacturaForm,DetalleFacturaForm,CreditoF
 
 @login_required(login_url='base')
 def recibo(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     form = ReciboForm(request.POST or None)
     context = {
         "form":form,
@@ -35,6 +38,9 @@ def recibo(request):
 
 @login_required(login_url='base')
 def abonos(request, tipo):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     if tipo == 'compras':
         creditos=Credito.objects.filter(Factura_id__Comodin_id__tipo=1)
     else:
@@ -78,6 +84,9 @@ def abonos(request, tipo):
 
 @login_required(login_url='base')
 def abonosList(request, tipo):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     if tipo == 'compras':
         abonos = Abonos.objects.filter(
             Credito_id__Factura_id__Comodin_id__tipo = 1
@@ -99,6 +108,8 @@ class AbonoDetail(DetailView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
         return super(AbonoDetail, self).dispatch(request, *args, **kwargs)
 
 @login_required(login_url='base')
@@ -196,6 +207,8 @@ def credito(request):
 
 @login_required(login_url='base')
 def trans(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
     datos = Factura.objects.all()
     return render(request,'base.html',{"datos":datos})
 
@@ -366,6 +379,8 @@ def index(request):
 
 @login_required(login_url='base')
 def facturaList(request, tipo):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
 
     if tipo == 'compras':
         comodines = Comodin.objects.filter(tipo=1)
@@ -411,6 +426,8 @@ class FacturaDetail(DetailView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
         return super(FacturaDetail, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -431,6 +448,8 @@ class FacturaDetail(DetailView):
         return context
 
 def creditoList(request, tipo):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
     if tipo == 'compras':
         creditos = Credito.objects.filter(Factura_id__Comodin_id__tipo=1)
         mensaje = 'compras'
@@ -454,6 +473,8 @@ class CreditoProveedorDetail(DetailView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
         return super(CreditoProveedorDetail, self).dispatch(request, *args, **kwargs)
 
 class CreditoClienteDetail(DetailView):
@@ -463,6 +484,8 @@ class CreditoClienteDetail(DetailView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
         return super(CreditoClienteDetail, self).dispatch(request, *args, **kwargs)
 
 @login_required(login_url='base')
