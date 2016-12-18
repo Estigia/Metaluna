@@ -28,6 +28,8 @@ class EmpleadoCreate(CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
         return super(EmpleadoCreate, self).dispatch(request, *args, **kwargs)
 
 class EmpleadoUpdate(UpdateView):
@@ -47,10 +49,14 @@ class EmpleadoUpdate(UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
         return super(EmpleadoUpdate, self).dispatch(request, *args, **kwargs)
 
 @login_required(login_url='base')
 def empleadoList(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
 
     context = {'empleados':Empleado.objects.all()}
 
@@ -62,6 +68,8 @@ class EmpleadoDetail(DetailView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
         return super(EmpleadoDetail, self).dispatch(request, *args, **kwargs)
 
 
@@ -110,6 +118,8 @@ def inicio(request):
         return render(request, 'usuario/inicio.html', context)
 
 def registro(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
 
     if not request.user.is_authenticated():
 
@@ -129,6 +139,9 @@ def registro(request):
 
 @login_required(login_url='base')
 def usuarioList(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     usuarios = Usuario.objects.exclude(id=request.user.id)
 
     context = {
@@ -143,6 +156,8 @@ class UsuarioDetail(DetailView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
         return super(UsuarioDetail, self).dispatch(request, *args, **kwargs)
 
 @login_required(login_url='base')
