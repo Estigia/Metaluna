@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.core.serializers.json import Serializer
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
@@ -71,6 +71,9 @@ class ProductoDetail(DetailView):
         return super(ProductoDetail, self).dispatch(request, *args, **kwargs)
 
 class ProductoUpdate(UpdateView):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     model = Producto
     template_name = 'producto/producto_edit.html'
     success_url = reverse_lazy('Producto:index')
@@ -90,6 +93,9 @@ class ProductoUpdate(UpdateView):
 
 @login_required(login_url='base')
 def producto(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     form = ProductoForm(request.POST or None)
 
     context = {
@@ -105,6 +111,9 @@ def producto(request):
 #--------------------------------------------------------
 @login_required(login_url='base')
 def lote(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     form = LoteForm(request.POST or None)
 
     context = {
@@ -118,6 +127,9 @@ def lote(request):
 
 @login_required(login_url='base')
 def tipo_producto(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     form = Tipo_ProductoForm(request.POST or None)
 
     context = {
@@ -131,6 +143,9 @@ def tipo_producto(request):
 
 @login_required(login_url='base')
 def material(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     form = MaterialForm(request.POST or None)
 
     context = {
@@ -144,6 +159,9 @@ def material(request):
 
 @login_required(login_url='base')
 def longitud(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     form = LongitudForm(request.POST or None)
 
     context = {
@@ -157,6 +175,9 @@ def longitud(request):
 
 @login_required(login_url='base')
 def calibre(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     form = CalibreForm(request.POST or None)
 
     context = {
@@ -170,6 +191,9 @@ def calibre(request):
 
 @login_required(login_url='base')
 def forma(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     form = FormaForm(request.POST or None)
 
     context = {
