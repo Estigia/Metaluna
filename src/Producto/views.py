@@ -71,8 +71,6 @@ class ProductoDetail(DetailView):
         return super(ProductoDetail, self).dispatch(request, *args, **kwargs)
 
 class ProductoUpdate(UpdateView):
-    if not request.user.is_staff:
-        return HttpResponseRedirect('/')
 
     model = Producto
     template_name = 'producto/producto_edit.html'
@@ -89,6 +87,8 @@ class ProductoUpdate(UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
         return super(ProductoUpdate, self).dispatch(request, *args, **kwargs)
 
 @login_required(login_url='base')
