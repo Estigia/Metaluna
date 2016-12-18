@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Orden de Entrega</h2>
+<h3 align=center>seleccione los vehiculos desstinado para la orden</h3>
+<div class = "listados">
+  <table class = "table" id = tablaDatos>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><strong>Marca</td>
+      <td><strong>Modelo</td>
+      <td><strong>Placa</td>
+      <td><strong>Agencia</td>
+    </tr>
+
+    {% for dato in vehiculos %}
+      <tr id=datosTablaImprimi>
+        <td><a><input type = "submit" value = "Imprimir" id = {{dato.id}} onclick="imprimir('{{dato.marca}}  ,  {{dato.placa}}')" ></a></td>
+        <td>{{dato.id}}</td>
+        <td>{{dato.marca}}</td>
+        <td>{{dato.modelo}}</td>
+        <td>{{dato.placa}}</td>
+        <td>{{dato.Agencia_id}}</td>
+
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+
+
+<script type="text/javascript">
+
+
+
+
+
+
+function imprimir(marca){
+
+//var contenido = document.getElementById(soloEsto).outerHTML;
+ventana=window.open("about :blank","ventana","width=700,height=600,top=600,left=3000");
+ventana.document.open();
+ventana.document.write('<html>');
+ventana.document.write('<h1>METALUNA</h1><br></br> ');
+ventana.document.write('<div align=center>  ')
+ ventana.document.write('Fecha Salida:__/___/___ &nbsp; &nbsp; Fecha Entrada:__/___/___ </div>    ');
+
+ventana.document.write('<h3 align=center>Orden de Entrega</h3>');
+ventana.document.write('<head><title>METALUNA</title></head><body class="table" onprint="self.close()">');
+ventana.document.write('<div align=center>');
+ventana.document.write( "Vehiculo Utilizado:"+marca);
+ventana.document.write('</div>');
+ventana.document.write('<br></br><br></br>')
+ventana.document.write('<div align=Left>');
+ventana.document.write(' Kilometraje Salida:_____________   &nbsp; &nbsp; &nbsp; &nbsp;     Kilometraje Entrada:_____________     &nbsp; &nbsp; &nbsp; &nbsp;     Cobro___ &nbsp;&nbsp; Entrega___  ');
+ventana.document.write('</div>');
+ventana.document.write('<h1 align=center>EMPLEADOS</h1><br></br> ');
+ventana.document.write('<div align=center>');
+ventana.document.write('<br>________________________________________________________________</br>');
+ventana.document.write('<br>________________________________________________________________</br>');
+ventana.document.write('<br>________________________________________________________________</br>');
+ventana.document.write('<br>________________________________________________________________</br>');
+ventana.document.write('</div>')
+ventana.document.write('<br></br><br></br><br></br><br></br><br></br>');
+ventana.document.write('<td align=left>Firma Encargado_______________</td><td align=right></td>');
+
+ventana.document.write('</body></html>');
+
+
+ventana.document.close();
+ventana.print();
+ventana.focus();
+ventana.close();
+
+}
+</script>
+
+{% endblock %}
