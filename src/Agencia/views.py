@@ -242,6 +242,13 @@ class MercaderiaUpdate(UpdateView):
         'Agencia_id',
         'cantidad',
     ]
+def impresion(request):
+    vehiculos = Vehiculo.objects.all()
+
+    context = {
+        'vehiculos': vehiculos,
+    }
+    return render(request, "agencia/impresionEntrega.html",context)
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):

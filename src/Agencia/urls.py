@@ -19,6 +19,7 @@ from .views import (
                     mercaderiaList,
                     MercaderiaDetail,
                     MercaderiaUpdate,
+                    impresion,
                     )
 
 urlpatterns = [
@@ -35,7 +36,8 @@ urlpatterns = [
     url(r'^vehiculo/(?P<pk>\d+)/editar/',VehiculoUpdate.as_view(),name='edit_v'),
     url(r'^vehiculo/$',vehiculoList, name = 'list_v'),
     url(r'^vehiculo/crear/',vehiculo, name = 'crear_v'),
-    #------Entregas-------------------------------
+    url(r'^vehiculo/impresion/',impresion, name = 'impresion_v'),
+    #------Entregas-------------------------------1
     url(r'^entrega/crear/',entrega,name = 'crear_e'),
     url(r'^entrega/(?P<pk>\d+)/detalle/', EntregaDetail.as_view(), name='detail_e'),
     url(r'^entrega/(?P<pk>\d+)/editar/', EntregaUpdate.as_view(), name='edit_e'),
