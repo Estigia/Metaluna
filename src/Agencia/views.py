@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import UpdateView
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import DetailView, ListView
 
 from .models import Agencia, Vehiculo, Entrega, Mercaderia
@@ -13,6 +14,9 @@ from Usuario.models import Empleado
 #Vistas de Agencia y detalles---------------------------------
 @login_required(login_url='base')
 def agencia(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     form = AgenciaForm(request.POST or None)
 
     context = {"form":form}
@@ -38,10 +42,16 @@ class AgenciaDetail(DetailView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
         return super(AgenciaDetail, self).dispatch(request, *args, **kwargs)
 
 @login_required(login_url='base')
 def index(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/')
+
     agencias = Agencia.objects.all()
 
     context = {
@@ -54,6 +64,13 @@ class AgenciaEmpleadoList(ListView):
     model = Agencia
     context_object_name = "empleados_list"
     template_name = "agencia/empleados_por_agencia.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
+        return super(AgenciaEmpleadoList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         valor = 0
@@ -77,6 +94,13 @@ class AgenciaProductoList(ListView):
     model = Agencia
     context_object_name = "productos_list"
     template_name = "agencia/productos_por_agencia.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
+        return super(AgenciaProductoList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         valor = 0
@@ -102,6 +126,9 @@ class AgenciaUpdate(UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/')
+
         return super(AgenciaUpdate, self).dispatch(request, *args, **kwargs)
 
 #-------------------------------------------------------------
