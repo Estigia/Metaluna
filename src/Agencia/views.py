@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.utils import timezone
 from django.views.generic.edit import UpdateView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import DetailView, ListView
@@ -186,14 +187,16 @@ def vehiculoList(request):
 #Vistas de Entrega--------------------------------------------
 @login_required(login_url='base')
 def entrega(request):
-    form = EntregaForm()
+    form = EntregaForm(request.POST or None, initial={'fecha': timezone.now()})
 
     context = {"form": form}
 
     if form.is_valid():
         form.save()
-        return redirect("Agencia:list_e")
+        return redirect("Agencia:list_v")
         #aca agregue el form save
+    else:
+        print "popo"
 
     return render(request, "agencia/entrega.html", context)
 
