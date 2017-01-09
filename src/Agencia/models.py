@@ -38,6 +38,9 @@ class Entrega(models.Model):
     def __unicode__(self):
         return str(self.id)
 
+    def kTotal(self):
+        return self.kEntrada - self.kSalida
+
 
 class Mercaderia(models.Model):
     id = models.AutoField(primary_key = True)

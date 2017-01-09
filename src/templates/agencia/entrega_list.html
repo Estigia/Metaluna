@@ -22,7 +22,7 @@
         <td>{{dato.kEntrada}}</td>
         <td>{{dato.kSalida}}</td>
 
-        <script type="text/javascript">
+        <!-- <script type="text/javascript">
           var kTotal;
           var entrada = {{dato.kEntrada}};
           var salida = {{dato.kSalida}};
@@ -30,8 +30,8 @@
           data {
             'x1':kTotal
           };
-        </script>
-        <td id = "x1">Total</td>
+        </script> -->
+        <td id = "x1">{{dato.kTotal}}</td>
 
         <td><a href={% url 'Agencia:detail_e' dato.id %}><i>Ver</i></a></td>
         <td><a href={% url 'Agencia:edit_e' dato.id %}><i>Editar</i></a></td>
