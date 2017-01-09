@@ -5,8 +5,6 @@
 <h2>Cliente {{comodin.nombre}}</h2>
 
   <div class = "listados">
-
-
     <table class = "table">
       <tr>
         <td><strong>Nombre</td>
@@ -45,6 +43,45 @@
 
     </table>
 
+    <h3>Saldo</h3>
+    <label for="DESDE">Desde</label>
+    <div id="DESDE" class="filtro">
+      <label for="desde_a">Año</label>
+      <select class="" name="desde_a">
+        <option value="0">----</option>
+      </select>
+      <label for="desde_m">Mes</label>
+      <select class="" name="desde_m">
+        <option value="0">----</option>
+      </select>
+      <label for="desde_d">Día</label>
+      <select class="" name="desde_d">
+        <option value="0">----</option>
+      </select>
+    </div>
+    </br>
+    <label for="HASTA">Hasta</label>
+    <div id="HASTA" class="filtro">
+      <label for="hasta_a">Año</label>
+      <select class="" name="hasta_a">
+        <option value="0">----</option>
+      </select>
+      <label for="hasta_m">Mes</label>
+      <select class="" name="hasta_m">
+        <option value="0">----</option>
+      </select>
+      <label for="hasta_d">Día</label>
+      <select class="" name="hasta_d">
+        <option value="0">----</option>
+      </select>
+    </div>
+
   </div>
 
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+
+</script>
 {% endblock %}
