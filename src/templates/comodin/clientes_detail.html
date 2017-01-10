@@ -99,6 +99,7 @@
         <option value="0" selected>----</option>
       </select>
     </div>
+    <input type="button" id="filtro_fecha" name="filro_fecha" value="Buscar">
 
   </div>
 
@@ -106,6 +107,42 @@
 
 {% block js %}
 <script type="text/javascript">
+
+  $('#filtro_fecha').on('change', function(){
+
+    var desde_anio = $("#anio").val();
+    var desde_mes = $("#mes").val();
+    var desde_dia = $("#dia").val();
+
+    var hasta_anio = $("#anio1").val();
+    var hasta_mes = $("#mes1").val();
+    var hasta_dia = $("#dia1").val();
+
+    $.ajax({
+
+      data: {
+        'desde_anio': desde_anio,
+        'desde_mes': desde_mes,
+        'desde_dia': desde_dia,
+        'hasta_anio': hasta_anio,
+        'hasta_mes': hasta_mes,
+        'hasta_dia': hasta_dia,
+        'id': {{comodin.id}}
+      },
+      url: "{% url %}",
+      type: 'get',
+      dataType: 'json',
+      success: function(data){
+
+      },
+      error: function(){
+
+      }
+
+    });
+
+  })
+
   $('#mes').on('change', calcular);
   $('#mes1').on('change', calcular);
   $('#document').ready(function(){
