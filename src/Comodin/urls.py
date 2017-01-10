@@ -8,7 +8,8 @@ from .views import  (
                     ProveedorUpdate,
                     ClienteDetail,
                     ClienteUpdate,
-                    ClienteCreate
+                    ClienteCreate,
+                    saldo_por_fechas
                     )
 
 
@@ -21,4 +22,5 @@ urlpatterns = [
     url(r'^proveedores/(?P<pk>\d+)/editarProveedor/', ProveedorUpdate.as_view(), name='editarProveedor'),
     url(r'^clientes/(?P<pk>\d+)/detallesCliente/$', ClienteDetail.as_view(),name='detallesCliente'),
     url(r'^clientes/(?P<pk>\d+)/editarCliente/', ClienteUpdate.as_view(), name='editarCliente'),
+    url(r'^clientes/facturas_cliente/$', saldo_por_fechas, name='facturas_cliente')
 ]

@@ -9,6 +9,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView, ListView
 
 from .models import Comodin, Marca
+from Transacciones.models import Factura
 
 #Lista de proveedores
 @login_required(login_url='base')
@@ -262,3 +263,17 @@ def filtroP(request):
     data = serializers.serialize('json', proveedores, fields = ('marca'))
 
     return HttpResponse(data, content_type = 'application/json')
+
+@login_required(login_url='base')
+def saldo_por_fechas(request):
+    fecha_desde = request.GET['desde_anio']+'-'+request.GET['desde_mes']+'-'+request.GET['desde_dia']
+    fecha_hasta = request.GET['hasta_anio']+'-'+request.GET['hasta_mes']+'-'+request.GET['hasta_dia']
+
+    compras = Factura.objects.filter(
+                    Comodin_id__id=request.GET['id'],
+                    fecha__range=(fecha_desde, fecha_hasta)
+                    )
+
+    data = serializers.serialize('json', compras)
+
+    return HttpResponse(data, content_type='application/json')

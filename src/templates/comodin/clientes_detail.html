@@ -2,11 +2,9 @@
 
 {% block content %}
 
-<h2>Cliente {{comodin.nombre}}</h2>
+<h2>Cliente {{comodin.nombre}}, ID: {{comodin.id}}</h2>
 
   <div class = "listados">
-
-
     <table class = "table">
       <tr>
         <td><strong>Nombre</td>
@@ -45,6 +43,164 @@
 
     </table>
 
+    <h3>Saldo</h3>
+    <label for="DESDE">Desde</label>
+    <div id="DESDE" class="filtro">
+      <label for="desde_a">Año</label>
+      <select id="anio" class="" name="desde_a">
+        <option value="0" selected>----</option>
+      </select>
+      <label for="desde_m">Mes</label>
+      <select id="mes" data-code="" name="desde_m">
+        <option value="0" selected>----</option>
+        <option value="1" >Enero</option>
+        <option value="2" >Febrero</option>
+        <option value="3" >Marzo</option>
+        <option value="4" >Abril</option>
+        <option value="5" >Mayo</option>
+        <option value="6" >Junio</option>
+        <option value="7" >Julio</option>
+        <option value="8" >Agosto</option>
+        <option value="9" >Septiembre</option>
+        <option value="10" >Octubre</option>
+        <option value="11" >Noviembre</option>
+        <option value="12" >Diciembre</option>
+      </select>
+      <label for="desde_d">Día</label>
+      <select id="dia" class="" name="desde_d">
+        <option value="0" selected>----</option>
+      </select>
+    </div>
+    </br>
+    <label for="HASTA">Hasta</label>
+    <div id="HASTA" class="filtro">
+      <label for="hasta_a">Año</label>
+      <select id="anio1" class="" name="hasta_a">
+        <option value="0">----</option>
+      </select>
+      <label for="hasta_m">Mes</label>
+      <select id="mes1" data-code="1" name="hasta_m">
+        <option value="0" selected>----</option>
+        <option value="1" >Enero</option>
+        <option value="2" >Febrero</option>
+        <option value="3" >Marzo</option>
+        <option value="4" >Abril</option>
+        <option value="5" >Mayo</option>
+        <option value="6" >Junio</option>
+        <option value="7" >Julio</option>
+        <option value="8" >Agosto</option>
+        <option value="9" >Septiembre</option>
+        <option value="10" >Octubre</option>
+        <option value="11" >Noviembre</option>
+        <option value="12" >Diciembre</option>
+      </select>
+      <label for="hasta_d">Día</label>
+      <select id="dia1" class="" name="hasta_d">
+        <option value="0" selected>----</option>
+      </select>
+    </div>
+    <input type="button" id="filtro_fecha" name="filro_fecha" value="Buscar">
+    <h3>La venta total fue de:</h3><p id="saldo_total"></p>
   </div>
 
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+
+  $('#filtro_fecha').on('click', function(){
+
+    var desde_anio = $("#anio").val();
+    var desde_mes = $("#mes").val();
+    var desde_dia = $("#dia").val();
+
+    var hasta_anio = $("#anio1").val();
+    var hasta_mes = $("#mes1").val();
+    var hasta_dia = $("#dia1").val();
+
+
+
+    $.ajax({
+
+      data: {
+        'desde_anio': desde_anio,
+        'desde_mes': desde_mes,
+        'desde_dia': desde_dia,
+        'hasta_anio': hasta_anio,
+        'hasta_mes': hasta_mes,
+        'hasta_dia': hasta_dia,
+        'id': {{comodin.id}}
+      },
+      url: "{% url 'index:facturas_cliente' %}",
+      type: 'get',
+      dataType: 'json',
+      success: function(data){
+        var total = 0;
+        for (var i = 0; i < data.length; i++) {
+          total += data[i].fields.precioTotal;
+        }
+        $('#saldo_total').text('Q.'+total);
+      },
+      error: function(){
+        alert('Ocurrió un error en el servidor.');
+      }
+
+    });
+
+  })
+
+  $('#mes').on('change', calcular);
+  $('#mes1').on('change', calcular);
+  $('#document').ready(function(){
+    var ahora = new Date();
+    // var dia = ahora.getDate();
+    // var mes = ahora.getMonth();
+    var anio = ahora.getYear();
+    if (anio < 2000)
+         anio += 1900;
+    var comboA = document.getElementById('anio');
+    var comboB = document.getElementById('anio1');
+    for(var i=anio; i>2015; i--){
+      var option = document.createElement('option');
+      option.value = i;
+      option.innerHTML = i;
+      comboA.options.add(option);
+      option = document.createElement('option');
+      option.value = i;
+      option.innerHTML = i;
+      comboB.options.add(option);
+    }
+  })
+
+  function calcular(){
+    var id = $(this).val();
+    var code = $(this)[0].dataset.code;
+    console.log(code);
+    var anio = $('#anio'+code).val();
+    var dias = cuantosDias(id, anio);
+    var comboD = document.getElementById('dia'+code);
+    comboD.length = 0;
+    var p = document.createElement('option');
+    p.value = '0';
+    p.innerHTML = '------';
+    comboD.options.add(p);
+    for(var i = 1; i<=dias; i++){
+      var option = document.createElement('option');
+      option.value = i;
+      option.innerHTML = i;
+      comboD.options.add(option);
+    }
+  }
+
+  function cuantosDias(mes, anyo){
+    var cuantosDias = 31;
+    if (mes == "4" || mes == "6" || mes == "7" || mes == "11")
+      cuantosDias = 30;
+    if (mes == "2" && (anyo/4) != Math.floor(anyo/4))
+      cuantosDias = 28;
+    if (mes == "2" && (anyo/4) == Math.floor(anyo/4))
+      cuantosDias = 29;
+    return cuantosDias;
+  }
+</script>
 {% endblock %}
