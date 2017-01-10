@@ -43,64 +43,104 @@
 
     </table>
 
-    <h3>Saldo</h3>
+    <h3>Venta total</h3>
     <label for="DESDE">Desde</label>
     <div id="DESDE" class="filtro">
-      <label for="desde_a">Año</label>
-      <select id="anio" class="" name="desde_a">
-        <option value="0" selected>----</option>
-      </select>
-      <label for="desde_m">Mes</label>
-      <select id="mes" data-code="" name="desde_m">
-        <option value="0" selected>----</option>
-        <option value="1" >Enero</option>
-        <option value="2" >Febrero</option>
-        <option value="3" >Marzo</option>
-        <option value="4" >Abril</option>
-        <option value="5" >Mayo</option>
-        <option value="6" >Junio</option>
-        <option value="7" >Julio</option>
-        <option value="8" >Agosto</option>
-        <option value="9" >Septiembre</option>
-        <option value="10" >Octubre</option>
-        <option value="11" >Noviembre</option>
-        <option value="12" >Diciembre</option>
-      </select>
-      <label for="desde_d">Día</label>
-      <select id="dia" class="" name="desde_d">
-        <option value="0" selected>----</option>
-      </select>
+
+      <div id="filtroForms">
+        <div class = "encabezadoForms">
+          <table class = "table">
+            <tr>
+              <td><label for="desde_a">Año</label></td>
+              <td>
+                <select id="anio" class="" name="desde_a">
+                  <option value="0" selected>----</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="desde_m">Mes</label></td>
+              <td>
+                <select id="mes" data-code="" name="desde_m">
+                  <option value="0" selected>----</option>
+                  <option value="1" >Enero</option>
+                  <option value="2" >Febrero</option>
+                  <option value="3" >Marzo</option>
+                  <option value="4" >Abril</option>
+                  <option value="5" >Mayo</option>
+                  <option value="6" >Junio</option>
+                  <option value="7" >Julio</option>
+                  <option value="8" >Agosto</option>
+                  <option value="9" >Septiembre</option>
+                  <option value="10" >Octubre</option>
+                  <option value="11" >Noviembre</option>
+                  <option value="12" >Diciembre</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="desde_d">Día</label></td>
+              <td>
+                <select id="dia" class="" name="desde_d">
+                  <option value="0" selected>----</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
-    </br>
+
     <label for="HASTA">Hasta</label>
     <div id="HASTA" class="filtro">
-      <label for="hasta_a">Año</label>
-      <select id="anio1" class="" name="hasta_a">
-        <option value="0">----</option>
-      </select>
-      <label for="hasta_m">Mes</label>
-      <select id="mes1" data-code="1" name="hasta_m">
-        <option value="0" selected>----</option>
-        <option value="1" >Enero</option>
-        <option value="2" >Febrero</option>
-        <option value="3" >Marzo</option>
-        <option value="4" >Abril</option>
-        <option value="5" >Mayo</option>
-        <option value="6" >Junio</option>
-        <option value="7" >Julio</option>
-        <option value="8" >Agosto</option>
-        <option value="9" >Septiembre</option>
-        <option value="10" >Octubre</option>
-        <option value="11" >Noviembre</option>
-        <option value="12" >Diciembre</option>
-      </select>
-      <label for="hasta_d">Día</label>
-      <select id="dia1" class="" name="hasta_d">
-        <option value="0" selected>----</option>
-      </select>
+
+      <div id="filtroForms">
+        <div class = "encabezadoForms">
+          <table class = "table">
+            <tr>
+              <td><label for="hasta_a">Año</label></td>
+              <td>
+                <select id="anio1" class="" name="hasta_a">
+                  <option value="0">----</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="hasta_m">Mes</label></td>
+              <td>
+                <select id="mes1" data-code="1" name="hasta_m">
+                  <option value="0" selected>----</option>
+                  <option value="1" >Enero</option>
+                  <option value="2" >Febrero</option>
+                  <option value="3" >Marzo</option>
+                  <option value="4" >Abril</option>
+                  <option value="5" >Mayo</option>
+                  <option value="6" >Junio</option>
+                  <option value="7" >Julio</option>
+                  <option value="8" >Agosto</option>
+                  <option value="9" >Septiembre</option>
+                  <option value="10" >Octubre</option>
+                  <option value="11" >Noviembre</option>
+                  <option value="12" >Diciembre</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="hasta_d">Día</label></td>
+              <td>
+                <select id="dia1" class="" name="hasta_d">
+                  <option value="0" selected>----</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
     </div>
     <input type="button" id="filtro_fecha" name="filro_fecha" value="Buscar">
-    <h3>La venta total fue de:</h3><p id="saldo_total"></p>
+  <br></br>
+    <h3>La venta total fue de: </h3><p id="saldo_total"></p>
   </div>
 
 {% endblock %}
