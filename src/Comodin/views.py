@@ -266,8 +266,8 @@ def filtroP(request):
 
 @login_required(login_url='base')
 def saldo_por_fechas(request):
-    fecha_desde = request.GET['desde_anio']+'/'+request.GET['desde_mes']+'/'+request.GET['desde_dia']
-    fecha_hasta = request.GET['hasta_anio']+'/'+request.GET['hasta_mes']+'/'+request.GET['hasta_dia']
+    fecha_desde = request.GET['desde_anio']+'-'+request.GET['desde_mes']+'-'+request.GET['desde_dia']
+    fecha_hasta = request.GET['hasta_anio']+'-'+request.GET['hasta_mes']+'-'+request.GET['hasta_dia']
 
     compras = Factura.objects.filter(
                     Comodin_id__id=request.GET['id'],

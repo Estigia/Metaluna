@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2>Cliente {{comodin.nombre}}</h2>
+<h2>Cliente {{comodin.nombre}}, ID: {{comodin.id}}</h2>
 
   <div class = "listados">
     <table class = "table">
@@ -100,7 +100,7 @@
       </select>
     </div>
     <input type="button" id="filtro_fecha" name="filro_fecha" value="Buscar">
-
+    <h3>La venta total fue de:</h3><p id="saldo_total"></p>
   </div>
 
 {% endblock %}
@@ -108,7 +108,7 @@
 {% block js %}
 <script type="text/javascript">
 
-  $('#filtro_fecha').on('change', function(){
+  $('#filtro_fecha').on('click', function(){
 
     var desde_anio = $("#anio").val();
     var desde_mes = $("#mes").val();
@@ -117,6 +117,8 @@
     var hasta_anio = $("#anio1").val();
     var hasta_mes = $("#mes1").val();
     var hasta_dia = $("#dia1").val();
+
+
 
     $.ajax({
 
@@ -129,14 +131,18 @@
         'hasta_dia': hasta_dia,
         'id': {{comodin.id}}
       },
-      url: "{% url %}",
+      url: "{% url 'index:facturas_cliente' %}",
       type: 'get',
       dataType: 'json',
       success: function(data){
-
+        var total = 0;
+        for (var i = 0; i < data.length; i++) {
+          total += data[i].fields.precioTotal;
+        }
+        $('#saldo_total').text('Q.'+total);
       },
       error: function(){
-
+        alert('Ocurrió un error en el servidor.');
       }
 
     });
