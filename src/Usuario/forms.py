@@ -7,8 +7,11 @@ from django.contrib.auth.forms import (
                             UserCreationForm,
                             AuthenticationForm
                             )
+from django.contrib import messages
 
 from .models import Usuario
+from django.contrib.auth import (authenticate,get_user_model,login,logout)
+
 
 class UserCreationForm(forms.ModelForm):
 
@@ -64,3 +67,12 @@ class UserChangeForm(forms.Form):
 class InicioForm(forms.Form):
     usuario = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())
+    
+
+    # def clean(self, *args, **kwargs):
+    #     username = self.cleaned_data.get("username")
+    #     password = self.cleaned_data.get("password")
+    #     user = authenticate(username=username , password=password)
+    #     if not user:
+    #         raise forms.ValidationError("Este Usuario no existe")
+    #     return super(InicioForm,self).clean(*args,**kwargs)

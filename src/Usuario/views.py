@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.contrib import messages
 
 from .models import Empleado, Usuario
 from .forms import InicioForm, UserCreationForm
@@ -88,6 +89,10 @@ def inicio(request):
             password = request.POST['password']
 
             user = authenticate(username = username, password = password)
+            if not user:
+                messages.error(request, 'El usuario o la contrasena ingreasada no son correctos')
+            elif not user.check_password(password):
+                messages.error(request, 'La contrasena ingresada es incorrecta')
 
             if user is not None:
                 if user.is_active:

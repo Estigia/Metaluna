@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Inicio Sesion Metaluna</title>
+  <script type="text/javascript" src= '{% static "js/jquery.1.8.3.min.js" %}'></script>
+
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
       <style>
@@ -71,18 +81,68 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
+
+  {% if messages %}
+  <div class = 'row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+    {% for message in messages %}
+    <p{% if message.tags == "error" %} class="alert alert-danger"  {% endif %}>{{ message }}</p>
+    {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
 </head>
 
 <body>
   <div class="login">
 	<h1>Inicio de Sesion</h1>
-    <form method="post">
+    <form method="post" id=myForm required>
+
+
       {%csrf_token%}
+
+        <p id="demo" class="text-danger" ></p>
     		{{form.usuario}}
         {{form.password}}
-        <button type="submit" class="btn btn-primary btn-block btn-large">Ingresar.</button>
+          <button type="submit" id="validate" hidden >Ingresar</button>
     </form>
+    <button type="submit" class="btn btn-primary btn-block btn-large" onclick="myFunction()">Ingresar</button>
 </div>
+
+<script>
+// $(document).onload(function(){$('#demo').hide();})
+
+function myFunction() {
+    var x, text;
+
+    // Get the value of the input field with id="numb"
+    x = document.getElementById('id_usuario');
+    y = document.getElementById('id_password');
+    // If x is Not a Number or less than one or greater than 10
+    if (x.value == "") {
+        text = "Ingresa un nombre de usuario";
+        var div =   document.getElementById('demo');
+        div.style.visibility = 'invisible';
+
+    }
+
+    else if (y.value == "") {
+        text = "Ingresa la contrasena de el usuario al que deseas acceder";
+        var div =   document.getElementById('demo');
+        div.style.visibility = 'invisible';
+
+    }
+     else {
+       document.getElementById("myForm").submit();
+    }
+
+
+    document.getElementById("demo").innerHTML = text;
+
+
+}
+</script>
 
     <script src="js/index.js"></script>
 
