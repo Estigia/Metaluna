@@ -109,8 +109,9 @@ class AgenciaProductoList(ListView):
         for key, value in self.kwargs.iteritems():
             valor = value
 
-        self.agencia = get_object_or_404(Agencia, nombre__iexact = Agencia.objects.get(id=valor))
-        return Mercaderia.objects.filter(Agencia_id=self.agencia)
+        self.agencia = Agencia.objects.get(id=valor)
+        #get_object_or_404(Agencia, nombre__iexact = Agencia.objects.get(id=valor))
+        return Mercaderia.objects.filter(Agencia_id=self.agencia.id)
 
 class AgenciaUpdate(UpdateView):
     model = Agencia
