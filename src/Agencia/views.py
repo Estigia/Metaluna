@@ -78,8 +78,8 @@ class AgenciaEmpleadoList(ListView):
         for key, value in self.kwargs.iteritems():
             valor = value
 
-        self.agencia = get_object_or_404(Agencia, nombre__iexact = Agencia.objects.get(id=valor))
-        return Empleado.objects.filter(Agencia_id=self.agencia)
+        agencia = get_object_or_404(Agencia, nombre__iexact = Agencia.objects.get(id=valor))
+        return Empleado.objects.filter(Agencia_id=agencia)
     #
     # def get_context_data(self, **kwargs):
     #     print kwargs
