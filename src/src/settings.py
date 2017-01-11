@@ -23,10 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'n$2rl*iv195tm)$h^*@56@36tcyap_w-erm^fvl3dgs0a$43^k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not True
 
 
-ALLOWED_HOSTS = [""]
+ALLOWED_HOSTS = ["distribuidorametaluna.com", "www.distribuidorametaluna.com"]
 
 
 # Application definition
@@ -83,10 +83,18 @@ WSGI_APPLICATION = 'src.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-  'default': {
+  #'default': {
 
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #}
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'metalunadb',
+        'USER': 'metaluna',
+        'PASSWORD': 'SGeDU3yC',
+        'HOST': 'distribuidorametaluna.com',
+        'PORT': '5432',
     }
 }
 
@@ -135,8 +143,8 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/Chofo2003/www/static'
-#/var/www/distribuidorametaluna.com/static
+#STATIC_ROOT = '/home/Chofo2003/www/static'
+STATIC_ROOT = '/var/www/distribuidorametaluna.com/static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 
