@@ -57,7 +57,9 @@
 	<div class="container">
         <ul class="main-nav">
         	<li><a href="/">Home</a></li>
+						{% if user.is_staff %}
             <li><a href="/agencia">Agencias</a></li>
+						{% endif %}
 						<li><a href={% url 'Agencia:list_v' %}>Vehiculos</a></li>
             <li><a href="/productos">Productos</a></li>
             <li><a href="/transacciones">Transacciones</a></li>
