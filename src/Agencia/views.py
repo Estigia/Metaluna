@@ -78,8 +78,9 @@ class AgenciaEmpleadoList(ListView):
         for key, value in self.kwargs.iteritems():
             valor = value
 
-        self.agencia = get_object_or_404(Agencia, nombre__iexact = Agencia.objects.get(id=valor))
-        return Empleado.objects.filter(Agencia_id=self.agencia)
+        #self.agencia = get_object_or_404(Agencia, nombre__iexact = Agencia.objects.get(id=valor))
+        self.agencia = Agencia.objects.get(id=valor)
+        return Empleado.objects.filter(Agencia_id=self.agencia.id)
     #
     # def get_context_data(self, **kwargs):
     #     print kwargs
@@ -108,8 +109,9 @@ class AgenciaProductoList(ListView):
         for key, value in self.kwargs.iteritems():
             valor = value
 
-        self.agencia = get_object_or_404(Agencia, nombre__iexact = Agencia.objects.get(id=valor))
-        return Mercaderia.objects.filter(Agencia_id=self.agencia)
+        self.agencia = Agencia.objects.get(id=valor)
+        #get_object_or_404(Agencia, nombre__iexact = Agencia.objects.get(id=valor))
+        return Mercaderia.objects.filter(Agencia_id=self.agencia.id)
 
 class AgenciaUpdate(UpdateView):
     model = Agencia
@@ -221,7 +223,7 @@ class EntregaDetail(DetailView):
 class EntregaUpdate(UpdateView):
     model = Entrega
     template_name = 'agencia/entrega_edit.html'
-    success_url = reverse_lazy('Agencia:list_e')
+    success_url = reverse_lazy('Agencia:list_v')
 
     fields = [
         'kEntrada',

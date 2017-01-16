@@ -2,7 +2,13 @@
 
 {% block content %}
 
-<h2>Factura: {{factura.nombre_factura}}</h2>
+<h2>Factura:
+  {% if not factura.Comodin_id.tipo %}
+  {{factura.noDocumento}}
+  {% else %}
+  {{factura.nombre_factura}}
+  {% endif %}
+</h2>
 <br/>
 
 <div class = "listados">
@@ -15,12 +21,14 @@
         {{factura.Comodin_id}}
       </td>
     </tr>
+    {% if factura.Comodin_id.tipo %}
     <tr>
       <th>Serie</th>
       <td>
         {{factura.serie}}
       </td>
     </tr>
+    {% endif %}
     <tr>
       <th>No. Factura</th>
       <td>
@@ -57,7 +65,14 @@
     {% for detalle in detalles %}
     <tr>
       <td>{{detalle.cantidad}}</td>
-      <td>{{detalle.Producto_id}}</td>
+      <td>
+        {{detalle.Producto_id.Tipo_Producto_id}},
+        {{detalle.Producto_id.Material_id}},
+        {{detalle.Producto_id.Longitud_id}},
+        {{detalle.Producto_id.Calibre_id}},
+        {{detalle.Producto_id.Forma_id}},
+        {{detalle.Producto_id.Marca_id}}
+      </td>
       <td>{{detalle.precioUnitario}}</td>
       <td>{{detalle.subTotal}}</td>
     </tr>
