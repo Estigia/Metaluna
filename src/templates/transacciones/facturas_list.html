@@ -21,10 +21,12 @@
           <td>Facturas válidas</td>
           <td><input type="radio" name="anulada" value="No" style="margin: 0px 0px 0px 42%;"></input></td>
         </tr>
+        {% if facturas.first.Comodin_id.tipo %}
         <tr>
           <td>No. Serie</td>
           <td><input type="text" name="serie" id="serie" value=""></td>
         </tr>
+        {% endif %}
         <tr>
           <td>Numero de Factura</td>
           <td><input type="text" name="numero" id="numero" value=""></td>
@@ -58,9 +60,12 @@
     <tr>
       <td><strong>Nombre</td>
       <td><strong>Fecha</td>
+      {% if facturas.first.Comodin_id.tipo %}
       <td><strong>Serie</td>
+      {% endif %}
       <td><strong>No. Factura</td>
       <td><strong>Anulada</td>
+      <td></td>
       <td><strong>Total</td>
     </tr>
     {% for factura in facturas %}
@@ -71,9 +76,11 @@
       <td>
         {{factura.fecha}}
       </td>
+      {% if factura.Comodin_id.tipo %}
       <td>
         {{factura.serie}}
       </td>
+      {% endif %}
       <td>
         {{factura.noDocumento}}
       </td>
