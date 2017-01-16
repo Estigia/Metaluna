@@ -4,8 +4,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 from Agencia.models import Mercaderia
 
-
-
 class Lote(models.Model):
     id = models.AutoField(primary_key = True)
     precio_compra = models.FloatField(null=True,blank=True,validators=[MinValueValidator(0)])

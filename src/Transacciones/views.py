@@ -218,7 +218,8 @@ def ventas(request):
     context = {
         'tipos': Tipo_Producto.objects.all(),
         'marcas': Marca.objects.all(),
-        'clientes': Comodin.objects.filter(tipo=0)
+        'clientes': Comodin.objects.filter(tipo=0),
+        'noDoc': Factura.objects.filter(Comodin_id__tipo=0).count() + 1
     }
 
     return render(request, 'transacciones/ventas.html', context)
@@ -238,12 +239,11 @@ def compras(request):
 def venta(request):
     detalles = request.GET['detalles']
     cliente = request.GET['cliente']
-    serie = request.GET['serie']
     numDoc = request.GET['num_doc']
 
     comodin = Comodin.objects.get(id=cliente)
     factura = Factura.objects.create(
-                serie=serie,
+                serie='A',
                 noDocumento=numDoc,
                 anulada=False,
                 Comodin_id=comodin

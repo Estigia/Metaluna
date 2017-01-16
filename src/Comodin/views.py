@@ -165,7 +165,7 @@ class MarcaCreate(CreateView):
     def get_context_data(self, **kwargs):
 
        context = super(MarcaCreate, self).get_context_data(**kwargs)
-       proveedores = Comodin.objects.filter(tipo = False)
+       proveedores = Comodin.objects.filter(tipo = True)
 
        context.update({
             "proveedores": proveedores,

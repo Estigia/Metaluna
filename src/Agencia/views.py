@@ -223,7 +223,7 @@ class EntregaDetail(DetailView):
 class EntregaUpdate(UpdateView):
     model = Entrega
     template_name = 'agencia/entrega_edit.html'
-    success_url = reverse_lazy('Agencia:list_e')
+    success_url = reverse_lazy('Agencia:list_v')
 
     fields = [
         'kEntrada',

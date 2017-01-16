@@ -23,7 +23,7 @@ class Abonos(models.Model):
 
 class Factura(models.Model):
     serie   =   models.CharField(max_length = 3, blank=True,null=True)
-    noDocumento = models.PositiveIntegerField(null = True,blank = True)
+    noDocumento = models.FloatField(null = True,blank = True)
     precioTotal = models.FloatField(null = True,blank=True,validators=[MinValueValidator(0)])
     anulada = models.BooleanField(default = False)
     fecha = models.DateField(auto_now_add=False, auto_now = True)
@@ -31,7 +31,7 @@ class Factura(models.Model):
     Comodin_id = models.ForeignKey('Comodin.Comodin')
 
     def __unicode__(self):
-        return str(self.noDocumento) + "  "+ self.serie
+        return self.noDocumento + "  "+ self.serie
 
     def nombre_factura(self):
         return str(self.serie) + str(self.noDocumento)

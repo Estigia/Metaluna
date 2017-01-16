@@ -116,6 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+SESSION_COOKIE_AGE = 14400
 
 AUTH_USER_MODEL = 'Usuario.Usuario'
 
