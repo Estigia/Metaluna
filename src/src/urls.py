@@ -41,7 +41,8 @@ urlpatterns = [
     url(r'^productos/', include('Producto.urls', namespace= 'Producto')),
     url(r'^trans/','Transacciones.views.trans',name="trans"),
     url(r'^$','Usuario.views.inicio',name="base"),
-    url(r'^logout/$', 'Usuario.views.cerrar', name='cerrar')
+    url(r'^logout/$', 'Usuario.views.cerrar', name='cerrar'),
+    url(r'^filtro_m/$', 'Localizaciones.views.BusquedaMunicipio', name='filtro_municipio')
 
 ]
 
