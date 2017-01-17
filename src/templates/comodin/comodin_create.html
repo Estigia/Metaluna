@@ -56,6 +56,7 @@
         type: 'get',
         success: function(data){
           var municipios = document.getElementById('id_municipio');
+          municipios.length = 0;
 
           var vacio = document.createElement('option');
           vacio.value = '0';
