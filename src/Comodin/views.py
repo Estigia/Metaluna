@@ -10,6 +10,7 @@ from django.views.generic import DetailView, ListView
 
 from .models import Comodin, Marca
 from Transacciones.models import Factura
+from Localizaciones.models import Departamento
 
 #Lista de proveedores
 @login_required(login_url='base')
@@ -69,6 +70,17 @@ class ComodinCreate(CreateView):
 
         return super(ComodinCreate, self).form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super(ComodinCreate, self).get_context_data(**kwargs)
+
+        departamentos = Departamento.objects.all()
+
+        context.update({
+            'departamentos': departamentos
+        })
+
+        return context
+
 # ----------------------- clientes
 class ClienteCreate(CreateView):
     model = Comodin
@@ -101,6 +113,17 @@ class ClienteCreate(CreateView):
         self.object = p.save()
 
         return super(ClienteCreate, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(ClienteCreate, self).get_context_data(**kwargs)
+
+        departamentos = Departamento.objects.all()
+
+        context.update({
+            'departamentos': departamentos
+        })
+
+        return context
 
 
 class ClienteDetail(DetailView):
@@ -146,6 +169,17 @@ class ClienteUpdate(UpdateView):
             return HttpResponseRedirect('/')
 
         return super(ClienteUpdate, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(ClienteUpdate, self).get_context_data(**kwargs)
+
+        departamentos = Departamento.objects.all()
+
+        context.update({
+            'departamentos': departamentos
+        })
+
+        return context
 
 #---------------------------Marca
 class MarcaCreate(CreateView):
@@ -255,6 +289,17 @@ class ProveedorUpdate(UpdateView):
             return HttpResponseRedirect('/')
 
         return super(ProveedorUpdate, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(ProveedorUpdate, self).get_context_data(**kwargs)
+
+        departamentos = Departamento.objects.all()
+
+        context.update({
+            'departamentos': departamentos
+        })
+
+        return context
 
 @login_required(login_url='base')
 def filtroP(request):

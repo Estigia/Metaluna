@@ -12,6 +12,15 @@
         {{form.nombre}}
         <label>Empresa</label>
           {{form.empresa}}
+
+          <label>Departamento</label>
+          <select id="departamento" class="" name="departamento">
+            <option value="0">--------</option>
+            {% for departamento in departamentos %}
+              <option value="{{departamento.id}}">{{departamento}}</option>
+            {% endfor %}
+          </select>
+
       <label>Municipio</label>
       {{form.municipio}}
       <label>Direccion</label>
@@ -28,5 +37,48 @@
     </form>
   </div>
 </div>
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+  $('#id_municipio').ready(function(){
+
+    $('#id_municipio').empty();
+
+  })
+
+  $('#departamento').on('change', function(){
+
+      $.ajax({
+
+        data: {'id': $(this).val()},
+        url: '/filtro_m',
+        type: 'get',
+        success: function(data){
+          var municipios = document.getElementById('id_municipio');
+
+          var vacio = document.createElement('option');
+          vacio.value = '0';
+          vacio.innerHTML = "------";
+
+          municipios.options.add(vacio);
+
+          for (var i = 0; i < data.length; i++) {
+            var municipio = document.createElement('option');
+
+            municipio.value = data[i].pk;
+
+            municipio.innerHTML = data[i].fields.municipio;
+            municipios.options.add(municipio)
+          }
+        }
+
+      });
+
+  })
+
+</script>
 
 {% endblock %}
