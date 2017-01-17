@@ -15,10 +15,10 @@ from django.shortcuts import render
 #
 #     return render(request, 'localizacion.html', context)
 #
-# def BusquedaMunicipio(request):
-#     id_Departamento = request.GET['id']
-#     muni = Municipio.object.filter(Departamento_id= id_Departamento)
-#     print muni
-#     data = serializers.serialize('json', muni, fields =('municipio'))
-#     print data
-#     return HttpResponse(data, content_type='application/json')
+def BusquedaMunicipio(request):
+    id_Departamento = request.GET['id']
+    muni = Municipio.object.filter(Departamento_id= id_Departamento)
+    print muni
+    data = serializers.serialize('json', muni, fields =('municipio'))
+    print data
+    return HttpResponse(data, content_type='application/json')
