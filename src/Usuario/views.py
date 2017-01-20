@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib import messages
 
-from .models import Empleado, Usuario
+from .models import Empleado, Usuario, Log_user
 from .forms import InicioForm, UserCreationForm
 
 class EmpleadoCreate(CreateView):
@@ -102,6 +102,12 @@ def inicio(request):
                     context = {
                         "form": form,
                     }
+
+                    nueva_entrada = Log_user()
+
+                    nueva_entrada.usuario = user
+
+                    nueva_entrada.save()
 
                     if request.GET:
                         if request.GET['next'] != '/logout':
