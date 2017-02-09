@@ -10,7 +10,7 @@ from Producto.models import  Lote
 class Recibo(models.Model):
     noDocumento = models.PositiveIntegerField(null=True,blank=True)
     def __unicode__(self):
-        return str(self.noDocumento)
+        return self.noDocumento
 
 class Abonos(models.Model):
     monto   =  models.FloatField(null=True,blank=True,validators=[MinValueValidator(0)])
@@ -18,7 +18,7 @@ class Abonos(models.Model):
     Credito_id  = models.ForeignKey('Credito')
 
     def __unicode__(self):
-        return str(self.monto)
+        return self.monto
 
 
 class Factura(models.Model):
@@ -31,10 +31,10 @@ class Factura(models.Model):
     Comodin_id = models.ForeignKey('Comodin.Comodin')
 
     def __unicode__(self):
-        return self.noDocumento + "  "+ self.serie
+        return str(self.noDocumento) + "  "+ self.serie
 
     def nombre_factura(self):
-        return str(self.serie) + str(self.noDocumento)
+        return self.serie + self.noDocumento
 
     class Meta:
         ordering =['-fecha']
@@ -46,7 +46,7 @@ class DetalleFactura(models.Model):
     cantidad = models.IntegerField(null = True,blank=True,validators=[MinValueValidator(0)])
 
     def __unicode__(self):
-        return str(self.Factura_id)+'--'+str(self.Producto_id)
+        return str(self.Factura_id)+'--'+ str(self.Producto_id)
 
     def precioUnitario(self):
         return self.subTotal/self.cantidad
@@ -64,7 +64,7 @@ class Credito(models.Model):
     Factura_id   = models.ForeignKey('Factura')
 
     def __unicode__ (self):
-        return str(self.Usuario_id) + "  " + str(self.Factura_id)
+        return self.Usuario_id.username + "  " + str(self.Factura_id)
 
     def credito_name(self):
-        return str(self.Factura_id)+"--"+str(self.Factura_id.Comodin_id)
+        return self.Factura_id+"--"+self.Factura_id.Comodin_id

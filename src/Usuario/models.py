@@ -68,7 +68,7 @@ class Usuario(AbstractBaseUser):
     username = models.CharField(max_length = 45,unique = True)
     is_staff = models.BooleanField(default = False)
     is_active = models.BooleanField(default = True)
-    ultima_conexion = models.DateTimeField(auto_now_add=False, auto_now=True)
+    ultima_conexion = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     #Tipo_Usuario_id = models.ForeignKey('Tipo_Usuario', default = 1)
     Empleado_id = models.ForeignKey('Empleado', default=1)
@@ -91,3 +91,12 @@ class Usuario(AbstractBaseUser):
 
     def has_perm(self,perm):
 		return True
+
+class Log_user(models.Model):
+    id = models.AutoField(primary_key = True)
+    fecha = models.DateTimeField(auto_now = False, auto_now_add = True)
+
+    usuario = models.ForeignKey('Usuario')
+
+    def __unicode__(self):
+        return "Usuario: "+self.usuario + ", " + "Fecha de inicio de sesion: " + self.fecha
