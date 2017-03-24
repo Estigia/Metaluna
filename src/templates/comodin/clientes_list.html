@@ -9,9 +9,9 @@
 </div>
 
 <div class = "listados" >
-  <table class = "table"   id = "tblDatos">
+  <div style="float: left">
+  <table class = "table"   id = "tblDatos"  >
     <tr>
-      <td></td>
       <td><strong>Nombre</td>
       <td><strong>Empresa</td>
       <td><strong>Telefono</td>
@@ -21,78 +21,71 @@
 
     {% for dato in comodin %}
       <tr id=datosTablaImprimir>
-        <td><a><input type = "checkbox" value = "Falso" id = {{dato.telefono}}  ></a></td>
+         <!--<td><a><input type = "checkbox" value = "Falso" id = {{dato.telefono}}  ></a></td>-->
         <td>{{dato.nombre}}</td>
         <td>{{dato.empresa}}</td>
         <td>{{dato.telefono}}</td>
         <td>{{dato.saldo}}</td>
         <td><a href={% url 'index:detallesCliente' dato.id %}><i>Ver</i></a></td>
         <td><a href={% url 'index:editarCliente' dato.id %}><i>Editar</i></a></td>
+        <td><a><input type = "submit" value = "agregar" id = {{dato.telefono}}  onclick="nuevafila('impresion','{{dato.nombre}}','{{dato.empresa}}','{{dato.telefono}}','{{dato.saldo}}')" ></a></td>
+        
       </tr>
     {% endfor %}
 
   </table>
-
+  </div>
+  
 </div>
+
+ 
+
 <div id="paginador"></div>
 
-<input type=button value="Ajustar" onclick="borrarColumna('tblDatos')">
-<input type=button value="Imprimir" onclick="imprimir('tblDatos')">
+ <div style="float: left" >
+    <table id=impresion class = "table" >
+      <tr>
+      <td><strong>Nombre</td>
+      <td><strong>Empresa</td>
+      <td><strong>Telefono</td>
+      <td><strong>Saldo</td>
+      <td><strong>Abono</td>
+      </tr>
+    </table>
+  </div>
+
+
+<input type=button value="Imprimir" onclick="imprimir('impresion')">
 
 {% endblock %}
 
 {% block js %}
 
 <script type="text/javascript">
-// $(document).ready(function(){
-//   var p = new Paginador(
-//     document.getElementById('paginador'),
-//     document.getElementById('tblDatos'),
-//     3
-//   );
-//
-//   p.Mostrar();
-// });
+$(document).ready(function(){
+  var p = new Paginador(
+    document.getElementById('paginador'),
+    document.getElementById('tblDatos'),
+    3
+  );
+
+  p.Mostrar();
+});
 
 
-function borrarColumna(idTabla)
-{
-  var fila;
-  fila=document.getElementById(idTabla).getElementsByTagName('tr');
-  var tabla   = document.createElement("table");
-  ultimaColumna=fila.length;
-  for(var i=1;ultimaColumna;i++)
-  {
-    var telefono = fila[i].getElementsByTagName('td')[3].innerHTML;
-    var x = document.getElementById(telefono).checked;
-    if(x==false)
-    {
-      document.getElementById(idTabla).deleteRow(i);
-      i=i-1;
-    }
-
-    else
-    {
-      //fila[i].getElementsByTagName('td')[0].style.display = "none";
-      fila[i].getElementsByTagName('td')[6].innerHTML = "_____________";
-      fila[i].getElementsByTagName('td')[5].style.display  = "none";
-    }
-  }
-  }
-
-
-  function agregarFila(idtabla){
-
-            var table = document.getElementById(idtabla);
-           var rowCount = table.rows.length;
-           var row = table.insertRow(7);
-           for(var i=0; i<7; i++){
-                    row.insertCell(i);
-
-            }
-            alert("function");
-            imprimir(idtabla);
-  }
+function nuevafila(idTabla,nombre,empresa,telefono,saldo){
+  var tabla = document.getElementById(idTabla);
+  var longitud = document.getElementById(idTabla).rows.length;
+  var fila = tabla.insertRow(longitud);
+  var cell1 = fila.insertCell(0);
+  var cell2 = fila.insertCell(1);
+  var cell3 = fila.insertCell(2);
+  var cell4 = fila.insertCell(3);
+  cell1.innerHTML = nombre;
+  cell2.innerHTML = empresa;
+  cell3.innerHTML = telefono;
+  cell4.innerHTML = saldo;  
+}
 
 
 
@@ -104,7 +97,6 @@ function imprimir(soloEsto){
 var contenido = document.getElementById(soloEsto).outerHTML;
 ventana=window.open("about :blank","ventana","width=700,height=600,top=0,left=3000");
 ventana.document.open();
-
 ventana.document.write('<html><link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css"/><head><title>METALUNA</title></head><body class="table" onprint="self.close()">');
 ventana.document.write('<br></br><br></br><br></br><br></br><br></br><br>');
 ventana.document.write('</body></html>');
