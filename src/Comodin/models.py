@@ -20,7 +20,7 @@ class Comodin(models.Model):
     municipio = models.ForeignKey('Localizaciones.Municipio')
 
     def __unicode__(self):
-        return str(self.nombre) + "--" + str(self.empresa)
+        return self.nombre + "--" + self.empresa
 
 class Marca(models.Model):
     id = models.AutoField(primary_key = True)
